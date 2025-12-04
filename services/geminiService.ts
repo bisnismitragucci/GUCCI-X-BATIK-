@@ -1,23 +1,12 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-// Initialize Gemini Client safely
-// Ensure we handle cases where process.env.API_KEY might be undefined or empty string during build
-const getApiKey = () => {
-  try {
-    return process.env.API_KEY;
-  } catch (e) {
-    return undefined;
-  }
-};
-
-const apiKey = getApiKey();
-// Only initialize if apiKey is a non-empty string
-const ai = (apiKey && apiKey.length > 0) ? new GoogleGenAI({ apiKey }) : null;
+const apiKey = process.env.API_KEY;
+const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export const getGeminiResponse = async (userMessage: string): Promise<string> => {
-  if (!ai || !apiKey) {
-    console.error("Gemini API Key is missing. Check your .env file or deployment settings.");
+  if (!ai) {
+    console.error("Gemini API Key is missing. Please set API_KEY in your environment variables.");
     return "Maaf, sistem sedang dalam pemeliharaan (Konfigurasi API belum lengkap). Silakan hubungi admin.";
   }
 
