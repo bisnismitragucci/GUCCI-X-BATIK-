@@ -29,8 +29,8 @@ const FALLBACK_RESPONSES = {
   // PENJELASAN KEMITRAAN & SISTEM P4P
   mitra: "Program kemitraan kami menggunakan sistem **Advertising P4P (Pay for Performance)**.\n\nApa artinya?\nSistem ini menjamin bahwa setiap mitra butik mendapatkan eksposur dan bagi hasil yang adil berdasarkan kinerja ekspor nyata, bukan sekadar janji. Kami memberikan akses pasar global, sementara Anda fokus pada kualitas karya.",
   
-  // PENJELASAN PENDAFTARAN (WAJIB KE CS)
-  daftar: "Terima kasih atas minat Anda untuk bergabung.\n\n**Untuk mendaftar, silakan hubungi Customer Service kami.**\n\nProses pendaftaran meliputi verifikasi data usaha dan penjelasan lebih rinci mengenai sistem Advertising P4P yang kami gunakan. Tim CS kami siap memandu Anda langkah demi langkah via WhatsApp.",
+  // PENJELASAN PENDAFTARAN (UPDATED: SYARAT SIMPEL)
+  daftar: "Untuk bergabung menjadi mitra kami, persyaratannya sangat mudah.\n\nSyarat Pendaftaran:\n1. **Nomor HP** yang aktif.\n2. Membuat **Akun Bisnis Gucci**.\n\nSilakan hubungi Customer Service kami untuk panduan pembuatan akun tersebut.",
   
   // PENJELASAN LOKASI
   lokasi: "Kantor Pusat kami berada di **Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Menteng, Jakarta Pusat**.\n\nKami juga memiliki jaringan mitra butik (Advertising P4P Network) yang tersebar di Yogyakarta, Solo, Pekalongan, dan Bali.",
@@ -44,7 +44,7 @@ const getFallbackResponse = (message: string): string => {
   const lowerMsg = message.toLowerCase();
   
   // Deteksi Topik Pendaftaran (PRIORITAS TINGGI)
-  if (lowerMsg.match(/(daftar|register|gabung|join|cara|syarat|form)/)) {
+  if (lowerMsg.match(/(daftar|register|gabung|join|cara|syarat|form|akun|hp)/)) {
     return FALLBACK_RESPONSES.daftar;
   }
 
@@ -92,17 +92,13 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
           systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
           
           POIN KUNCI INFORMASI:
-          1. **Sistem Bisnis**: Kami menggunakan sistem **"Advertising P4P"**. Jelaskan ini sebagai keunggulan transparansi.
-          2. **Pendaftaran**: Jawab dengan kalimat: **"Untuk mendaftar, hubungi Customer Service."**
+          1. **Syarat Pendaftaran**: Tegaskan bahwa syaratnya HANYA: **Nomor HP** dan **Membuat Akun Bisnis Gucci**. Tidak ada syarat lain yang rumit.
+          2. **Sistem Bisnis**: Kami menggunakan sistem **"Advertising P4P"**.
           3. **Legalitas**: PT Graha Citra Prima adalah resmi dan berizin Kemenkumham.
           
-          GAYA BICARA:
-          Profesional, singkat, padat, dan meyakinkan.
-          
           INSTRUKSI:
-          - Jika user bertanya "cara daftar?", arahkan ke Customer Service.
-          - Jika user bertanya "sistemnya apa?", jawab "Advertising P4P".
-          - Selalu akhiri dengan ajakan ke WhatsApp CS.`,
+          - Jika user bertanya "cara daftar?" atau "syaratnya apa?", jawab: "Syaratnya hanya menggunakan Nomor HP dan membuat Akun Bisnis Gucci saja." lalu arahkan ke CS.
+          - Selalu akhiri jawaban dengan ajakan: "Hubungi Customer Service untuk informasi lebih lanjut."`,
         }
       });
       
