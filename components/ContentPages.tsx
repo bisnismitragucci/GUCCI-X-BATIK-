@@ -725,37 +725,58 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
 
                         {/* Chart / Table Hybrid */}
                         <div className="space-y-4">
-                            <div className="grid grid-cols-12 text-[10px] text-gray-500 uppercase tracking-widest mb-2 font-bold">
-                                <div className="col-span-2">Kode</div>
-                                <div className="col-span-4">Negara</div>
-                                <div className="col-span-3 text-right">Volume (IDR)</div>
-                                <div className="col-span-3 text-right">Growth</div>
+                            {/* Updated Header for Mobile Responsiveness */}
+                            <div className="flex justify-between md:grid md:grid-cols-12 text-[10px] text-gray-500 uppercase tracking-widest mb-2 font-bold px-2 md:px-0">
+                                <div className="flex items-center md:contents">
+                                    <div className="w-10 md:w-auto md:col-span-2">Kode</div>
+                                    <div className="md:col-span-4">Negara</div>
+                                </div>
+                                <div className="text-right md:contents">
+                                    <div className="md:hidden">Data Pasar</div>
+                                    <div className="hidden md:block col-span-3 text-right">Volume (IDR)</div>
+                                    <div className="hidden md:block col-span-3 text-right">Growth</div>
+                                </div>
                             </div>
+
                             {visibleCountries.map((c, i) => (
-                                <div key={i} className="grid grid-cols-12 items-center bg-[#151515] p-3 rounded border-l-2 border-[#BFA36F] hover:bg-[#222] transition-colors">
-                                    <div className="col-span-2 font-mono text-xs text-gray-400">{c.code}</div>
-                                    <div className="col-span-4 font-bold text-sm flex items-center">
-                                        <img src={c.flagUrl} className="w-4 h-3 mr-2 rounded-sm" /> {c.name.split('(')[0]}
+                                <div key={i} className="flex justify-between items-center md:grid md:grid-cols-12 bg-[#151515] p-3 rounded border-l-2 border-[#BFA36F] hover:bg-[#222] transition-colors">
+                                    
+                                    {/* Left Group: Code + Country */}
+                                    <div className="flex items-center md:contents">
+                                        <div className="font-mono text-xs text-gray-400 w-10 md:w-auto md:col-span-2">{c.code}</div>
+                                        <div className="font-bold text-sm flex items-center md:col-span-4">
+                                            <img src={c.flagUrl} className="w-4 h-3 mr-2 rounded-sm" alt="flag" /> 
+                                            <span className="truncate">{c.name.split('(')[0]}</span>
+                                        </div>
                                     </div>
-                                    <div className="col-span-3 text-right font-mono text-[#BFA36F] text-xs">{c.income}</div>
-                                    <div className="col-span-3 text-right font-bold text-xs text-green-500">{c.change}</div>
+
+                                    {/* Right Group: Volume + Growth (Stacked on Mobile) */}
+                                    <div className="flex flex-col items-end md:contents">
+                                        <div className="md:col-span-3 text-right font-mono text-[#BFA36F] text-[10px] md:text-xs whitespace-nowrap">
+                                            {c.income}
+                                        </div>
+                                        <div className="md:col-span-3 text-right font-bold text-[10px] md:text-xs text-green-500 whitespace-nowrap">
+                                            {c.change}
+                                        </div>
+                                    </div>
                                 </div>
                             ))}
                         </div>
 
-                        {/* Mini Stats Bottom */}
-                        <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-800">
-                            <div>
-                                <span className="text-[10px] text-gray-500 uppercase">Total Ekspor</span>
-                                <div className="text-xl font-bold text-white">Rp 768 M</div>
+                        {/* Mini Stats Bottom - FIXED OVERLAP & BILLIONS CHOICE */}
+                        <div className="grid grid-cols-3 gap-2 md:gap-4 mt-8 pt-6 border-t border-gray-800">
+                            <div className="flex flex-col justify-center">
+                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">Total Ekspor</span>
+                                {/* Changed to 'Miliar' and adjusted mobile font size to avoid overlap */}
+                                <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">Rp 78Miliar</div>
                             </div>
-                            <div>
-                                <span className="text-[10px] text-gray-500 uppercase">Active Routes</span>
-                                <div className="text-xl font-bold text-white">14 Negara</div>
+                            <div className="flex flex-col justify-center border-l border-gray-800 pl-2 md:pl-4">
+                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">Active Routes</span>
+                                <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">14 Negara</div>
                             </div>
-                             <div>
-                                <span className="text-[10px] text-gray-500 uppercase">Artisan Paid</span>
-                                <div className="text-xl font-bold text-[#BFA36F]">100%</div>
+                             <div className="flex flex-col justify-center border-l border-gray-800 pl-2 md:pl-4">
+                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">Artisan Paid</span>
+                                <div className="text-sm md:text-xl font-bold text-[#BFA36F] whitespace-nowrap">100%</div>
                             </div>
                         </div>
                     </div>
