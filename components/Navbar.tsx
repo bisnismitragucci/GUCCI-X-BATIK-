@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Search, ChevronDown, Gift } from 'lucide-react';
-import { NAV_ITEMS, TOP_NAV_ITEMS } from '../constants';
+import { Menu, X, Search, ChevronDown, Gift, Globe } from 'lucide-react';
+import { NAV_ITEMS, LANGUAGES } from '../constants';
 
 interface NavbarProps {
     onNavigate: (page: string) => void;
@@ -9,6 +9,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLang, setActiveLang] = useState('ID');
 
   const handleNavClick = (label: string) => {
       // Map label text to view IDs
@@ -29,15 +30,21 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           <div className="flex space-x-6">
             <span className="flex items-center"><Gift className="w-3 h-3 mr-2" /> PT. Graha Citra Prima – GUCCI</span>
           </div>
-          <div className="flex items-center space-x-6">
-            {TOP_NAV_ITEMS.map((item) => (
-              <a key={item.label} href={item.href} className="hover:text-[#BFA36F] transition-colors">
-                {item.label}
-              </a>
-            ))}
-            <div className="flex items-center space-x-3 border-l border-white/20 pl-4">
-              <span className="cursor-pointer font-bold text-[#BFA36F]">ID</span>
-              <span className="cursor-pointer hover:text-[#BFA36F]">EN</span>
+          
+          {/* Expanded Language Selection */}
+          <div className="flex items-center">
+            <span className="mr-4 text-white/70">PILIH BAHASA :</span>
+            <div className="flex items-center space-x-4 border-l border-white/20 pl-4">
+              {LANGUAGES.map((lang) => (
+                <button 
+                    key={lang.code}
+                    onClick={() => setActiveLang(lang.code)}
+                    className={`cursor-pointer transition-colors font-bold hover:text-[#BFA36F] ${activeLang === lang.code ? 'text-[#BFA36F]' : 'text-white'}`}
+                    title={lang.label}
+                >
+                    {lang.code}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -74,6 +81,11 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           {/* Icons - Right */}
           <div className="flex items-center justify-end w-1/4 space-x-6">
              {/* ShoppingBag icon removed */}
+             <div className="hidden lg:block">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#BFA36F]">
+                    {LANGUAGES.find(l => l.code === activeLang)?.label}
+                </span>
+             </div>
           </div>
         </div>
       </div>
@@ -109,11 +121,19 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
               </button>
             ))}
             <div className="h-px bg-gray-100 w-1/2 mx-auto my-4"></div>
-            {TOP_NAV_ITEMS.map((item) => (
-               <a key={item.label} href={item.href} className="text-xs uppercase tracking-widest text-gray-500 hover:text-[#8B1D1D]">
-               {item.label}
-             </a>
-            ))}
+            
+            {/* Mobile Language Selection */}
+            <div className="grid grid-cols-3 gap-4 px-8">
+                {LANGUAGES.map((lang) => (
+                    <button 
+                        key={lang.code}
+                        onClick={() => setActiveLang(lang.code)}
+                        className={`text-xs uppercase tracking-widest py-2 border border-gray-200 rounded-sm ${activeLang === lang.code ? 'bg-[#8B1D1D] text-white' : 'text-gray-500'}`}
+                    >
+                        {lang.code}
+                    </button>
+                ))}
+            </div>
           </div>
         </div>
       )}

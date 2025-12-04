@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import HeroCarousel from './components/HeroCarousel';
@@ -20,7 +19,7 @@ import {
     ProductDetailPage,
     PartnerDetailPage
 } from './components/ContentPages';
-import { FileText, ArrowRight } from 'lucide-react';
+import { FileText, ArrowRight, Bell } from 'lucide-react';
 
 type ViewState = 'home' | 'legality' | 'collection' | 'product-detail' | 'partners' | 'partner-detail' | 'impact' | 'gala' | 'register' | 'doc-sk' | 'doc-iue' | 'doc-iso';
 
@@ -98,6 +97,36 @@ const App: React.FC = () => {
                 <>
                     <HeroCarousel onNavigate={navigateTo} />
                     
+                    {/* RUNNING NOTIFICATION TICKER */}
+                    <div className="bg-black py-3 overflow-hidden border-b border-[#BFA36F] relative z-20 shadow-lg">
+                        <div className="whitespace-nowrap animate-ticker inline-block text-white font-sans text-xs md:text-sm tracking-widest font-medium">
+                            <span className="mx-8 flex items-center inline-flex">
+                                <Bell className="w-3 h-3 text-[#BFA36F] mr-2 animate-pulse" />
+                                <span className="text-[#BFA36F] font-bold mr-1">INFO MITRA:</span> Agung (Solo) telah bergabung menjadi Mitra Butik
+                            </span>
+                            <span className="mx-2 text-[#BFA36F]">•</span>
+                            <span className="mx-8">
+                                <span className="text-[#BFA36F] font-bold mr-1">PENCAIRAN:</span> Komisi Rp 45.000.000 sukses ditransfer ke 'Batik Pesisir Atelier'
+                            </span>
+                            <span className="mx-2 text-[#BFA36F]">•</span>
+                            <span className="mx-8">
+                                <span className="text-[#BFA36F] font-bold mr-1">LOGISTIK:</span> Kontainer #8821 (Sutra) Tiba di Milan, Italia
+                            </span>
+                            <span className="mx-2 text-[#BFA36F]">•</span>
+                            <span className="mx-8">
+                                <span className="text-[#BFA36F] font-bold mr-1">VERIFIKASI:</span> Rina (Bali) lolos sertifikasi Gucci Tier 1
+                            </span>
+                            <span className="mx-2 text-[#BFA36F]">•</span>
+                            <span className="mx-8">
+                                <span className="text-[#BFA36F] font-bold mr-1">INFO MITRA:</span> CV. Tenun Troso (Jepara) bergabung sebagai Supplier Resmi
+                            </span>
+                            <span className="mx-2 text-[#BFA36F]">•</span>
+                            <span className="mx-8">
+                                <span className="text-[#BFA36F] font-bold mr-1">EKSPOR:</span> Volume perdagangan naik +12% minggu ini
+                            </span>
+                        </div>
+                    </div>
+
                     {/* Info Strip - Gucci Holiday Red */}
                     <div className="bg-[#8B1D1D] py-8 md:py-14 border-b-4 border-[#BFA36F]">
                         <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center text-white">

@@ -8,11 +8,17 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'GALA NATAL', href: '#' },
 ];
 
-export const TOP_NAV_ITEMS: NavItem[] = [
-  { label: 'Musim Warisan', href: '#' },
-  { label: 'Hubungan Investor', href: '#' },
-  { label: 'Karir', href: '#' },
-  { label: 'Lokasi Butik', href: '#' },
+// Empty array as requested to remove "Musim Warisan", etc.
+export const TOP_NAV_ITEMS: NavItem[] = [];
+
+// New Language Options
+export const LANGUAGES = [
+  { code: 'ID', label: 'Indonesia' },
+  { code: 'EN', label: 'English' },
+  { code: 'IT', label: 'Italiano' },
+  { code: 'FR', label: 'Français' },
+  { code: 'JP', label: '日本語' },
+  { code: 'CN', label: '中文' }
 ];
 
 export const HERO_SLIDES: HeroSlide[] = [
