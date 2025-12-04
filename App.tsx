@@ -25,14 +25,10 @@ import { FileText, ArrowRight, Bell } from 'lucide-react';
 type ViewState = 'home' | 'legality' | 'collection' | 'product-detail' | 'partners' | 'partner-detail' | 'impact' | 'gala' | 'register' | 'doc-sk' | 'doc-iue' | 'doc-iso';
 
 const App: React.FC = () => {
-  // State untuk mengatur halaman mana yang tampil
   const [currentView, setCurrentView] = useState<ViewState>('home');
-  
-  // State untuk menyimpan item yang dipilih
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [selectedPartner, setSelectedPartner] = useState<any>(null);
 
-  // Fungsi navigasi utama
   const navigateTo = (page: string) => {
       window.scrollTo(0, 0);
       setCurrentView(page as ViewState);
@@ -43,21 +39,18 @@ const App: React.FC = () => {
     setCurrentView('home');
   };
 
-  // Handler untuk memilih produk
   const handleProductSelect = (product: any) => {
       setSelectedProduct(product);
       window.scrollTo(0, 0);
       setCurrentView('product-detail');
   };
 
-  // Handler untuk memilih partner
   const handlePartnerSelect = (partner: any) => {
       setSelectedPartner(partner);
       window.scrollTo(0, 0);
       setCurrentView('partner-detail');
   };
 
-  // Fungsi WhatsApp Sentral
   const openWhatsAppRegistration = () => {
     const phoneNumber = "6282130903916";
     const message = "Hallo , saya ingin mendaftar menjadi mitra bisnis GUCCI";
@@ -65,7 +58,6 @@ const App: React.FC = () => {
     window.open(url, '_blank');
   };
 
-  // Komponen Ticker Item agar mudah diduplikasi
   const TickerContent = () => (
     <>
         <span className="mx-8 flex items-center inline-flex">
@@ -74,19 +66,15 @@ const App: React.FC = () => {
         </span>
         <span className="mx-2 text-[#BFA36F]">•</span>
         <span className="mx-8">
-            <span className="text-[#BFA36F] font-bold mr-1">PENCAIRAN:</span> Komisi Rp 45.000.000 sukses ditransfer ke 'Batik Pesisir Atelier'
+            <span className="text-[#BFA36F] font-bold mr-1">PENCAIRAN:</span> Komisi Rp 45.000.000 sukses ditransfer
         </span>
         <span className="mx-2 text-[#BFA36F]">•</span>
         <span className="mx-8">
-            <span className="text-[#BFA36F] font-bold mr-1">LOGISTIK:</span> Kontainer #8821 (Sutra) Tiba di Milan, Italia
+            <span className="text-[#BFA36F] font-bold mr-1">LOGISTIK:</span> Kontainer #8821 (Sutra) Tiba di Milan
         </span>
         <span className="mx-2 text-[#BFA36F]">•</span>
         <span className="mx-8">
             <span className="text-[#BFA36F] font-bold mr-1">VERIFIKASI:</span> Rina (Bali) lolos sertifikasi Gucci Tier 1
-        </span>
-        <span className="mx-2 text-[#BFA36F]">•</span>
-        <span className="mx-8">
-            <span className="text-[#BFA36F] font-bold mr-1">INFO MITRA:</span> CV. Tenun Troso (Jepara) bergabung sebagai Supplier Resmi
         </span>
         <span className="mx-2 text-[#BFA36F]">•</span>
         <span className="mx-8">
@@ -139,7 +127,7 @@ const App: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Info Strip - Gucci Holiday Red */}
+                    {/* Info Strip */}
                     <div className="bg-[#8B1D1D] py-8 md:py-14 border-b-4 border-[#BFA36F]">
                         <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center text-white">
                             <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-4 md:pb-0">
@@ -159,19 +147,17 @@ const App: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* New Section: Ruang Kurasi Digital (Legalitas, Pasar, Budaya) */}
                     <ExportPillars onNavigateToLegality={() => navigateTo('legality')} />
 
-                    {/* Feature Section - Batik & Boutique Focus */}
+                    {/* Feature Section */}
                     <section className="py-12 md:py-24 bg-white border-y border-gray-100">
                         <div className="container mx-auto px-6 lg:px-12">
                             <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
                                 <div className="w-full md:w-1/2 relative">
                                     <div className="absolute top-4 left-4 w-full h-full border-2 border-[#8B1D1D] z-0 hidden md:block"></div>
-                                    {/* Image: Pinterest image requested by user */}
                                     <img 
                                         src="https://i.pinimg.com/1200x/12/69/25/126925d65a43ce73e1871b1fb57e27ba.jpg" 
-                                        alt="Interior Butik Mitra Gucci" 
+                                        alt="Interior Butik" 
                                         referrerPolicy="no-referrer"
                                         onError={(e) => {
                                             e.currentTarget.src = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop";
@@ -181,29 +167,26 @@ const App: React.FC = () => {
                                 </div>
                                 <div className="w-full md:w-1/2 text-center md:text-left">
                                     <span className="text-[#8B1D1D] text-xs font-black uppercase tracking-[0.3em] mb-4 block">
-                                        Kemitraan Budaya
+                                        Gucci x Indonesia
                                     </span>
                                     <h2 className="text-3xl md:text-5xl font-serif text-black mb-6 md:mb-8 leading-tight font-bold">
-                                        Mengangkat Batik <br/><span className="italic text-[#8B1D1D]">ke Fashion Mewah</span>
+                                        THE BATIK RENAISSANCE <br/><span className="italic text-[#8B1D1D]">Luxury & Heritage</span>
                                     </h2>
                                     <p className="text-gray-900 mb-6 leading-relaxed font-medium text-sm md:text-xl text-justify md:text-left">
-                                        Melalui program <strong>"Gucci x Batik Boutique"</strong>, kami mengkurasi butik-butik terbaik di Solo, Pekalongan, dan Yogyakarta untuk berkolaborasi langsung dengan desainer Italia. 
-                                    </p>
-                                    <p className="text-gray-900 mb-10 leading-relaxed font-medium text-sm md:text-xl text-justify md:text-left">
-                                        Tujuannya bukan hanya ekspor kain, tetapi membangun branding internasional bahwa Batik dan Kebaya adalah simbol kemewahan yang setara dengan sutra Eropa.
+                                        Kolaborasi eksklusif motif Flora ikonik Gucci dengan corak batik klasik dari pengrajin di seluruh INDONESIA. Kami mengangkat warisan lokal ke panggung fashion global.
                                     </p>
                                     <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                                         <button 
                                             onClick={() => navigateTo('partners')}
                                             className="bg-[#8B1D1D] text-white px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#5e1414] transition-colors border-2 border-[#8B1D1D] hover:border-[#8B1D1D] shadow-lg w-full md:w-auto"
                                         >
-                                            Temui Artisan
+                                            JELAJAHI MITRA
                                         </button>
                                         <button 
                                             onClick={() => navigateTo('impact')}
                                             className="bg-transparent text-[#8B1D1D] px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#8B1D1D] hover:text-white transition-colors border-2 border-[#8B1D1D] w-full md:w-auto"
                                         >
-                                            Laporan Ekspor
+                                            PELAJARI DAMPAK
                                         </button>
                                     </div>
                                 </div>
@@ -211,12 +194,10 @@ const App: React.FC = () => {
                         </div>
                     </section>
 
-                    {/* New Section: Testimoni Mitra */}
                     <TestimonialSection onRegisterClick={() => navigateTo('register')} />
 
                     <NewsSection onReadMore={() => navigateTo('impact')} />
 
-                    {/* FLOATING ACTION BUTTON - REGISTER NOW */}
                     <div className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-40 animate-fadeIn">
                         <button
                             onClick={openWhatsAppRegistration}
@@ -237,11 +218,9 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F6]">
       <Navbar onNavigate={navigateTo} />
-      
       <main className="flex-grow">
         {renderContent()}
       </main>
-
       <Footer />
       <ChatWidget />
     </div>

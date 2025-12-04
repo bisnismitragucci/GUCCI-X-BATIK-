@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Search, ChevronDown, Gift, Globe } from 'lucide-react';
-import { NAV_ITEMS, LANGUAGES } from '../constants';
+import { Menu, X, Search, ChevronDown, Gift } from 'lucide-react';
 
 interface NavbarProps {
     onNavigate: (page: string) => void;
@@ -9,14 +8,12 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState('ID');
 
-  const handleNavClick = (label: string) => {
-      // Map label text to view IDs
-      if (label.includes('RENAISSANCE')) onNavigate('collection');
-      else if (label.includes('BUTIK')) onNavigate('partners');
-      else if (label.includes('EKSPOR')) onNavigate('impact');
-      else if (label.includes('GALA')) onNavigate('gala');
+  const handleNavClick = (key: string) => {
+      if (key === 'collection') onNavigate('collection');
+      else if (key === 'partners') onNavigate('partners');
+      else if (key === 'impact') onNavigate('impact');
+      else if (key === 'gala') onNavigate('gala');
       else onNavigate('home');
       
       setIsOpen(false);
@@ -31,21 +28,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
             <span className="flex items-center"><Gift className="w-3 h-3 mr-2" /> PT. Graha Citra Prima – GUCCI</span>
           </div>
           
-          {/* Expanded Language Selection */}
-          <div className="flex items-center">
-            <span className="mr-4 text-white/70">PILIH BAHASA :</span>
-            <div className="flex items-center space-x-4 border-l border-white/20 pl-4">
-              {LANGUAGES.map((lang) => (
-                <button 
-                    key={lang.code}
-                    onClick={() => setActiveLang(lang.code)}
-                    className={`cursor-pointer transition-colors font-bold hover:text-[#BFA36F] ${activeLang === lang.code ? 'text-[#BFA36F]' : 'text-white'}`}
-                    title={lang.label}
-                >
-                    {lang.code}
-                </button>
-              ))}
-            </div>
+          <div className="flex items-center space-x-6">
+             <a href="#" className="hover:text-[#BFA36F] transition-colors">Customer Service</a>
+             <a href="#" className="hover:text-[#BFA36F] transition-colors">Newsletter</a>
           </div>
         </div>
       </div>
@@ -70,7 +55,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
           {/* Logo - Center */}
           <div className="flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 cursor-pointer" onClick={() => onNavigate('home')}>
-            {/* Adjusted logo text size for mobile (text-3xl) vs desktop (text-5xl) to prevent overlap */}
             <h1 className="text-3xl md:text-5xl font-serif font-bold tracking-[0.15em] text-[#8B1D1D] leading-none">
               GUCCI
             </h1>
@@ -81,10 +65,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
           {/* Icons - Right */}
           <div className="flex items-center justify-end w-1/4 space-x-6">
-             {/* ShoppingBag icon removed */}
              <div className="hidden lg:block">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#BFA36F]">
-                    {LANGUAGES.find(l => l.code === activeLang)?.label}
+                    INDONESIA (ID)
                 </span>
              </div>
           </div>
@@ -94,17 +77,31 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
       {/* Navigation Links - Centered below logo */}
       <nav className="hidden lg:flex justify-center items-center py-4 bg-white">
         <div className="flex space-x-10">
-            {NAV_ITEMS.map((item) => (
-              <div key={item.label} className="group relative">
-                <button 
-                  onClick={() => handleNavClick(item.label)}
-                  className="text-xs font-bold text-gray-800 group-hover:text-[#8B1D1D] uppercase tracking-[0.15em] transition-colors flex items-center bg-transparent border-none cursor-pointer"
-                >
-                  {item.label}
+            {/* Static Navigation Items */}
+            <div className="group relative">
+                <button onClick={() => handleNavClick('collection')} className="text-xs font-bold text-gray-800 group-hover:text-[#8B1D1D] uppercase tracking-[0.15em] transition-colors flex items-center bg-transparent border-none cursor-pointer">
+                    RENAISSANCE BATIK
                 </button>
                 <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-[#8B1D1D] group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"></div>
-              </div>
-            ))}
+            </div>
+            <div className="group relative">
+                <button onClick={() => handleNavClick('partners')} className="text-xs font-bold text-gray-800 group-hover:text-[#8B1D1D] uppercase tracking-[0.15em] transition-colors flex items-center bg-transparent border-none cursor-pointer">
+                    MITRA BUTIK
+                </button>
+                <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-[#8B1D1D] group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"></div>
+            </div>
+            <div className="group relative">
+                <button onClick={() => handleNavClick('impact')} className="text-xs font-bold text-gray-800 group-hover:text-[#8B1D1D] uppercase tracking-[0.15em] transition-colors flex items-center bg-transparent border-none cursor-pointer">
+                    EKSPOR GLOBAL
+                </button>
+                <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-[#8B1D1D] group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"></div>
+            </div>
+            <div className="group relative">
+                <button onClick={() => handleNavClick('gala')} className="text-xs font-bold text-gray-800 group-hover:text-[#8B1D1D] uppercase tracking-[0.15em] transition-colors flex items-center bg-transparent border-none cursor-pointer">
+                    GALA NATAL
+                </button>
+                <div className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-[#8B1D1D] group-hover:w-full group-hover:left-0 transition-all duration-300 ease-out"></div>
+            </div>
         </div>
       </nav>
 
@@ -112,29 +109,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl h-screen z-50">
           <div className="flex flex-col p-8 space-y-6 text-center">
-             {NAV_ITEMS.map((item) => (
-              <button 
-                key={item.label} 
-                onClick={() => handleNavClick(item.label)} 
-                className="text-lg font-serif text-black hover:text-[#8B1D1D] italic bg-transparent border-none cursor-pointer"
-              >
-                {item.label}
-              </button>
-            ))}
-            <div className="h-px bg-gray-100 w-1/2 mx-auto my-4"></div>
-            
-            {/* Mobile Language Selection */}
-            <div className="grid grid-cols-3 gap-4 px-8">
-                {LANGUAGES.map((lang) => (
-                    <button 
-                        key={lang.code}
-                        onClick={() => setActiveLang(lang.code)}
-                        className={`text-xs uppercase tracking-widest py-2 border border-gray-200 rounded-sm ${activeLang === lang.code ? 'bg-[#8B1D1D] text-white' : 'text-gray-500'}`}
-                    >
-                        {lang.code}
-                    </button>
-                ))}
-            </div>
+            <button onClick={() => handleNavClick('collection')} className="text-lg font-serif text-black hover:text-[#8B1D1D] italic bg-transparent border-none cursor-pointer">RENAISSANCE BATIK</button>
+            <button onClick={() => handleNavClick('partners')} className="text-lg font-serif text-black hover:text-[#8B1D1D] italic bg-transparent border-none cursor-pointer">MITRA BUTIK</button>
+            <button onClick={() => handleNavClick('impact')} className="text-lg font-serif text-black hover:text-[#8B1D1D] italic bg-transparent border-none cursor-pointer">EKSPOR GLOBAL</button>
+            <button onClick={() => handleNavClick('gala')} className="text-lg font-serif text-black hover:text-[#8B1D1D] italic bg-transparent border-none cursor-pointer">GALA NATAL</button>
           </div>
         </div>
       )}

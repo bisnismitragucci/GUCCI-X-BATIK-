@@ -9,32 +9,32 @@ interface HeroCarouselProps {
 
 const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = HERO_SLIDES;
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
   };
 
-  const handleCtaClick = (ctaText: string) => {
-      // Logic disesuaikan dengan teks Bahasa Indonesia di constants.ts
-      if (ctaText.includes('KOLEKSI')) onNavigate('collection');
-      else if (ctaText.includes('MITRA')) onNavigate('partners');
-      else if (ctaText.includes('DAMPAK')) onNavigate('impact');
+  const handleCtaClick = (slideId: number) => {
+      if (slideId === 1) onNavigate('collection');
+      else if (slideId === 2) onNavigate('partners');
+      else if (slideId === 3) onNavigate('impact');
       else onNavigate('register');
   };
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 7000); 
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   return (
     <div className="relative w-full h-[600px] md:h-[750px] overflow-hidden bg-black group">
       {/* Slides */}
-      {HERO_SLIDES.map((slide, index) => (
+      {slides.map((slide, index) => (
         <div
           key={slide.id}
           className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
@@ -55,7 +55,6 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
                     e.currentTarget.src = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop";
                 }}
              />
-             {/* Dark gradient overlay - Mobile optimized to be darker for readability */}
              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 md:via-black/60 to-black/30 md:to-transparent"></div>
           </div>
 
@@ -68,7 +67,6 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
                  <span className="w-8 md:w-12 h-[2px] bg-[#BFA36F]"></span>
               </h2>
               
-              {/* Responsive Title: Adjusted line-height (leading) for mobile to prevent overlap */}
               <h1 className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-serif font-bold italic mb-5 md:mb-8 leading-normal md:leading-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] text-white px-2">
                 {slide.title}
               </h1>
@@ -78,7 +76,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
               </p>
               
               <button 
-                onClick={() => handleCtaClick(slide.cta)}
+                onClick={() => handleCtaClick(slide.id)}
                 className="bg-[#8B1D1D] border-2 border-[#8B1D1D] text-white hover:bg-black hover:border-white px-6 py-3 md:px-12 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.25em] transition-all duration-300 w-auto min-w-[180px] md:min-w-[240px] shadow-2xl backdrop-blur-sm rounded-sm"
               >
                 {slide.cta}
@@ -88,7 +86,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
         </div>
       ))}
 
-      {/* Minimalist Controls - Hidden on Mobile to reduce clutter */}
+      {/* Minimalist Controls */}
       <button 
         onClick={prevSlide}
         className="hidden md:block absolute top-1/2 left-8 -translate-y-1/2 z-30 text-white hover:text-[#BFA36F] transition-colors drop-shadow-2xl"
@@ -104,7 +102,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
 
       {/* Pagination Lines */}
       <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-2 md:space-x-4">
-        {HERO_SLIDES.map((_, index) => (
+        {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}

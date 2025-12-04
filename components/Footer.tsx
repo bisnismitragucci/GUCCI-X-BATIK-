@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Twitter, Instagram, Linkedin, MapPin, ArrowUp, Gift } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
              <h4 className="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-[#BFA36F]">Semangat Liburan</h4>
             <p className="text-gray-300 text-base leading-relaxed mb-8 font-medium">
-              Musim ini, kami merayakan kehangatan kerajinan Indonesia. Menghadirkan sukacita, kemewahan, dan warisan berkelanjutan ke setiap sudut dunia untuk Natal.
+              Musim ini, kami merayakan kehangatan kerajinan Indonesia. Menghadirkan sukacita, kemewahan, dan warisan berkelanjutan ke setiap sudut dunia.
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-400 hover:text-[#8B1D1D] transition-colors"><Facebook className="w-6 h-6" /></a>
@@ -31,8 +31,8 @@ const Footer: React.FC = () => {
             <h4 className="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-[#BFA36F]">Korporat</h4>
             <ul className="space-y-5 text-base text-gray-300 font-medium">
               <li><a href="#" className="hover:text-white transition-colors">Tinjauan Kemitraan</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Laporan Keberlanjutan</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Karir & Magang</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Keberlanjutan</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Karir</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Hubungan Investor</a></li>
             </ul>
           </div>
@@ -41,9 +41,9 @@ const Footer: React.FC = () => {
            <div>
             <h4 className="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-[#BFA36F]">Layanan</h4>
             <ul className="space-y-5 text-base text-gray-300 font-medium">
-              <li><a href="#" className="hover:text-white transition-colors">Registrasi Pemasok</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Kemasan Hadiah</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Sertifikasi Kualitas</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Registrasi Supplier</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Gift Packaging</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Sertifikasi Mutu</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Pengiriman Liburan</a></li>
             </ul>
           </div>
@@ -67,7 +67,6 @@ const Footer: React.FC = () => {
           <div className="flex space-x-10 mt-6 md:mt-0 text-xs uppercase tracking-wider text-gray-500 font-bold">
             <a href="#" className="hover:text-[#BFA36F]">Kebijakan Privasi</a>
             <a href="#" className="hover:text-[#BFA36F]">Syarat Layanan</a>
-            <a href="#" className="hover:text-[#BFA36F]">Peta Situs</a>
           </div>
         </div>
       </div>
