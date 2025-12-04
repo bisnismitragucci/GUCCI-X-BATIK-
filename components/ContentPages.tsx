@@ -198,7 +198,7 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                             {/* Badge */}
                             <div className="absolute top-4 left-4 md:top-6 md:left-6">
                                 <span className="bg-[#8B1D1D] text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 shadow-lg">
-                                    Limited Edition 2025
+                                    Edisi Terbatas 2025
                                 </span>
                             </div>
                         </div>
@@ -258,14 +258,14 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                                 <h4 className="text-gray-400 font-bold text-[9px] md:text-[10px] uppercase tracking-widest mb-1 flex items-center">
                                     <ShoppingBag className="w-3 h-3 mr-1" /> Status
                                 </h4>
-                                <p className="font-bold text-[#8B1D1D] text-xs md:text-sm">Made to Order</p>
+                                <p className="font-bold text-[#8B1D1D] text-xs md:text-sm">Dibuat Sesuai Pesanan</p>
                             </div>
                             <div>
                                 <h4 className="text-gray-400 font-bold text-[9px] md:text-[10px] uppercase tracking-widest mb-1 flex items-center">
                                     <Award className="w-3 h-3 mr-1" /> Sertifikasi
                                 </h4>
                                 <p className="font-bold text-black text-xs md:text-sm flex items-center">
-                                    <ShieldCheck className="w-3 h-3 mr-1 text-green-600" /> Tier 1
+                                    <ShieldCheck className="w-3 h-3 mr-1 text-green-600" /> Tingkat 1 (Tier 1)
                                 </p>
                             </div>
                         </div>
@@ -282,7 +282,7 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                                 onClick={openWhatsAppRegistration}
                                 className="w-full bg-white text-black border border-black py-4 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-gray-50 transition-colors flex justify-center items-center rounded-sm"
                             >
-                                Chat Concierge
+                                Chat Konsultan
                             </button>
                         </div>
                     </div>
@@ -610,27 +610,27 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
                  <div className="flex justify-between items-center mb-12">
                      <img src="https://i0.wp.com/rhodesprojects.com/wp-content/uploads/2020/02/ISO_9001-2015.jpg?fit=1763%2C1800&ssl=1" alt="ISO" className="h-12 md:h-20" />
                      <div className="text-right">
-                         <h3 className="text-sm md:text-xl font-bold text-gray-400">CERTIFICATE</h3>
-                         <p className="text-[10px] md:text-xs font-bold tracking-widest">QUALITY MANAGEMENT</p>
+                         <h3 className="text-sm md:text-xl font-bold text-gray-400">SERTIFIKAT</h3>
+                         <p className="text-[10px] md:text-xs font-bold tracking-widest">MANAJEMEN KUALITAS</p>
                      </div>
                  </div>
 
                  <div className="text-center mb-12">
-                     <p className="text-[10px] md:text-sm uppercase tracking-widest mb-4">This is to certify that</p>
+                     <p className="text-[10px] md:text-sm uppercase tracking-widest mb-4">DENGAN INI MENYATAKAN BAHWA</p>
                      <h2 className="text-xl md:text-3xl font-serif font-bold text-[#8B1D1D] mb-4">PT. GRAHA CITRA PRIMA</h2>
-                     <p className="text-[10px] md:text-sm uppercase tracking-widest mb-8">Has been assessed and found to conform to:</p>
+                     <p className="text-[10px] md:text-sm uppercase tracking-widest mb-8">Telah dinilai dan dinyatakan memenuhi standar:</p>
                      <h1 className="text-3xl md:text-5xl font-bold text-black mb-2">ISO 9001:2015</h1>
                  </div>
 
                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 mb-12 border-t border-b border-gray-200 py-6">
                       <div className="text-center md:text-right md:pr-8 md:border-r border-gray-200">
-                          <p className="text-xs font-bold uppercase text-gray-500 mb-1">Certificate Number</p>
+                          <p className="text-xs font-bold uppercase text-gray-500 mb-1">Nomor Sertifikat</p>
                           <p className="font-bold text-lg">QMS-ID-2025-8821</p>
                       </div>
                       <div className="hidden md:block w-px bg-gray-200"></div>
                       <div className="text-center md:text-left md:pl-8">
-                           <p className="text-xs font-bold uppercase text-gray-500 mb-1">Scope</p>
-                          <p className="font-bold text-sm">Export & Luxury Heritage Textiles</p>
+                           <p className="text-xs font-bold uppercase text-gray-500 mb-1">Ruang Lingkup</p>
+                          <p className="font-bold text-sm">Ekspor & Tekstil Warisan Mewah</p>
                       </div>
                  </div>
             </div>
@@ -656,15 +656,15 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
 
     const ARTISAN_LOGS = [
         { id: "WS-SOLO-01", name: "Keraton Royal Atelier", task: "Batik Tulis Halus", progress: 85, status: "Finishing", deadline: "2 Hari Lagi" },
-        { id: "WS-PKL-04", name: "Pesisir Vibrant Studio", task: "Pewarnaan Indigo", progress: 40, status: "Processing", deadline: "1 Minggu Lagi" },
-        { id: "WS-CRB-02", name: "Cloud Motif Workshop", task: "Mega Mendung Pattern", progress: 92, status: "Quality Check", deadline: "Hari Ini" },
-        { id: "WS-BALI-09", name: "Ubud Sacred Weavers", task: "Tenun Ikat Gold", progress: 20, status: "Weaving", deadline: "2 Minggu Lagi" },
+        { id: "WS-PKL-04", name: "Pesisir Vibrant Studio", task: "Pewarnaan Indigo", progress: 40, status: "Proses", deadline: "1 Minggu Lagi" },
+        { id: "WS-CRB-02", name: "Cloud Motif Workshop", task: "Mega Mendung Pattern", progress: 92, status: "Cek Kualitas", deadline: "Hari Ini" },
+        { id: "WS-BALI-09", name: "Ubud Sacred Weavers", task: "Tenun Ikat Gold", progress: 20, status: "Menenun", deadline: "2 Minggu Lagi" },
     ];
 
     const SHIPMENTS = [
-        { awb: "8821-EX-IT", dest: "Milan, IT", items: "250 yds Silk", status: "Cleared Customs", time: "10:42 AM" },
-        { awb: "8824-EX-FR", dest: "Paris, FR", items: "120 yds Velvet", status: "In Transit", time: "09:15 AM" },
-        { awb: "8829-EX-US", dest: "New York, US", items: "500 pcs Scarf", status: "Warehouse", time: "08:00 AM" },
+        { awb: "8821-EX-IT", dest: "Milan, IT", items: "250 yds Sutra", status: "Lolos Bea Cukai", time: "10:42 AM" },
+        { awb: "8824-EX-FR", dest: "Paris, FR", items: "120 yds Beludru", status: "Dalam Transit", time: "09:15 AM" },
+        { awb: "8829-EX-US", dest: "New York, US", items: "500 pcs Scarf", status: "Gudang", time: "08:00 AM" },
     ];
 
     const [startIndex, setStartIndex] = useState(0);
@@ -685,7 +685,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     // Ticker Item Component for Impact Page
     const ImpactTickerContent = () => (
         <>
-            <span className="mr-8">USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  COTTON FUTURES: $82.40  •  RAW SILK INDEX: $45.20  •  PT. GRAHA CITRA PRIMA EXPORT VOL: 128K YDS (YTD)  •  GUCCI ARTISAN NETWORK ONLINE: 98%  • </span>
+            <span className="mr-8">USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  BERJANGKA KATUN: $82.40  •  INDEKS SUTRA MENTAH: $45.20  •  VOL EKSPOR PT. GRAHA CITRA PRIMA: 128K YDS (YTD)  •  JARINGAN ARTISAN GUCCI ONLINE: 98%  • </span>
         </>
     );
 
@@ -720,7 +720,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                         <div className="absolute top-0 right-0 p-4 opacity-20"><Globe className="w-24 h-24 text-[#BFA36F]" /></div>
                         
                         <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest mb-6 flex items-center">
-                            <Activity className="w-4 h-4 mr-2 animate-pulse" /> Live Market Data
+                            <Activity className="w-4 h-4 mr-2 animate-pulse" /> Data Pasar Langsung
                         </h3>
 
                         {/* Chart / Table Hybrid */}
@@ -734,7 +734,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                 <div className="text-right md:contents">
                                     <div className="md:hidden">Data Pasar</div>
                                     <div className="hidden md:block col-span-3 text-right">Volume (IDR)</div>
-                                    <div className="hidden md:block col-span-3 text-right">Growth</div>
+                                    <div className="hidden md:block col-span-3 text-right">Pertumbuhan</div>
                                 </div>
                             </div>
 
@@ -771,11 +771,11 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                 <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">Rp 78Miliar</div>
                             </div>
                             <div className="flex flex-col justify-center border-l border-gray-800 pl-2 md:pl-4">
-                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">Active Routes</span>
+                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">Rute Aktif</span>
                                 <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">14 Negara</div>
                             </div>
                              <div className="flex flex-col justify-center border-l border-gray-800 pl-2 md:pl-4">
-                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">Artisan Paid</span>
+                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">Pembayaran Artisan</span>
                                 <div className="text-sm md:text-xl font-bold text-[#BFA36F] whitespace-nowrap">100%</div>
                             </div>
                         </div>
@@ -799,14 +799,14 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                     </div>
                                     <h4 className="font-bold text-sm text-black">{s.dest}</h4>
                                     <p className="text-xs text-gray-500 mb-1">{s.items}</p>
-                                    <span className={`text-[10px] font-bold uppercase tracking-wider ${s.status.includes('Cleared') ? 'text-green-600' : 'text-blue-600'}`}>
+                                    <span className={`text-[10px] font-bold uppercase tracking-wider ${s.status.includes('Lolos') ? 'text-green-600' : 'text-blue-600'}`}>
                                         ● {s.status}
                                     </span>
                                 </div>
                             ))}
                         </div>
                          <button className="w-full mt-8 border border-gray-300 text-gray-600 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 rounded">
-                            Download Manifest Lengkap
+                            Unduh Manifest Lengkap
                         </button>
                     </div>
                 </div>
@@ -893,7 +893,7 @@ export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
                 
                 <div className="absolute bottom-0 left-0 w-full p-6 md:p-24 text-center">
-                    <span className="text-[#BFA36F] uppercase tracking-[0.5em] font-bold text-[10px] md:text-xs mb-4 md:mb-6 block animate-fadeIn">Exclusive Invitation</span>
+                    <span className="text-[#BFA36F] uppercase tracking-[0.5em] font-bold text-[10px] md:text-xs mb-4 md:mb-6 block animate-fadeIn">Undangan Eksklusif</span>
                     <h1 className="text-4xl md:text-8xl font-serif font-bold italic mb-6 animate-fadeIn delay-100 leading-tight">
                         The Equinox Gala
                     </h1>
@@ -901,7 +901,7 @@ export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
                         Malam apresiasi bagi para artisan dan mitra strategis.
                     </p>
                     <button className="border border-[#BFA36F] text-[#BFA36F] px-8 py-3 md:px-12 md:py-4 text-xs font-black uppercase tracking-[0.25em] hover:bg-[#BFA36F] hover:text-black transition-all animate-fadeIn delay-300 w-full md:w-auto">
-                        RSVP VIA CONCIERGE
+                        RSVP VIA KONSULTAN
                     </button>
                 </div>
             </div>

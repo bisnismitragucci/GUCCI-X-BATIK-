@@ -36,7 +36,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     imageUrl: 'https://i.pinimg.com/1200x/12/69/25/126925d65a43ce73e1871b1fb57e27ba.jpg',
     title: 'DARI BUTIK KE DUNIA',
     subtitle: 'Mengangkat 500 Butik UMKM Indonesia menjadi pemasok resmi rantai pasok fashion global berstandar Italia.',
-    cta: 'JELAJAHI MITRA KAMI'
+    cta: 'JELAJAHI MITRA'
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ export const HERO_SLIDES: HeroSlide[] = [
     imageUrl: 'https://i.pinimg.com/736x/d3/1c/88/d31c887aba28e7eaaf0391b7da2ced2e.jpg',
     title: 'BRANDING GLOBAL',
     subtitle: 'Membangun citra kemewahan Indonesia di kancah internasional melalui standar kualitas tinggi dan warisan budaya.',
-    cta: 'PELAJARI DAMPAKNYA'
+    cta: 'PELAJARI DAMPAK'
   }
 ];
 
@@ -98,6 +98,6 @@ export const TESTIMONIALS: Testimonial[] = [
     location: 'Celuk, Bali',
     quote: "Kolaborasi ini menjaga jiwa budaya kami tetap hidup. Desain tradisional Bali kini menjadi aksen mewah dalam koleksi liburan Gucci.",
     imageUrl: 'https://i.pinimg.com/736x/c0/f7/cc/c0f7ccfef225fa30f5def346a5083b53.jpg',
-    impact: 'Best Seller 2025'
+    impact: 'Penjualan Terbaik 2025'
   }
 ];

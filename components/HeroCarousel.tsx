@@ -19,6 +19,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
   };
 
   const handleCtaClick = (ctaText: string) => {
+      // Logic disesuaikan dengan teks Bahasa Indonesia di constants.ts
       if (ctaText.includes('KOLEKSI')) onNavigate('collection');
       else if (ctaText.includes('MITRA')) onNavigate('partners');
       else if (ctaText.includes('DAMPAK')) onNavigate('impact');

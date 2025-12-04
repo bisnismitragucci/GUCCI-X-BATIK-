@@ -103,7 +103,7 @@ const ChatWidget: React.FC = () => {
                 </h3>
                 <span className="text-[10px] opacity-90 flex items-center tracking-wider text-white">
                     <span className="w-1.5 h-1.5 bg-[#00FF00] rounded-full mr-1 animate-pulse"></span>
-                    Online • AI Powered
+                    Online • Didukung AI
                 </span>
               </div>
             </div>
@@ -150,7 +150,7 @@ const ChatWidget: React.FC = () => {
             {isLoading && (
               <div className="flex justify-start mb-4 relative z-10">
                 <div className="bg-white border border-gray-200 p-4 rounded-t-xl rounded-br-xl shadow-sm flex space-x-1 items-center">
-                  <span className="text-xs text-gray-400 mr-2 font-bold tracking-wider">TYPING</span>
+                  <span className="text-xs text-gray-400 mr-2 font-bold tracking-wider">MENGETIK</span>
                   <div className="w-1.5 h-1.5 bg-[#BFA36F] rounded-full animate-bounce"></div>
                   <div className="w-1.5 h-1.5 bg-[#BFA36F] rounded-full animate-bounce delay-75"></div>
                   <div className="w-1.5 h-1.5 bg-[#BFA36F] rounded-full animate-bounce delay-150"></div>

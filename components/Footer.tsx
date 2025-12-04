@@ -62,11 +62,11 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-gray-800 pt-10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-xs uppercase tracking-wider text-center md:text-left font-bold">
-            &copy; 2025 PT. GRAHA CITRA PRIMA – GUCCI. All Rights Reserved.
+            &copy; 2025 PT. GRAHA CITRA PRIMA – GUCCI. Seluruh Hak Cipta Dilindungi.
           </p>
           <div className="flex space-x-10 mt-6 md:mt-0 text-xs uppercase tracking-wider text-gray-500 font-bold">
             <a href="#" className="hover:text-[#BFA36F]">Kebijakan Privasi</a>
-            <a href="#" className="hover:text-[#BFA36F]">Ketentuan Layanan</a>
+            <a href="#" className="hover:text-[#BFA36F]">Syarat Layanan</a>
             <a href="#" className="hover:text-[#BFA36F]">Peta Situs</a>
           </div>
         </div>
