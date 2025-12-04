@@ -1,15 +1,9 @@
 import { GoogleGenAI } from "@google/genai";
 
 // Initialize Gemini Client
-// Note: In a real production app, ensure your API KEY is secure.
-const apiKey = process.env.API_KEY || ''; 
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getGeminiResponse = async (userMessage: string): Promise<string> => {
-  if (!apiKey) {
-    return "Maaf, API Key belum dikonfigurasi. Mohon hubungi administrator.";
-  }
-
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
