@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroCarousel from './components/HeroCarousel';
 import NewsSection from './components/NewsSection';
@@ -20,7 +20,7 @@ import {
     ProductDetailPage,
     PartnerDetailPage
 } from './components/ContentPages';
-import { FileText, ArrowRight, Bell } from 'lucide-react';
+import { FileText, ArrowRight, Bell, Gift } from 'lucide-react';
 
 type ViewState = 'home' | 'legality' | 'collection' | 'product-detail' | 'partners' | 'partner-detail' | 'impact' | 'gala' | 'register' | 'doc-sk' | 'doc-iue' | 'doc-iso';
 
@@ -28,6 +28,15 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('home');
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [selectedPartner, setSelectedPartner] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Preloader Logic
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500); // 2.5 Detik intro
+    return () => clearTimeout(timer);
+  }, []);
 
   const navigateTo = (page: string) => {
       window.scrollTo(0, 0);
@@ -114,7 +123,7 @@ const App: React.FC = () => {
           case 'home':
           default:
               return (
-                <>
+                <div className="animate-fadeIn">
                     <HeroCarousel onNavigate={navigateTo} />
                     
                     {/* RUNNING NOTIFICATION TICKER (SEAMLESS LOOP) */}
@@ -128,21 +137,24 @@ const App: React.FC = () => {
                     </div>
 
                     {/* Info Strip */}
-                    <div className="bg-[#8B1D1D] py-8 md:py-14 border-b-4 border-[#BFA36F]">
-                        <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center text-white">
-                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-4 md:pb-0">
-                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold">500+</div>
-                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold">Butik Tersertifikasi</div>
+                    <div className="bg-[#8B1D1D] py-8 md:py-14 border-b-4 border-[#BFA36F] relative overflow-hidden">
+                        {/* Pattern Overlay */}
+                        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                        
+                        <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center text-white relative z-10">
+                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-4 md:pb-0 group hover:-translate-y-1 transition-transform duration-300">
+                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold drop-shadow-md">500+</div>
+                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold text-white/80 group-hover:text-white transition-colors">Butik Tersertifikasi</div>
                                 <div className="hidden md:block absolute right-0 top-1/4 h-1/2 w-[2px] bg-[#BFA36F]/30"></div>
                             </div>
-                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-4 md:pb-0">
-                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold">120K</div>
-                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold">Yard Batik Diekspor</div>
+                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-4 md:pb-0 group hover:-translate-y-1 transition-transform duration-300">
+                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold drop-shadow-md">120K</div>
+                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold text-white/80 group-hover:text-white transition-colors">Yard Batik Diekspor</div>
                                 <div className="hidden md:block absolute right-0 top-1/4 h-1/2 w-[2px] bg-[#BFA36F]/30"></div>
                             </div>
-                            <div className="p-2 md:p-4">
-                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold">Global</div>
-                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold">Jangkauan Pasar</div>
+                            <div className="p-2 md:p-4 group hover:-translate-y-1 transition-transform duration-300">
+                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold drop-shadow-md">Global</div>
+                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold text-white/80 group-hover:text-white transition-colors">Jangkauan Pasar</div>
                             </div>
                         </div>
                     </div>
@@ -153,20 +165,22 @@ const App: React.FC = () => {
                     <section className="py-12 md:py-24 bg-white border-y border-gray-100">
                         <div className="container mx-auto px-6 lg:px-12">
                             <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-                                <div className="w-full md:w-1/2 relative">
-                                    <div className="absolute top-4 left-4 w-full h-full border-2 border-[#8B1D1D] z-0 hidden md:block"></div>
-                                    <img 
-                                        src="https://i.pinimg.com/1200x/12/69/25/126925d65a43ce73e1871b1fb57e27ba.jpg" 
-                                        alt="Interior Butik" 
-                                        referrerPolicy="no-referrer"
-                                        onError={(e) => {
-                                            e.currentTarget.src = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop";
-                                        }}
-                                        className="relative z-10 w-full grayscale contrast-125 hover:grayscale-0 transition-all duration-700 shadow-2xl object-cover h-[300px] md:h-[550px]"
-                                    />
+                                <div className="w-full md:w-1/2 relative group">
+                                    <div className="absolute top-4 left-4 w-full h-full border-2 border-[#8B1D1D] z-0 hidden md:block transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
+                                    <div className="overflow-hidden relative z-10 shadow-2xl">
+                                         <img 
+                                            src="https://i.pinimg.com/1200x/12/69/25/126925d65a43ce73e1871b1fb57e27ba.jpg" 
+                                            alt="Interior Butik" 
+                                            referrerPolicy="no-referrer"
+                                            onError={(e) => {
+                                                e.currentTarget.src = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop";
+                                            }}
+                                            className="w-full grayscale contrast-125 hover:grayscale-0 transition-all duration-1000 object-cover h-[300px] md:h-[550px] transform hover:scale-105"
+                                        />
+                                    </div>
                                 </div>
                                 <div className="w-full md:w-1/2 text-center md:text-left">
-                                    <span className="text-[#8B1D1D] text-xs font-black uppercase tracking-[0.3em] mb-4 block">
+                                    <span className="text-[#8B1D1D] text-xs font-black uppercase tracking-[0.3em] mb-4 block animate-fadeIn">
                                         Gucci x Indonesia
                                     </span>
                                     <h2 className="text-3xl md:text-5xl font-serif text-black mb-6 md:mb-8 leading-tight font-bold">
@@ -178,13 +192,13 @@ const App: React.FC = () => {
                                     <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                                         <button 
                                             onClick={() => navigateTo('partners')}
-                                            className="bg-[#8B1D1D] text-white px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#5e1414] transition-colors border-2 border-[#8B1D1D] hover:border-[#8B1D1D] shadow-lg w-full md:w-auto"
+                                            className="bg-[#8B1D1D] text-white px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#5e1414] transition-colors border-2 border-[#8B1D1D] hover:border-[#8B1D1D] shadow-lg w-full md:w-auto transform hover:-translate-y-1"
                                         >
                                             JELAJAHI MITRA
                                         </button>
                                         <button 
                                             onClick={() => navigateTo('impact')}
-                                            className="bg-transparent text-[#8B1D1D] px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#8B1D1D] hover:text-white transition-colors border-2 border-[#8B1D1D] w-full md:w-auto"
+                                            className="bg-transparent text-[#8B1D1D] px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#8B1D1D] hover:text-white transition-colors border-2 border-[#8B1D1D] w-full md:w-auto transform hover:-translate-y-1"
                                         >
                                             PELAJARI DAMPAK
                                         </button>
@@ -201,8 +215,9 @@ const App: React.FC = () => {
                     <div className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-40 animate-fadeIn">
                         <button
                             onClick={openWhatsAppRegistration}
-                            className="bg-[#BFA36F] hover:bg-[#a38b55] text-[#0F2420] px-5 py-3 md:px-8 md:py-4 rounded-full font-serif font-bold text-xs md:text-sm uppercase tracking-[0.15em] shadow-[0_4px_20px_rgba(191,163,111,0.4)] border-2 border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center group"
+                            className="bg-[#BFA36F] hover:bg-[#a38b55] text-[#0F2420] px-5 py-3 md:px-8 md:py-4 rounded-full font-serif font-bold text-xs md:text-sm uppercase tracking-[0.15em] shadow-[0_4px_20px_rgba(191,163,111,0.4)] border-2 border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center group overflow-hidden relative"
                         >
+                            <span className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
                             <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
                             <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full"></span>
                             <FileText className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 group-hover:rotate-12 transition-transform" />
@@ -210,13 +225,27 @@ const App: React.FC = () => {
                             <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                         </button>
                     </div>
-                </>
+                </div>
               );
       }
   };
 
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 bg-[#0F2420] z-[100] flex flex-col items-center justify-center text-white">
+        <div className="relative">
+          <h1 className="text-6xl md:text-8xl font-serif font-bold tracking-widest text-[#BFA36F] animate-pulse">GUCCI</h1>
+          <div className="absolute -bottom-4 left-0 w-full h-[2px] bg-[#BFA36F]/30 overflow-hidden">
+             <div className="h-full bg-[#BFA36F] w-1/3 animate-ticker"></div>
+          </div>
+        </div>
+        <p className="mt-6 text-[10px] uppercase tracking-[0.4em] font-bold text-white/50 animate-fadeIn">Indonesia Export Hub</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF9F6]">
+    <div className="min-h-screen flex flex-col bg-[#FAF9F6] selection:bg-[#BFA36F] selection:text-black">
       <Navbar onNavigate={navigateTo} />
       <main className="flex-grow">
         {renderContent()}

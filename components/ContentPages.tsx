@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck, Plane, Package, Anchor, Printer, Share2, Download, FileText, Calendar, Zap, ArrowRight } from 'lucide-react';
 
 interface PageProps {
     onBack: () => void;
@@ -171,7 +171,7 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
 }
 
 // ----------------------------------------------------------------------
-// 2. IMPACT PAGE
+// 3. IMPACT PAGE (ENHANCED SCANLINE EFFECT)
 // ----------------------------------------------------------------------
 
 export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
@@ -184,13 +184,62 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     ];
 
     const ARTISAN_LOGS = [
-        { id: "WS-SOLO-01", name: "Keraton Royal Atelier", task: "Batik Tulis Halus", progress: 85, status: "Finishing" },
-        { id: "WS-PKL-04", name: "Pesisir Vibrant Studio", task: "Pewarnaan Indigo", progress: 40, status: "Proses" },
+        { id: "WS-SOLO-01", name: "Keraton Royal Atelier", task: "Batik Tulis Halus", progress: 85, status: "Finishing", color: "bg-green-500" },
+        { id: "WS-PKL-04", name: "Pesisir Vibrant Studio", task: "Pewarnaan Indigo", progress: 40, status: "Proses", color: "bg-yellow-500" },
+        { id: "WS-BALI-09", name: "Ubud Sacred Threads", task: "Tenun Ikat Ganda", progress: 65, status: "Weaving", color: "bg-blue-500" },
+        { id: "WS-CJR-02", name: "Sogan Imperial House", task: "Quality Control", progress: 98, status: "Ready", color: "bg-green-600" },
+        { id: "ART-MURNI", name: "Ibu Murni (Artisan)", task: "Canting Tulis Level 1", progress: 25, status: "Sketching", color: "bg-red-500" },
+        { id: "LOG-JKT-A", name: "Hub Logistik Menteng", task: "Packaging & Labeling", progress: 100, status: "Shipped", color: "bg-green-700" },
+        { id: "MAT-GRT-X", name: "Sentra Sutra Garut", task: "Pemintalan Benang", progress: 55, status: "Spinning", color: "bg-yellow-600" },
+        { id: "RD-LAB-01", name: "Lab Warna Alami", task: "Uji Ketahanan Luntur", progress: 10, status: "Testing", color: "bg-gray-500" }
     ];
 
-    const SHIPMENTS = [
-        { awb: "8821-EX-IT", dest: "Milan, IT", items: "250 yds Sutra", status: "OK", time: "10:42 AM" },
-        { awb: "8824-EX-FR", dest: "Paris, FR", items: "120 yds Beludru", status: "Transit", time: "09:15 AM" },
+    const DETAILED_SHIPMENTS = [
+        { 
+            awb: "8821-EX-IT", 
+            origin: "CGK",
+            destCode: "MXP",
+            destCity: "Milan, IT",
+            carrier: "Garuda Cargo",
+            flight: "GA-882",
+            items: "Sutra Organik (Grade A)",
+            weight: "450 Kg",
+            status: "Tiba di Hub Logistik",
+            progress: 85,
+            statusColor: "text-green-600",
+            time: "10:42 AM",
+            type: "AIR"
+        },
+        { 
+            awb: "8824-EX-FR", 
+            origin: "CGK",
+            destCode: "CDG",
+            destCity: "Paris, FR",
+            carrier: "DHL Express",
+            flight: "DHL-901",
+            items: "Beludru Sulam (Grade S)",
+            weight: "120 Kg",
+            status: "Transit - Singapore",
+            progress: 45,
+            statusColor: "text-blue-600",
+            time: "09:15 AM",
+            type: "AIR"
+        },
+        { 
+            awb: "SEA-991-US", 
+            origin: "SUB",
+            destCode: "LAX",
+            destCity: "Los Angeles, US",
+            carrier: "Maersk Line",
+            flight: "Vessel: Emma",
+            items: "Tenun Ikat (Bulk)",
+            weight: "2.5 Ton",
+            status: "Loading Port Surabaya",
+            progress: 15,
+            statusColor: "text-yellow-600",
+            time: "08:00 AM",
+            type: "SEA"
+        },
     ];
 
     const [startIndex, setStartIndex] = useState(0);
@@ -215,6 +264,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     return (
         <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn font-sans">
              <div className="fixed top-[88px] md:top-24 left-0 w-full bg-black text-[#BFA36F] z-30 overflow-hidden py-2 border-b border-[#8B1D1D] hidden md:flex">
+                 {/* Double Ticker Content for Seamless Loop */}
                  <div className="whitespace-nowrap animate-ticker flex-shrink-0 flex items-center font-mono text-xs font-bold tracking-widest">
                      <ImpactTickerContent />
                  </div>
@@ -234,20 +284,24 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-                    {/* LEFT COL: GLOBAL MARKET */}
-                    <div className="lg:col-span-2 bg-[#0A0A0A] rounded-2xl p-6 md:p-8 border border-gray-800 text-white shadow-2xl relative overflow-hidden">
+                    {/* LEFT COL: GLOBAL MARKET (Futuristic Terminal Look) */}
+                    <div className="lg:col-span-2 bg-[#0A0A0A] rounded-2xl p-6 md:p-8 border border-gray-800 text-white shadow-2xl relative overflow-hidden group">
+                        {/* Scanline Effect */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#BFA36F]/5 to-transparent h-full w-full animate-[scan_3s_linear_infinite] pointer-events-none z-10"></div>
                         <div className="absolute top-0 right-0 p-4 opacity-20"><Globe className="w-24 h-24 text-[#BFA36F]" /></div>
-                        <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest mb-6 flex items-center">
+                        
+                        <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest mb-6 flex items-center relative z-20">
                             <Activity className="w-4 h-4 mr-2 animate-pulse" /> LIVE MARKET DATA
                         </h3>
 
-                        <div className="space-y-4">
+                        <div className="space-y-4 relative z-20">
                             {visibleCountries.map((c, i) => (
-                                <div key={i} className="flex justify-between items-center md:grid md:grid-cols-12 bg-[#151515] p-3 rounded border-l-2 border-[#BFA36F] hover:bg-[#222] transition-colors">
+                                <div key={i} className="flex justify-between items-center md:grid md:grid-cols-12 bg-[#151515] p-3 rounded border-l-2 border-[#BFA36F] hover:bg-[#222] transition-all hover:scale-[1.01]">
                                     <div className="flex items-center md:contents">
                                         <div className="font-mono text-xs text-gray-400 w-10 md:w-auto md:col-span-2">{c.code}</div>
                                         <div className="font-bold text-sm flex items-center md:col-span-4"><img src={c.flagUrl} className="w-4 h-3 mr-2 rounded-sm" alt="flag" /> <span className="truncate">{c.name.split('(')[0]}</span></div>
                                     </div>
+                                    {/* Mobile Responsive Vertical Stack for Volume/Growth */}
                                     <div className="flex flex-col items-end md:contents">
                                         <div className="md:col-span-3 text-right font-mono text-[#BFA36F] text-[10px] md:text-xs whitespace-nowrap">{c.income}</div>
                                         <div className="md:col-span-3 text-right font-bold text-[10px] md:text-xs text-green-500 whitespace-nowrap">{c.change}</div>
@@ -256,41 +310,85 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                             ))}
                         </div>
 
-                        <div className="grid grid-cols-3 gap-2 md:gap-4 mt-8 pt-6 border-t border-gray-800">
-                            <div className="flex flex-col justify-center">
+                        <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-800 relative z-20">
+                             <div className="flex flex-col">
                                 <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">TOTAL EKSPOR</span>
                                 <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">Rp 768 Miliar</div>
                             </div>
-                            <div className="flex flex-col justify-center border-l border-gray-800 pl-2 md:pl-4">
+                            <div className="w-px h-8 bg-gray-800 mx-2"></div>
+                            <div className="flex flex-col">
                                 <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">ACTIVE ROUTES</span>
                                 <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">14 Negara</div>
                             </div>
-                             <div className="flex flex-col justify-center border-l border-gray-800 pl-2 md:pl-4">
+                            <div className="w-px h-8 bg-gray-800 mx-2"></div>
+                             <div className="flex flex-col">
                                 <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">ARTISAN PAID</span>
                                 <div className="text-sm md:text-xl font-bold text-[#BFA36F] whitespace-nowrap">100%</div>
                             </div>
                         </div>
                     </div>
 
-                    {/* RIGHT COL: LOGISTICS */}
-                    <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-lg">
-                        <h3 className="text-[#8B1D1D] font-bold text-xs uppercase tracking-widest mb-6 flex items-center">
-                            <Truck className="w-4 h-4 mr-2" /> MANIFEST PENGIRIMAN
+                    {/* RIGHT COL: DETAILED LOGISTICS */}
+                    <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-lg flex flex-col">
+                        <h3 className="text-[#8B1D1D] font-bold text-xs uppercase tracking-widest mb-6 flex items-center justify-between">
+                            <span className="flex items-center"><Truck className="w-4 h-4 mr-2" /> MANIFEST PENGIRIMAN</span>
+                            <span className="text-[9px] bg-gray-100 px-2 py-1 rounded-full text-gray-500 flex items-center"><Zap className="w-3 h-3 mr-1 text-yellow-500"/> Live</span>
                         </h3>
-                        <div className="space-y-6 relative">
-                            <div className="absolute left-2 top-2 bottom-2 w-0.5 bg-gray-100"></div>
-                            {SHIPMENTS.map((s, i) => (
-                                <div key={i} className="relative pl-8">
-                                    <div className="absolute left-0 top-1 w-4 h-4 bg-white border-2 border-[#8B1D1D] rounded-full z-10"></div>
-                                    <div className="flex justify-between items-start mb-1">
-                                        <span className="font-mono text-xs font-bold text-gray-400">{s.awb}</span>
-                                        <span className="text-[10px] font-bold bg-gray-100 px-2 py-0.5 rounded text-gray-600">{s.time}</span>
+                        
+                        <div className="flex-1 space-y-5 overflow-y-auto max-h-[400px] pr-1 scrollbar-hide">
+                            {DETAILED_SHIPMENTS.map((shipment, i) => (
+                                <div key={i} className="border border-gray-100 rounded-lg p-3 hover:shadow-md transition-shadow">
+                                    {/* Header: Carrier & Route */}
+                                    <div className="flex justify-between items-center mb-2 pb-2 border-b border-gray-50">
+                                        <div className="flex items-center text-[10px] font-bold uppercase tracking-wider text-gray-600">
+                                            {shipment.type === 'AIR' ? <Plane className="w-3 h-3 mr-1 text-[#8B1D1D]"/> : <Anchor className="w-3 h-3 mr-1 text-blue-600"/>}
+                                            {shipment.carrier}
+                                        </div>
+                                        <span className="text-[10px] font-mono text-gray-400">{shipment.flight}</span>
                                     </div>
-                                    <h4 className="font-bold text-sm text-black">{s.dest}</h4>
-                                    <p className="text-xs text-gray-500 mb-1">{s.items}</p>
-                                    <span className={`text-[10px] font-bold uppercase tracking-wider ${s.status.includes('OK') ? 'text-green-600' : 'text-blue-600'}`}>
-                                        ● {s.status}
-                                    </span>
+
+                                    {/* Main Info */}
+                                    <div className="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <span className="font-mono text-xs font-bold text-[#8B1D1D]">{shipment.origin}</span>
+                                                <div className="w-8 h-px bg-gray-300 relative">
+                                                    <div className="absolute -top-0.5 right-0 w-1 h-1 bg-gray-400 rounded-full"></div>
+                                                </div>
+                                                <span className="font-mono text-xs font-bold text-[#8B1D1D]">{shipment.destCode}</span>
+                                            </div>
+                                            <p className="text-[10px] font-bold text-black">{shipment.destCity}</p>
+                                        </div>
+                                        <div className="text-right">
+                                            <span className="block font-bold text-xs text-black">{shipment.weight}</span>
+                                            <span className="text-[9px] text-gray-500 block">Berat</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Item Desc */}
+                                    <div className="flex items-center text-[10px] text-gray-500 mb-3 bg-gray-50 px-2 py-1 rounded">
+                                        <Package className="w-3 h-3 mr-1"/> {shipment.items}
+                                    </div>
+
+                                    {/* Progress */}
+                                    <div className="relative pt-1 mb-2">
+                                        <div className="flex mb-1 items-center justify-between">
+                                            <span className={`text-[9px] font-bold uppercase tracking-wider ${shipment.statusColor} flex items-center`}>
+                                                {shipment.progress < 100 && <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse mr-1"></span>}
+                                                {shipment.status}
+                                            </span>
+                                            <span className="text-[9px] font-bold text-gray-600">{shipment.progress}%</span>
+                                        </div>
+                                        <div className="overflow-hidden h-1.5 mb-1 text-xs flex rounded-full bg-gray-100">
+                                            <div style={{ width: `${shipment.progress}%` }} className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center ${shipment.progress === 100 ? 'bg-green-500' : 'bg-[#8B1D1D]'}`}></div>
+                                        </div>
+                                    </div>
+
+                                    {/* Footer ID & Time */}
+                                    <div className="flex justify-between items-center text-[9px] text-gray-400 font-mono">
+                                        <span>AWB: {shipment.awb}</span>
+                                        <span>ETA: {shipment.time}</span>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -306,12 +404,17 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                             <div key={i} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="flex justify-between items-start mb-4">
                                     <span className="font-mono text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-500">{log.id}</span>
-                                    <div className={`w-2 h-2 rounded-full ${log.progress > 80 ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
+                                    <div className={`w-2 h-2 rounded-full ${log.color}`}></div>
                                 </div>
-                                <h4 className="font-serif font-bold text-lg mb-1 line-clamp-1">{log.name}</h4>
-                                <p className="text-xs text-gray-500 uppercase tracking-wide mb-4">{log.task}</p>
+                                <h3 className="font-bold text-sm text-black mb-1 truncate">{log.name}</h3>
+                                <p className="text-[10px] text-gray-500 uppercase tracking-wide mb-4">{log.task}</p>
+                                
                                 <div className="w-full bg-gray-100 rounded-full h-1.5 mb-2">
-                                    <div className="bg-[#8B1D1D] h-1.5 rounded-full" style={{ width: `${log.progress}%` }}></div>
+                                    <div className={`h-1.5 rounded-full ${log.color === 'bg-yellow-500' ? 'bg-[#BFA36F]' : '#8B1D1D'}`} style={{ width: `${log.progress}%`, backgroundColor: log.progress === 100 ? 'green' : '#8B1D1D' }}></div>
+                                </div>
+                                <div className="flex justify-between text-[10px] font-bold">
+                                    <span className="text-gray-400">{log.status}</span>
+                                    <span className="text-black">{log.progress}%</span>
                                 </div>
                             </div>
                         ))}
@@ -322,76 +425,103 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     );
 };
 
+// ----------------------------------------------------------------------
+// 4. PARTNERS PAGE (4 MITRA)
+// ----------------------------------------------------------------------
 export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSelect }) => {
-    const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
-    const [currentMapUrl, setCurrentMapUrl] = useState("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3265057.863158025!2d109.43572886470397!3d-7.39803529341492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65561a06734d6f%3A0x3f5c9d2f66453990!2sJava!5e0!3m2!1sen!2sid!4v1709228000000!5m2!1sen!2sid");
-
     const partners = [
-        { id: 1, loc: "Yogyakarta", name: "Keraton Royal Atelier", spec: "Batik Tulis Klasik", desc: "Spesialis motif larangan keraton dengan teknik canting 0.5mm.", mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126492.36531388656!2d110.36443425!3d-7.801368199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5787bd5b6bc5%3A0x21723fd4d3684f71!2sYogyakarta!5e0!3m2!1sen!2sid!4v1709228000001", img: "https://i.pinimg.com/736x/db/6a/c8/db6ac8bf7bed3718fd0833cbedd8250d.jpg" },
-        { id: 2, loc: "Pekalongan", name: "Pesisir Vibrant Studio", spec: "Batik Warna Alam", desc: "Pewarnaan indigo alami dengan motif buketan pengaruh Eropa-Cina.", mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126727.56708785718!2d109.6105809!3d-6.8946761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e702454058d7287%3A0x4027a76e352e4e0!2sPekalongan!5e0!3m2!1sen!2sid!4v1709228000002", img: "https://i.pinimg.com/736x/40/90/32/409032882a7247f4e5025c5fdf6517db.jpg" },
-        { id: 3, loc: "Solo", name: "Sogan Imperial House", spec: "Batik Sogan Klasik", desc: "Pelestari pakem batik keraton Surakarta dengan pewarnaan soga alam fermentasi 6 bulan.", mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126569.25920786963!2d110.74317664999999!3d-7.5592083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a16627ad11ab1%3A0x3027a76e352bb40!2sSurakarta%2C%20Surakarta%20City%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1709228000003", img: "https://i.pinimg.com/736x/79/d3/61/79d361f296f89d189a5c75aab70a4563.jpg" },
-        { id: 4, loc: "Bali", name: "Ubud Sacred Threads", spec: "Tenun Endek & Songket", desc: "Pengrajin tekstil upacara adat dengan benang emas dan sutra alam untuk koleksi Resort.", mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126214.36398901846!2d115.20452335!3d-8.5068538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd23d739f22c9c3%3A0x54a38afd6b5774c9!2sUbud%2C%20Gianyar%20Regency%2C%20Bali!5e0!3m2!1sen!2sid!4v1709228000004", img: "https://i.pinimg.com/1200x/48/c3/4b/48c34bdc7073d1d1ffb23ee110d5c799.jpg" }
+        {
+            name: "Keraton Royal Atelier",
+            location: "Yogyakarta",
+            specialty: "Batik Tulis Halus (Royal Pattern)",
+            description: "Spesialis motif larangan keraton dengan teknik canting 0.5mm. Mitra eksklusif untuk koleksi Haute Couture.",
+            image: "https://i.pinimg.com/1200x/c0/f7/cc/c0f7ccfef225fa30f5def346a5083b53.jpg",
+            tier: "TIER 1 - GUCCI ARTISAN",
+            id: "YO-001"
+        },
+        {
+            name: "Pesisir Vibrant Studio",
+            location: "Pekalongan",
+            specialty: "Pewarnaan Indigo & Flora",
+            description: "Pewarnaan indigo alami dengan motif buketan pengaruh Eropa-Cina. Pemasok utama untuk koleksi Resort Wear.",
+            image: "https://i.pinimg.com/736x/40/90/32/409032882a7247f4e5025c5fdf6517db.jpg",
+            tier: "TIER 1 - GUCCI ARTISAN",
+            id: "PK-004"
+        },
+        {
+            name: "Sogan Imperial House",
+            location: "Solo",
+            specialty: "Batik Sogan Klasik",
+            description: "Mempertahankan pakem warna coklat sogan alami. Fokus pada kemeja pria formal dan aksesoris interior.",
+            image: "https://i.pinimg.com/736x/79/d3/61/79d361f296f89d189a5c75aab70a4563.jpg",
+            tier: "TIER 2 - CERTIFIED",
+            id: "SL-021"
+        },
+        {
+            name: "Ubud Sacred Threads",
+            location: "Bali",
+            specialty: "Tenun Ikat & Prada",
+            description: "Penggabungan teknik tenun ikat ganda dengan sentuhan emas prada. Digunakan untuk lini aksesoris Gucci Decor.",
+            image: "https://i.pinimg.com/1200x/48/c3/4b/48c34bdc7073d1d1ffb23ee110d5c799.jpg",
+            tier: "TIER 1 - GUCCI ARTISAN",
+            id: "BL-099"
+        }
     ];
 
     return (
-        <div className="bg-white min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn">
-            <div className="container mx-auto px-4 md:px-6 lg:px-12">
-                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-6 md:mb-8 flex items-center hover:underline">
+        <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn">
+            <div className="container mx-auto px-4 md:px-12">
+                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline sticky top-24 md:static bg-[#FAF9F6] py-2 z-10 w-full">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
-                
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-gray-100 pb-8">
-                    <div className="mb-6 md:mb-0">
-                        <div className="flex items-center space-x-3 mb-2">
-                             <span className="text-[#BFA36F] uppercase tracking-[0.2em] font-bold text-xs block">Kurasi Lokal</span>
-                             <span className="bg-[#BFA36F] text-white text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">Gucci Artisan Tier 1</span>
-                        </div>
-                        <h1 className="text-3xl md:text-5xl font-serif font-bold text-black mb-4">Jaringan Mitra Artisan</h1>
+
+                <div className="mb-12 flex flex-col md:flex-row justify-between items-end">
+                    <div>
+                        <span className="text-[#BFA36F] font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-4 block">Kurasi Lokal</span>
+                        <h1 className="text-3xl md:text-5xl font-serif font-bold text-black">Jaringan Mitra Artisan</h1>
                     </div>
-                    
-                    <div className="flex bg-gray-100 p-1 rounded-lg w-full md:w-auto">
-                        <button onClick={() => setViewMode('list')} className={`flex-1 md:flex-none px-4 py-3 uppercase text-xs font-bold tracking-widest rounded-md ${viewMode === 'list' ? 'bg-white text-[#8B1D1D] shadow-md' : 'text-gray-400'}`}>
-                            <List className="w-4 h-4 mr-2 inline" /> Daftar
+                     <div className="flex space-x-4 mt-6 md:mt-0">
+                        <button className="bg-white border border-gray-200 px-4 py-2 text-xs font-bold uppercase tracking-widest hover:border-[#8B1D1D] transition-colors flex items-center">
+                            <List className="w-4 h-4 mr-2" /> Daftar
                         </button>
-                        <button onClick={() => setViewMode('map')} className={`flex-1 md:flex-none px-4 py-3 uppercase text-xs font-bold tracking-widest rounded-md ${viewMode === 'map' ? 'bg-[#0F2420] text-[#BFA36F] shadow-md' : 'text-gray-400'}`}>
-                            <MapIcon className="w-4 h-4 mr-2 inline" /> Peta
+                        <button className="bg-gray-100 text-gray-400 px-4 py-2 text-xs font-bold uppercase tracking-widest cursor-not-allowed flex items-center">
+                            <MapIcon className="w-4 h-4 mr-2" /> Peta
                         </button>
                     </div>
                 </div>
 
-                {viewMode === 'list' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6 md:gap-y-12 animate-fadeIn">
-                        {partners.map((partner) => (
-                            <div key={partner.id} onClick={() => onPartnerSelect && onPartnerSelect(partner)} className="group border border-gray-100 pb-6 cursor-pointer hover:bg-gray-50 p-4 rounded-xl">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <span className="text-[#8B1D1D] font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 block">{partner.loc}</span>
-                                        <h3 className="text-xl md:text-2xl font-serif font-bold mb-2 text-black group-hover:text-[#BFA36F]">{partner.name}</h3>
-                                        <p className="text-gray-500 text-xs md:text-sm line-clamp-2">{partner.desc}</p>
-                                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {partners.map((p, i) => (
+                        <div 
+                            key={i} 
+                            onClick={() => onPartnerSelect && onPartnerSelect(p)}
+                            className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer flex flex-col md:flex-row h-full md:h-64"
+                        >
+                            <div className="w-full md:w-2/5 h-48 md:h-full overflow-hidden relative">
+                                <img src={p.image} alt={p.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                <div className="absolute top-0 left-0 bg-[#8B1D1D] text-white text-[9px] font-bold uppercase px-3 py-1">
+                                    {p.location}
                                 </div>
                             </div>
-                        ))}
-                    </div>
-                )}
-
-                {viewMode === 'map' && (
-                    <div className="flex flex-col lg:flex-row gap-6 h-[500px] md:h-[600px] animate-fadeIn">
-                         <div className="lg:w-1/3 bg-[#FAF9F6] p-4 rounded-2xl border border-gray-200 overflow-y-auto">
-                            <h3 className="font-serif font-bold text-lg mb-4 flex items-center"><MapPin className="w-5 h-5 mr-2 text-[#8B1D1D]" /> Lokasi Artisan</h3>
-                            <div className="space-y-3">
-                                {partners.map((partner) => (
-                                    <button key={partner.id} onClick={() => setCurrentMapUrl(partner.mapUrl)} className="w-full text-left p-4 bg-white hover:bg-[#8B1D1D] hover:text-white transition-all rounded-lg shadow-sm border border-gray-100">
-                                        <span className="font-serif font-bold text-sm">{partner.name}</span>
-                                    </button>
-                                ))}
+                            <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-between">
+                                <div>
+                                    <div className="flex justify-between items-start mb-2">
+                                        <h3 className="font-serif font-bold text-xl text-black group-hover:text-[#8B1D1D] transition-colors">{p.name}</h3>
+                                        <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-[#8B1D1D] opacity-0 group-hover:opacity-100 transition-all" />
+                                    </div>
+                                    <p className="text-[10px] font-bold uppercase tracking-wider text-[#BFA36F] mb-4">{p.specialty}</p>
+                                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{p.description}</p>
+                                </div>
+                                <div className="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center">
+                                    <span className="text-[9px] font-black uppercase text-gray-400">{p.id}</span>
+                                    <span className="flex items-center text-[9px] font-bold uppercase text-green-700 bg-green-50 px-2 py-1 rounded">
+                                        <ShieldCheck className="w-3 h-3 mr-1" /> {p.tier}
+                                    </span>
+                                </div>
                             </div>
-                         </div>
-                         <div className="flex-1 bg-gray-200 rounded-2xl overflow-hidden shadow-inner relative">
-                            <iframe src={currentMapUrl} width="100%" height="100%" style={{border:0}} loading="lazy"></iframe>
-                         </div>
-                    </div>
-                )}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
@@ -400,57 +530,168 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
 export const PartnerDetailPage: React.FC<PartnerDetailPageProps> = ({ onBack, partner }) => {
     if (!partner) return null;
     return (
-         <div className="bg-white min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn">
-            <div className="container mx-auto px-4 md:px-12">
+        <div className="bg-white min-h-screen pt-32 pb-20 animate-fadeIn font-sans">
+             <div className="container mx-auto px-6 lg:px-12">
                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
-                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
+                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Daftar Mitra
                 </button>
-                <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-                    <div className="w-full md:w-1/2">
-                        <img src={partner.img} alt={partner.name} className="w-full rounded-lg shadow-2xl mb-8 object-cover aspect-video" />
-                    </div>
-                    <div className="w-full md:w-1/2">
-                        <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">{partner.name}</h1>
-                        <p className="text-gray-600 mb-6 leading-relaxed text-justify">{partner.desc}</p>
-                    </div>
-                </div>
-            </div>
-         </div>
-    );
-};
-
-export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
-    return (
-        <div className="bg-black min-h-screen text-white relative">
-            <button onClick={onBack} className="absolute top-6 left-6 z-50 text-white font-bold uppercase tracking-widest text-xs flex items-center hover:text-[#BFA36F] transition-colors bg-black/50 p-2 rounded-full">
-                <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
-            </button>
-            <div className="h-screen w-full relative">
-                 <img src="https://i.pinimg.com/1200x/ff/bb/64/ffbb64e0b998a23f6396a6a4c8cf97b2.jpg" alt="Gucci Gala" className="w-full h-full object-cover opacity-80" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
-                <div className="absolute bottom-0 left-0 w-full p-6 md:p-24 text-center">
-                    <span className="text-[#BFA36F] uppercase tracking-[0.5em] font-bold text-[10px] md:text-xs mb-4 md:mb-6 block animate-fadeIn">Exclusive Invitation</span>
-                    <h1 className="text-4xl md:text-8xl font-serif font-bold italic mb-6 animate-fadeIn delay-100 leading-tight">The Equinox Gala</h1>
-                    <button className="border border-[#BFA36F] text-[#BFA36F] px-8 py-3 md:px-12 md:py-4 text-xs font-black uppercase tracking-[0.25em] hover:bg-[#BFA36F] hover:text-black transition-all animate-fadeIn delay-300 w-full md:w-auto">RSVP</button>
+                <div className="text-center py-20">
+                     <h1 className="text-4xl font-serif font-bold mb-4">{partner.name}</h1>
+                     <p className="text-gray-600">Detail halaman mitra sedang dalam pengembangan.</p>
                 </div>
             </div>
         </div>
     );
 };
 
+
+// ----------------------------------------------------------------------
+// 5. GALA PAGE (WITH COUNTDOWN & LUXURY EFFECTS)
+// ----------------------------------------------------------------------
+export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
+    // Countdown Timer Logic
+    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+    useEffect(() => {
+        const targetDate = new Date('December 24, 2025 19:00:00').getTime();
+
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+            } else {
+                setTimeLeft({
+                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                });
+            }
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="bg-[#05110E] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn relative overflow-hidden">
+            {/* Background Texture & Gold Dust Particles */}
+            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }}></div>
+            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-[#0F2420] via-[#05110E] to-black opacity-90"></div>
+            
+            {/* Decorative Gold Elements */}
+            <div className="absolute top-20 left-10 w-64 h-64 bg-[#BFA36F] rounded-full filter blur-[100px] opacity-10 animate-pulse"></div>
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#8B1D1D] rounded-full filter blur-[120px] opacity-10"></div>
+
+            <div className="container mx-auto px-6 lg:px-12 relative z-10 text-center">
+                 <button onClick={onBack} className="absolute left-0 top-0 text-[#BFA36F] font-bold uppercase tracking-widest text-xs flex items-center hover:text-white transition-colors">
+                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
+                </button>
+
+                <div className="mt-12 md:mt-20 mb-16">
+                    <span className="text-[#BFA36F] font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs block mb-6">Undangan Eksklusif</span>
+                    <h1 className="text-5xl md:text-8xl font-serif font-bold text-white mb-6 drop-shadow-2xl">
+                        Gucci <span className="text-[#8B1D1D] italic">Holiday</span> Gala
+                    </h1>
+                    <p className="text-lg md:text-2xl text-gray-300 font-serif italic max-w-2xl mx-auto leading-relaxed">
+                        "Malam apresiasi untuk para maestro batik dan tenun Indonesia."
+                    </p>
+                </div>
+
+                {/* Event Card with Countdown */}
+                <div className="max-w-4xl mx-auto bg-[#0F2420]/50 backdrop-blur-md border border-[#BFA36F]/30 p-8 md:p-16 rounded-sm relative group">
+                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-16 bg-[#BFA36F] flex items-center justify-center shadow-lg">
+                        <Award className="w-6 h-6 text-[#0F2420]" />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center text-white border-b border-[#BFA36F]/20 pb-12 mb-12">
+                        <div>
+                            <Calendar className="w-8 h-8 text-[#BFA36F] mx-auto mb-4 opacity-80" />
+                            <h3 className="font-serif text-xl md:text-2xl font-bold mb-2">24 Desember 2025</h3>
+                            <p className="text-xs uppercase tracking-widest text-gray-400">Pukul 19:00 WIB</p>
+                        </div>
+                        <div className="md:border-x border-[#BFA36F]/20 px-4">
+                             <MapPin className="w-8 h-8 text-[#BFA36F] mx-auto mb-4 opacity-80" />
+                             <h3 className="font-serif text-xl md:text-2xl font-bold mb-2">Grand Ballroom</h3>
+                             <p className="text-xs uppercase tracking-widest text-gray-400">Hotel Mulia Senayan, Jakarta</p>
+                        </div>
+                        <div>
+                             <ShoppingBag className="w-8 h-8 text-[#BFA36F] mx-auto mb-4 opacity-80" />
+                             <h3 className="font-serif text-xl md:text-2xl font-bold mb-2">Dress Code</h3>
+                             <p className="text-xs uppercase tracking-widest text-gray-400">Black Tie & Batik Haute Couture</p>
+                        </div>
+                    </div>
+
+                    <div className="text-gray-300 mb-12 leading-relaxed">
+                        Bergabunglah dalam perayaan kesuksesan ekspor tahun ini. Acara akan dimeriahkan dengan fashion show koleksi "The Batik Renaissance", pemberian penghargaan "Artisan of The Year", dan lelang amal untuk pendidikan pengrajin muda.
+                    </div>
+
+                     {/* Countdown Timer */}
+                     <div className="grid grid-cols-4 gap-4 max-w-lg mx-auto mb-12">
+                        <div className="bg-black/40 p-4 border border-[#BFA36F]/20 rounded">
+                            <span className="block text-2xl md:text-4xl font-serif font-bold text-[#BFA36F]">{timeLeft.days}</span>
+                            <span className="text-[9px] uppercase tracking-widest text-gray-400">Hari</span>
+                        </div>
+                        <div className="bg-black/40 p-4 border border-[#BFA36F]/20 rounded">
+                            <span className="block text-2xl md:text-4xl font-serif font-bold text-[#BFA36F]">{timeLeft.hours}</span>
+                            <span className="text-[9px] uppercase tracking-widest text-gray-400">Jam</span>
+                        </div>
+                        <div className="bg-black/40 p-4 border border-[#BFA36F]/20 rounded">
+                            <span className="block text-2xl md:text-4xl font-serif font-bold text-[#BFA36F]">{timeLeft.minutes}</span>
+                            <span className="text-[9px] uppercase tracking-widest text-gray-400">Menit</span>
+                        </div>
+                        <div className="bg-black/40 p-4 border border-[#BFA36F]/20 rounded">
+                            <span className="block text-2xl md:text-4xl font-serif font-bold text-[#BFA36F]">{timeLeft.seconds}</span>
+                            <span className="text-[9px] uppercase tracking-widest text-gray-400">Detik</span>
+                        </div>
+                     </div>
+
+                    <button 
+                        onClick={openWhatsAppRegistration}
+                        className="bg-[#BFA36F] text-[#0F2420] px-10 py-4 font-bold uppercase tracking-[0.2em] hover:bg-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(191,163,111,0.3)]"
+                    >
+                        RSVP Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// ----------------------------------------------------------------------
+// 6. REGISTER PAGE
+// ----------------------------------------------------------------------
 export const RegisterPage: React.FC<PageProps> = ({ onBack }) => {
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn flex items-center justify-center">
-            <div className="container mx-auto px-6 lg:px-12 max-w-4xl">
+        <div className="bg-[#FAF9F6] min-h-screen pt-32 pb-12 animate-fadeIn font-sans">
+             <div className="container mx-auto px-6 lg:px-12">
                  <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
-                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
+                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
-                <div className="bg-white shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
-                    <div className="w-full md:w-1/2 bg-[#0F2420] text-white p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
-                        <h2 className="text-2xl md:text-3xl font-serif font-bold mb-6 relative z-10">Daftar Mitra</h2>
-                    </div>
-                    <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                        <button onClick={openWhatsAppRegistration} className="w-full bg-[#8B1D1D] text-white py-4 mt-4 text-sm font-black uppercase tracking-[0.2em] hover:bg-black transition-colors shadow-lg">Lanjut ke WhatsApp</button>
+                <div className="max-w-2xl mx-auto bg-white p-12 shadow-2xl border-t-4 border-[#8B1D1D]">
+                    <h2 className="text-3xl font-serif font-bold text-center mb-2">Pendaftaran Mitra</h2>
+                    <p className="text-center text-gray-500 mb-8 text-sm uppercase tracking-wider">Bergabunglah dengan Ekosistem Ekspor Gucci</p>
+                    
+                    <div className="space-y-6">
+                        <div className="bg-gray-50 p-6 rounded-lg border border-gray-100">
+                            <h3 className="font-bold text-[#8B1D1D] mb-4 flex items-center"><CheckCircle className="w-5 h-5 mr-2"/> Keuntungan Mitra</h3>
+                            <ul className="space-y-3 text-sm text-gray-600">
+                                <li className="flex items-start"><span className="mr-2">•</span> Akses pasar ekspor ke 40 negara</li>
+                                <li className="flex items-start"><span className="mr-2">•</span> Standarisasi QC & Pelatihan Artisan gratis</li>
+                                <li className="flex items-start"><span className="mr-2">•</span> Sistem pembayaran transparan (P4P)</li>
+                            </ul>
+                        </div>
+
+                        <div className="text-center py-6">
+                            <p className="mb-6 text-gray-600">Pendaftaran dilakukan secara eksklusif melalui tim verifikasi kami di WhatsApp untuk validasi data usaha.</p>
+                            <button 
+                                onClick={openWhatsAppRegistration}
+                                className="w-full bg-[#25D366] text-white py-4 font-bold uppercase tracking-widest hover:bg-[#128C7E] transition-colors flex items-center justify-center shadow-lg"
+                            >
+                                Hubungi Tim Verifikasi
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -458,6 +699,185 @@ export const RegisterPage: React.FC<PageProps> = ({ onBack }) => {
     );
 };
 
-export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => <div className="pt-32 px-10"><button onClick={onBack} className="mb-4">Kembali</button><h1>Dokumen SK</h1></div>;
-export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => <div className="pt-32 px-10"><button onClick={onBack} className="mb-4">Kembali</button><h1>Dokumen Izin</h1></div>;
-export const ISOPage: React.FC<PageProps> = ({ onBack }) => <div className="pt-32 px-10"><button onClick={onBack} className="mb-4">Kembali</button><h1>Dokumen ISO</h1></div>;
+// ----------------------------------------------------------------------
+// 7. LEGALITY DOCUMENT PAGES (REALISTIC VIEW)
+// ----------------------------------------------------------------------
+
+const DocumentLayout: React.FC<{ 
+    title: string; 
+    subtitle: string; 
+    docNumber: string;
+    onBack: () => void; 
+    children: React.ReactNode 
+}> = ({ title, subtitle, docNumber, onBack, children }) => {
+    return (
+        <div className="bg-gray-100 min-h-screen py-10 px-4 md:px-0 animate-fadeIn font-serif">
+            <div className="max-w-[210mm] mx-auto bg-white shadow-2xl min-h-[297mm] p-[20mm] relative">
+                <button onClick={onBack} className="absolute top-4 left-[-150px] bg-white p-3 rounded-full shadow-lg text-gray-600 hover:text-[#8B1D1D] hidden xl:block">
+                    <ArrowLeft className="w-6 h-6" />
+                </button>
+                <button onClick={onBack} className="mb-6 text-gray-600 flex items-center xl:hidden font-sans text-xs uppercase font-bold">
+                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
+                </button>
+
+                {/* Kop Surat Garuda */}
+                <div className="text-center border-b-4 border-double border-black pb-6 mb-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/National_emblem_of_Indonesia_Garuda_Pancasila.svg/1200px-National_emblem_of_Indonesia_Garuda_Pancasila.svg.png" alt="Garuda" className="h-24 mx-auto mb-4" />
+                    <h1 className="text-2xl font-bold uppercase tracking-widest mb-1">{title}</h1>
+                    <h2 className="text-sm font-bold uppercase text-gray-600 mb-2">{subtitle}</h2>
+                    <p className="text-xs font-mono">Nomor Dokumen: {docNumber}</p>
+                </div>
+
+                {/* Watermark */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03]">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/National_emblem_of_Indonesia_Garuda_Pancasila.svg/1200px-National_emblem_of_Indonesia_Garuda_Pancasila.svg.png" alt="Watermark" className="w-[500px]" />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10 font-serif text-justify leading-relaxed text-gray-900 text-sm md:text-base">
+                    {children}
+                </div>
+
+                {/* Footer / QR */}
+                <div className="absolute bottom-[20mm] left-[20mm] right-[20mm] border-t border-gray-300 pt-4 flex justify-between items-end">
+                    <div className="text-[10px] text-gray-500 font-sans">
+                        <p>Dokumen ini sah dan telah ditandatangani secara elektronik.</p>
+                        <p>Dapat diverifikasi melalui sistem AHU Online.</p>
+                    </div>
+                    <div className="text-right">
+                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png" alt="QR Validation" className="w-20 h-20 opacity-80" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => (
+    <DocumentLayout 
+        title="KEPUTUSAN MENTERI HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA"
+        subtitle="DIREKTORAT JENDERAL ADMINISTRASI HUKUM UMUM"
+        docNumber="AHU-0058932.AH.01.01.TAHUN 2025"
+        onBack={onBack}
+    >
+        <p className="mb-6"><strong>TENTANG:</strong><br/>PENGESAHAN PENDIRIAN BADAN HUKUM PERSEROAN TERBATAS <strong>PT. GRAHA CITRA PRIMA</strong></p>
+        
+        <p className="mb-4">Menteri Hukum dan Hak Asasi Manusia Republik Indonesia,</p>
+        
+        <p className="mb-4"><strong>MENIMBANG:</strong><br/>
+           a. Bahwa berdasarkan permohonan Notaris yang terdaftar sesuai salinan Akta Nomor 89 Tanggal 01 Januari 2025;<br/>
+           b. Bahwa permohonan tersebut telah memenuhi syarat dan ketentuan peraturan perundang-undangan.
+        </p>
+        
+        <p className="mb-6"><strong>MEMUTUSKAN:</strong></p>
+        <p className="mb-4"><strong>MENETAPKAN:</strong></p>
+        <ol className="list-decimal pl-6 space-y-4 mb-8">
+            <li>Mengesahkan pendirian badan hukum <strong>PT. GRAHA CITRA PRIMA</strong> yang berkedudukan di <strong>JAKARTA PUSAT</strong>.</li>
+            <li>Modal Dasar Perseroan berjumlah Rp 50.000.000.000,- (Lima Puluh Miliar Rupiah).</li>
+            <li>Susunan Pemegang Saham, Dewan Komisaris, dan Direksi adalah sebagaimana tercantum dalam lampiran keputusan ini.</li>
+            <li>Keputusan ini mulai berlaku sejak tanggal ditetapkan.</li>
+        </ol>
+
+        <div className="float-right w-64 text-center mt-8">
+            <p className="mb-20">Ditetapkan di Jakarta,<br/>Pada Tanggal 02 Januari 2025</p>
+            <p className="font-bold underline">YASONNA H. LAOLY</p>
+            <p>MENTERI HUKUM DAN HAM R.I.</p>
+        </div>
+    </DocumentLayout>
+);
+
+export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
+    <DocumentLayout 
+        title="SURAT PERSETUJUAN EKSPOR TEKSTIL DAN PRODUK TEKSTIL"
+        subtitle="KEMENTERIAN PERDAGANGAN REPUBLIK INDONESIA"
+        docNumber="02/DAGLU/SPE-TPT/01/2025"
+        onBack={onBack}
+    >
+        <div className="grid grid-cols-[150px_10px_1fr] gap-y-2 mb-8 font-sans text-sm">
+            <div>Nama Perusahaan</div><div>:</div><div className="font-bold">PT. GRAHA CITRA PRIMA</div>
+            <div>NPWP</div><div>:</div><div>01.234.567.8-011.000</div>
+            <div>Alamat Kantor</div><div>:</div><div>Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Jakarta Pusat</div>
+            <div>Komoditas</div><div>:</div><div>Tekstil Batik & Tenun (HS Code: 5007.20.90)</div>
+            <div>Negara Tujuan</div><div>:</div><div>Italia, Perancis, Amerika Serikat, Jepang</div>
+        </div>
+
+        <p className="mb-4">Berdasarkan Peraturan Menteri Perdagangan tentang Ketentuan Ekspor Produk Tekstil, dengan ini memberikan persetujuan kepada perusahaan tersebut di atas untuk melakukan ekspor dengan ketentuan:</p>
+        
+        <ol className="list-decimal pl-6 space-y-2 mb-8">
+            <li>Jenis Barang: Kain Tenun Ikat dan Batik Tulis Tangan.</li>
+            <li>Kuota Ekspor Tahunan: 500.000 Yard.</li>
+            <li>Pelabuhan Muat: Tanjung Priok (Jakarta), Tanjung Emas (Semarang), Ngurah Rai (Denpasar).</li>
+            <li>Wajib melaporkan realisasi ekspor setiap 3 (tiga) bulan melalui Inatrade.</li>
+        </ol>
+
+        <p className="mb-4">Surat Persetujuan Ekspor (SPE) ini berlaku selama 1 (satu) tahun sejak tanggal diterbitkan dan dapat diperpanjang sesuai ketentuan yang berlaku.</p>
+
+        <div className="float-right w-64 text-center mt-12 relative">
+             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-40 transform rotate-[-10deg]">
+                <div className="border-4 border-blue-900 rounded-full w-24 h-24 flex items-center justify-center">
+                    <span className="text-[10px] font-bold text-blue-900 uppercase">KEMENDAG<br/>RI<br/>OFFICIAL</span>
+                </div>
+            </div>
+            <p className="mb-20">a.n. MENTERI PERDAGANGAN<br/>Dirjen Perdagangan Luar Negeri</p>
+            <p className="font-bold underline">BUDI SANTOSO</p>
+            <p>NIP. 19680205 199403 1 001</p>
+        </div>
+    </DocumentLayout>
+);
+
+export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
+    <div className="bg-gray-100 min-h-screen py-10 px-4 md:px-0 animate-fadeIn font-sans">
+        <div className="max-w-[297mm] mx-auto bg-white shadow-2xl min-h-[210mm] p-[15mm] relative landscape:w-[297mm] landscape:h-[210mm] border-[20px] border-double border-[#0F2420]">
+            <button onClick={onBack} className="absolute top-4 left-4 bg-white p-2 rounded shadow text-gray-600 hover:text-[#8B1D1D]">
+                <ArrowLeft className="w-6 h-6" />
+            </button>
+
+            <div className="flex justify-between items-start mb-12">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ISO_Logo_%28Red_Square%29.svg/1200px-ISO_Logo_%28Red_Square%29.svg.png" alt="ISO" className="h-20" />
+                <div className="text-right">
+                    <h1 className="text-4xl font-bold text-[#0F2420] tracking-widest">CERTIFICATE</h1>
+                    <p className="text-lg text-gray-500 uppercase tracking-widest">OF REGISTRATION</p>
+                </div>
+            </div>
+
+            <div className="text-center mb-12">
+                <p className="text-gray-500 mb-4">This is to certify that the Quality Management System of:</p>
+                <h2 className="text-4xl font-serif font-bold text-[#8B1D1D] mb-4">PT. GRAHA CITRA PRIMA</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                    Jl. Cikini Raya No. 89, Gedung Optik Tunggal, Menteng, Jakarta Pusat, Indonesia
+                </p>
+            </div>
+
+            <div className="text-center mb-12">
+                <p className="text-gray-500 mb-4">Has been assessed and found to constitute a Quality Management System which complies with the requirements of:</p>
+                <h3 className="text-3xl font-bold text-[#0F2420] mb-2">ISO 9001:2015</h3>
+                <p className="text-gray-600 font-medium">For the following scope of activities:</p>
+                <p className="font-bold mt-2 text-lg">Export and Distribution of High-Quality Indonesian Traditional Textiles (Batik & Tenun) for International Luxury Markets.</p>
+            </div>
+
+            <div className="flex justify-between items-end border-t-2 border-gray-200 pt-8 mt-auto">
+                <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Certificate No:</p>
+                    <p className="font-mono font-bold text-lg">GCP-ISO-9001-2025</p>
+                </div>
+                
+                <div className="flex space-x-8">
+                     <div className="text-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Signature_sample.svg" alt="Sign" className="h-10 mx-auto mb-2 opacity-60" />
+                        <div className="w-32 border-t border-black pt-1 text-xs uppercase font-bold">Director General</div>
+                    </div>
+                </div>
+
+                <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-widest mb-1">Original Issue Date:</p>
+                    <p className="font-mono font-bold">01 January 2025</p>
+                </div>
+            </div>
+             
+             {/* Gold Seal */}
+             <div className="absolute bottom-12 right-1/2 transform translate-x-1/2 w-32 h-32">
+                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0e9U-X0rCj8d8q_M0u8z-w_l_s_q_t_u_v&s" alt="Seal" className="w-full h-full opacity-80 mix-blend-multiply text-yellow-600" style={{ filter: 'sepia(1) hue-rotate(20deg) saturate(3)'}} />
+             </div>
+        </div>
+    </div>
+);
