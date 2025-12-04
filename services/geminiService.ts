@@ -18,25 +18,25 @@ try {
 // Digunakan jika AI belum aktif, agar user tetap mendapat PENJELASAN RINCI.
 // ---------------------------------------------------------------------------
 const FALLBACK_RESPONSES = {
-  greeting: "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda.\n\nSaya siap membantu menjelaskan:\n1. Sistem Advertising P4P\n2. Cara Pendaftaran Mitra\n3. Legalitas Resmi Perusahaan\n\nApa yang ingin Anda ketahui?",
+  greeting: "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda.\n\nSaya siap memandu Anda mengenai:\n1. **Program Kemitraan** (Sistem P4P)\n2. **Koleksi Batik Renaissance**\n3. **Legalitas Resmi** (PT. Graha Citra Prima)\n\nBagaimana saya dapat melayani Anda hari ini?",
   
   // PENJELASAN LEGALITAS / ANTI-PENIPUAN
-  legality: "Kami mengerti kehati-hatian Anda. Keamanan adalah prioritas kami.\n\nLegalitas Resmi:\n1. **Entitas**: PT. GRAHA CITRA PRIMA (Distributor Resmi).\n2. **Izin**: SK Kemenkumham No. AHU-0058932.AH.01.01.Tahun 2025.\n3. **Sistem**: Kami menggunakan sistem manajemen **Advertising P4P** yang transparan dan terukur.\n\nKantor kami berlokasi di Menteng, Jakarta Pusat. Silakan hubungi Customer Service untuk verifikasi dokumen fisik.",
+  legality: "Kami menghargai kehati-hatian Anda. Integritas adalah pilar utama kami.\n\nLegalitas Resmi:\n1. **Entitas**: PT. GRAHA CITRA PRIMA (Distributor Resmi).\n2. **Izin**: SK Kemenkumham No. AHU-0058932.AH.01.01.Tahun 2025.\n3. **Sistem**: Kami menggunakan sistem manajemen **Advertising P4P** yang transparan.\n\nDokumen fisik dapat diverifikasi di kantor pusat kami: Menteng, Jakarta Pusat.",
   
   // PENJELASAN PRODUK BATIK
-  batik: "Koleksi **'The Batik Renaissance'** adalah perpaduan mahakarya Batik Tulis halus dengan standar *High Fashion* Italia.\n\nSetiap karya dikurasi menggunakan sistem Advertising P4P untuk memastikan eksposur maksimal di pasar global. Motif yang kami angkat seperti Mega Mendung dan Parang Barong memiliki nilai filosofis tinggi dan pengerjaan 3-6 bulan.",
+  batik: "Koleksi **'The Batik Renaissance'** adalah perpaduan mahakarya Batik Tulis halus dengan standar *High Fashion* Italia.\n\nSetiap karya dikurasi menggunakan sistem Advertising P4P untuk memastikan eksposur maksimal di pasar global. Motif seperti Mega Mendung dan Parang Barong digoreskan di atas sutra Italia terbaik.",
   
   // PENJELASAN KEMITRAAN & SISTEM P4P
-  mitra: "Program kemitraan kami menggunakan sistem **Advertising P4P (Pay for Performance)**.\n\nApa artinya?\nSistem ini menjamin bahwa setiap mitra butik mendapatkan eksposur dan bagi hasil yang adil berdasarkan kinerja ekspor nyata, bukan sekadar janji. Kami memberikan akses pasar global, sementara Anda fokus pada kualitas karya.",
+  mitra: "Program kemitraan kami menggunakan sistem revolusioner **Advertising P4P (Pay for Performance)**.\n\n**Keunggulan Utama:**\nSistem ini menjamin transparansi. Mitra butik mendapatkan bagi hasil yang adil berdasarkan kinerja ekspor nyata (real-time export data). Kami membuka akses langsung ke rantai pasok global Gucci.",
   
   // PENJELASAN PENDAFTARAN (UPDATED: SYARAT SIMPEL)
-  daftar: "Untuk bergabung menjadi mitra kami, persyaratannya sangat mudah.\n\nSyarat Pendaftaran:\n1. **Nomor HP** yang aktif.\n2. Membuat **Akun Bisnis Gucci**.\n\nSilakan hubungi Customer Service kami untuk panduan pembuatan akun tersebut.",
+  daftar: "Bergabunglah dengan ekosistem kami secara eksklusif.\n\n**Syarat Pendaftaran Mitra:**\n1. **Nomor HP** aktif.\n2. **Akun Bisnis Gucci** (Dibuat melalui CS).\n\nTidak ada biaya tersembunyi. Silakan klik tombol WhatsApp untuk dipandu oleh agen prioritas kami.",
   
   // PENJELASAN LOKASI
-  lokasi: "Kantor Pusat kami berada di **Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Menteng, Jakarta Pusat**.\n\nKami juga memiliki jaringan mitra butik (Advertising P4P Network) yang tersebar di Yogyakarta, Solo, Pekalongan, dan Bali.",
+  lokasi: "Kantor Pusat kami berlokasi strategis di:\n**Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Menteng, Jakarta Pusat**.\n\nKami juga memiliki jaringan 'Artisan Hub' di Yogyakarta, Solo, Pekalongan, dan Bali yang dapat Anda kunjungi.",
   
   // DEFAULT RESPONSE
-  default: "Untuk informasi lebih lanjut mengenai hal tersebut, atau jika Anda ingin mendaftar, **silakan hubungi Customer Service**.\n\nTim kami akan menjelaskan secara rinci tentang sistem Advertising P4P dan peluang kerjasama yang tersedia."
+  default: "Terima kasih atas pertanyaan Anda. Untuk penjelasan mendalam mengenai hal tersebut, saya sarankan Anda terhubung langsung dengan **Customer Service Priority** kami.\n\nTim kami siap menjelaskan detail teknis sistem Advertising P4P dan peluang emas ini."
 };
 
 // Fungsi Deteksi Topik (Keyword Matching)
@@ -49,7 +49,7 @@ const getFallbackResponse = (message: string): string => {
   }
 
   // Deteksi Topik Sistem/P4P
-  if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising)/)) {
+  if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising|bagi hasil)/)) {
     return FALLBACK_RESPONSES.mitra;
   }
   
@@ -89,16 +89,23 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
         model: 'gemini-2.5-flash',
         contents: userMessage,
         config: {
-          systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
+          systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima), sebuah entitas bisnis mewah yang menjembatani pengrajin lokal dengan pasar global.
+
+          TONE OF VOICE:
+          - Profesional, Elegan, Mewah, namun Ramah dan Membantu.
+          - Gunakan bahasa Indonesia yang baku namun luwes (korporat luxury).
           
-          POIN KUNCI INFORMASI:
-          1. **Syarat Pendaftaran**: Tegaskan bahwa syaratnya HANYA: **Nomor HP** dan **Membuat Akun Bisnis Gucci**. Tidak ada syarat lain yang rumit.
-          2. **Sistem Bisnis**: Kami menggunakan sistem **"Advertising P4P"**.
-          3. **Legalitas**: PT Graha Citra Prima adalah resmi dan berizin Kemenkumham.
+          INFORMASI KUNCI (DO NOT HALLUCINATE):
+          1. **Syarat Pendaftaran**: SANGAT MUDAH. Hanya butuh **Nomor HP** dan membuat **Akun Bisnis Gucci**.
+          2. **Model Bisnis**: "Advertising P4P" (Pay for Performance). Transparan dan berbasis kinerja.
+          3. **Legalitas**: PT Graha Citra Prima resmi berizin Kemenkumham (AHU-0058932.AH.01.01.Tahun 2025) dan berkantor di Menteng, Jakarta Pusat.
           
-          INSTRUKSI:
-          - Jika user bertanya "cara daftar?" atau "syaratnya apa?", jawab: "Syaratnya hanya menggunakan Nomor HP dan membuat Akun Bisnis Gucci saja." lalu arahkan ke CS.
-          - Selalu akhiri jawaban dengan ajakan: "Hubungi Customer Service untuk informasi lebih lanjut."`,
+          SKENARIO KHUSUS:
+          - Jika user bertanya "cara daftar?", jawab: "Prosesnya eksklusif namun sederhana. Anda hanya memerlukan Nomor HP aktif dan pembuatan Akun Bisnis Gucci." lalu arahkan ke CS.
+          - Jika user ragu (scam/penipuan), jawab dengan tegas dan tenang mengenai legalitas resmi dan tawarkan verifikasi dokumen fisik di kantor.
+          
+          CALL TO ACTION:
+          - Selalu akhiri dengan: "Silakan klik tombol di bawah untuk terhubung dengan Customer Service kami via WhatsApp untuk panduan lebih lanjut."`,
         }
       });
       

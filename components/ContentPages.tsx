@@ -185,15 +185,15 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                     <span className="text-[#8B1D1D]">{product.title}</span>
                 </nav>
 
-                <div className="flex flex-col lg:flex-row gap-8 md:gap-16">
-                    {/* Image Section - Sticky on Desktop */}
-                    <div className="w-full lg:w-1/2 lg:sticky lg:top-32 h-fit">
-                        <div className="relative aspect-[3/4] overflow-hidden shadow-2xl rounded-sm">
+                <div className="flex flex-col lg:flex-row gap-8 md:gap-16 items-start">
+                    {/* Image Section - Sticky on Desktop - MAXIMIZED UX */}
+                    <div className="w-full lg:w-1/2 lg:sticky lg:top-32 self-start">
+                        <div className="relative aspect-[3/4] overflow-hidden shadow-2xl rounded-sm group">
                              <img 
                                 src={product.url} 
                                 alt={product.title}
                                 referrerPolicy="no-referrer"
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                             />
                             {/* Badge */}
                             <div className="absolute top-4 left-4 md:top-6 md:left-6">
@@ -210,7 +210,7 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                             <span className="text-[#BFA36F] text-[10px] md:text-xs font-black uppercase tracking-[0.25em] mb-3 md:mb-4 block flex items-center">
                                 <MapPin className="w-3 h-3 md:w-4 md:h-4 mr-2" /> {product.origin}
                             </span>
-                            <h1 className="text-2xl md:text-5xl lg:text-6xl font-serif font-bold text-black mb-3 md:mb-4 leading-tight">
+                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-black mb-3 md:mb-4 leading-tight">
                                 {product.title}
                             </h1>
                             <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500">
@@ -229,7 +229,7 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                         </div>
 
                         {/* Philosophy Box */}
-                        <div className="bg-white p-5 md:p-8 border-l-4 border-[#BFA36F] shadow-sm mb-8 md:mb-10 relative rounded-r-lg">
+                        <div className="bg-white p-5 md:p-8 border-l-4 border-[#BFA36F] shadow-sm mb-8 md:mb-10 relative rounded-r-lg hover:shadow-lg transition-shadow">
                              <Feather className="w-5 h-5 md:w-6 md:h-6 text-[#BFA36F]/20 absolute top-4 right-4" />
                             <h3 className="text-[#988053] font-bold text-[10px] md:text-xs uppercase tracking-wider mb-3 md:mb-4">
                                 Filosofi Motif
@@ -797,7 +797,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
 
                 {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-                    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-xs font-bold uppercase text-gray-400 tracking-wider">Total Ekspor (YTD)</span>
                             <Globe className="w-5 h-5 text-[#8B1D1D]" />
@@ -805,7 +805,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                         <h3 className="text-3xl font-bold text-black mb-1">Rp 768 M</h3>
                         <span className="text-xs font-bold text-green-600 flex items-center"><TrendingUp className="w-3 h-3 mr-1" /> +24% YoY</span>
                     </div>
-                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
                         <div className="flex justify-between items-center mb-4">
                             <span className="text-xs font-bold uppercase text-gray-400 tracking-wider">Volume Kain</span>
                             <Package className="w-5 h-5 text-[#8B1D1D]" />
@@ -814,13 +814,16 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                     </div>
                 </div>
 
-                {/* NEW GLOBAL MARKET BOARD (Responsive) */}
-                <div className="bg-[#111] p-4 md:p-10 rounded-xl shadow-2xl border border-gray-800 mb-16 relative overflow-hidden">
+                {/* NEW GLOBAL MARKET BOARD (Maximised Aesthetics) */}
+                <div className="bg-[#0A0A0A] p-4 md:p-10 rounded-2xl shadow-2xl border border-gray-800 mb-16 relative overflow-hidden">
+                    {/* Background Shine */}
+                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#BFA36F] blur-[100px] opacity-10"></div>
+                    
                     {/* Header */}
-                    <div className="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
+                    <div className="flex justify-between items-center mb-8 border-b border-gray-800 pb-4 relative z-10">
                         <div>
                             <h3 className="font-serif font-bold text-lg md:text-3xl text-white tracking-widest flex items-center">
-                                <Globe className="w-5 h-5 md:w-8 md:h-8 mr-3 md:mr-4 text-[#BFA36F]" />
+                                <Activity className="w-5 h-5 md:w-8 md:h-8 mr-3 md:mr-4 text-[#BFA36F] animate-pulse" />
                                 BURSA GLOBAL
                             </h3>
                             <p className="text-[9px] md:text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
@@ -830,7 +833,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                     </div>
 
                     {/* Desktop Table Header */}
-                    <div className="hidden md:grid grid-cols-12 gap-4 text-[#BFA36F] font-mono text-xs uppercase tracking-widest mb-4 px-6 font-bold">
+                    <div className="hidden md:grid grid-cols-12 gap-4 text-[#BFA36F] font-mono text-xs uppercase tracking-widest mb-4 px-6 font-bold opacity-70">
                         <div className="col-span-1">KODE</div>
                         <div className="col-span-4">NEGARA</div>
                         <div className="col-span-2 text-right">SHARE</div>
@@ -843,12 +846,12 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                          {visibleCountries.map((country, idx) => (
                             <div 
                                 key={`${country.code}-${idx}`} 
-                                className="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-4 text-sm font-mono items-center bg-[#1A1A1A] p-4 md:px-6 rounded-lg border-l-4 border-transparent hover:border-[#BFA36F] transition-all hover:bg-[#222] group animate-fadeIn"
+                                className="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-4 text-sm font-mono items-center bg-[#151515] p-4 md:px-6 rounded-lg border-l-4 border-transparent hover:border-[#BFA36F] transition-all hover:bg-[#1F1F1F] group animate-fadeIn cursor-default"
                             >
                                 {/* Mobile View: Stacked Card Style - Compact */}
                                 <div className="md:hidden col-span-2 flex justify-between items-center mb-1">
                                      <div className="flex items-center text-white font-bold">
-                                        <img src={country.flagUrl} alt="flag" className="w-6 h-4 object-cover rounded-sm mr-2 shadow-sm" />
+                                        <img src={country.flagUrl} alt="flag" className="w-6 h-4 object-cover rounded-sm mr-2 shadow-sm opacity-80" />
                                         {country.name.split('(')[0]} {/* Shorten name on mobile */}
                                     </div>
                                     <div className={`font-bold ${country.change.includes('+') ? 'text-green-500' : 'text-red-500'}`}>
@@ -866,14 +869,14 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                     <img 
                                         src={country.flagUrl} 
                                         alt={`${country.name} flag`}
-                                        className="w-8 h-6 object-cover rounded-sm mr-4 shadow-sm"
+                                        className="w-8 h-6 object-cover rounded-sm mr-4 shadow-sm grayscale group-hover:grayscale-0 transition-all"
                                     />
                                     <span className="truncate">{country.name}</span>
                                 </div>
-                                <div className="hidden md:block col-span-2 text-right text-white font-medium">{country.share}</div>
+                                <div className="hidden md:block col-span-2 text-right text-gray-300 font-medium">{country.share}</div>
                                 <div className="hidden md:block col-span-3 text-right text-[#BFA36F] font-bold tracking-wider">{country.income}</div>
-                                <div className={`hidden md:flex col-span-2 justify-end items-center font-bold ${country.change.includes('+') ? 'text-green-500' : 'text-red-500'}`}>
-                                    {country.change.includes('+') ? <TrendingUp className="w-4 h-4 mr-2"/> : <TrendingDown className="w-4 h-4 mr-2"/>}
+                                <div className={`hidden md:flex col-span-2 justify-end items-center font-bold ${country.change.includes('+') ? 'text-green-400' : 'text-red-400'}`}>
+                                    {country.change.includes('+') ? <ArrowUpRight className="w-4 h-4 mr-2"/> : <ArrowDownRight className="w-4 h-4 mr-2"/>}
                                     {country.change}
                                 </div>
                             </div>
