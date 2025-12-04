@@ -155,7 +155,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ onBack, onProduc
                                 <h3 className="font-serif font-bold text-lg md:text-2xl text-black mb-2 md:mb-3 group-hover:text-[#8B1D1D] transition-colors leading-tight">
                                     {item.title}
                                 </h3>
-                                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-medium line-clamp-3 group-hover:text-gray-800 transition-colors">
+                                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-medium line-clamp-3 group-hover:text-gray-800 transition-colors text-left">
                                     {item.description}
                                 </p>
                             </div>
@@ -223,7 +223,8 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                             <h3 className="text-[#8B1D1D] font-bold text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 flex items-center">
                                 <Info className="w-4 h-4 mr-2" /> Narasi Produk
                             </h3>
-                            <p className="text-gray-800 leading-7 md:leading-8 text-sm md:text-lg font-medium font-serif text-justify">
+                            {/* CHANGED: text-justify to text-left for mobile reading to prevent gaps */}
+                            <p className="text-gray-800 leading-7 md:leading-8 text-sm md:text-lg font-medium font-serif text-left md:text-justify">
                                 {product.description}
                             </p>
                         </div>
@@ -681,14 +682,23 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
         visibleCountries.push(ALL_COUNTRIES[(startIndex + i) % ALL_COUNTRIES.length]);
     }
 
+    // Ticker Item Component for Impact Page
+    const ImpactTickerContent = () => (
+        <>
+            <span className="mr-8">USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  COTTON FUTURES: $82.40  •  RAW SILK INDEX: $45.20  •  PT. GRAHA CITRA PRIMA EXPORT VOL: 128K YDS (YTD)  •  GUCCI ARTISAN NETWORK ONLINE: 98%  • </span>
+        </>
+    );
+
     return (
         <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn font-sans">
              
-             {/* RUNNING TICKER - REALISM */}
-             <div className="fixed top-[88px] md:top-24 left-0 w-full bg-black text-[#BFA36F] z-30 overflow-hidden py-2 border-b border-[#8B1D1D] hidden md:block">
-                 <div className="whitespace-nowrap animate-ticker inline-block font-mono text-xs font-bold tracking-widest">
-                     USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  COTTON FUTURES: $82.40  •  RAW SILK INDEX: $45.20  •  PT. GRAHA CITRA PRIMA EXPORT VOL: 128K YDS (YTD)  •  GUCCI ARTISAN NETWORK ONLINE: 98%  • 
-                     USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  COTTON FUTURES: $82.40  •  RAW SILK INDEX: $45.20  •  PT. GRAHA CITRA PRIMA EXPORT VOL: 128K YDS (YTD)  •  GUCCI ARTISAN NETWORK ONLINE: 98%  •
+             {/* RUNNING TICKER - SEAMLESS LOOP */}
+             <div className="fixed top-[88px] md:top-24 left-0 w-full bg-black text-[#BFA36F] z-30 overflow-hidden py-2 border-b border-[#8B1D1D] hidden md:flex">
+                 <div className="whitespace-nowrap animate-ticker flex-shrink-0 flex items-center font-mono text-xs font-bold tracking-widest">
+                     <ImpactTickerContent />
+                 </div>
+                 <div className="whitespace-nowrap animate-ticker flex-shrink-0 flex items-center font-mono text-xs font-bold tracking-widest">
+                     <ImpactTickerContent />
                  </div>
              </div>
 

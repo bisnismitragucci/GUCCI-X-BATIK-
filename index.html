@@ -34,13 +34,14 @@
       .animate-fadeInUp {
         animation: fadeInUp 0.5s ease-out forwards;
       }
-      /* Ticker Animation */
+      /* Ticker Animation - Seamless Loop */
       @keyframes ticker {
-        0% { transform: translateX(100%); }
+        0% { transform: translateX(0); }
         100% { transform: translateX(-100%); }
       }
       .animate-ticker {
-        animation: ticker 45s linear infinite; /* Slowed down to 45s for readability */
+        animation: ticker 45s linear infinite;
+        will-change: transform;
       }
     </style>
 <script type="importmap">

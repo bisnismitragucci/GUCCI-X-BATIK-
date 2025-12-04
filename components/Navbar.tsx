@@ -70,10 +70,11 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
           {/* Logo - Center */}
           <div className="flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2 cursor-pointer" onClick={() => onNavigate('home')}>
-            <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-[0.15em] text-[#8B1D1D] leading-none">
+            {/* Adjusted logo text size for mobile (text-3xl) vs desktop (text-5xl) to prevent overlap */}
+            <h1 className="text-3xl md:text-5xl font-serif font-bold tracking-[0.15em] text-[#8B1D1D] leading-none">
               GUCCI
             </h1>
-            <span className="text-[9px] mt-1 font-bold text-black tracking-[0.2em] uppercase whitespace-nowrap">
+            <span className="text-[8px] md:text-[9px] mt-1 font-bold text-black tracking-[0.2em] uppercase whitespace-nowrap">
               PT. Graha Citra Prima
             </span>
           </div>

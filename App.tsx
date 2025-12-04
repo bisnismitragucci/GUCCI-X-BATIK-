@@ -64,6 +64,37 @@ const App: React.FC = () => {
     window.open(url, '_blank');
   };
 
+  // Komponen Ticker Item agar mudah diduplikasi
+  const TickerContent = () => (
+    <>
+        <span className="mx-8 flex items-center inline-flex">
+            <Bell className="w-3 h-3 text-[#BFA36F] mr-2 animate-pulse" />
+            <span className="text-[#BFA36F] font-bold mr-1">INFO MITRA:</span> Agung (Solo) telah bergabung menjadi Mitra Butik
+        </span>
+        <span className="mx-2 text-[#BFA36F]">•</span>
+        <span className="mx-8">
+            <span className="text-[#BFA36F] font-bold mr-1">PENCAIRAN:</span> Komisi Rp 45.000.000 sukses ditransfer ke 'Batik Pesisir Atelier'
+        </span>
+        <span className="mx-2 text-[#BFA36F]">•</span>
+        <span className="mx-8">
+            <span className="text-[#BFA36F] font-bold mr-1">LOGISTIK:</span> Kontainer #8821 (Sutra) Tiba di Milan, Italia
+        </span>
+        <span className="mx-2 text-[#BFA36F]">•</span>
+        <span className="mx-8">
+            <span className="text-[#BFA36F] font-bold mr-1">VERIFIKASI:</span> Rina (Bali) lolos sertifikasi Gucci Tier 1
+        </span>
+        <span className="mx-2 text-[#BFA36F]">•</span>
+        <span className="mx-8">
+            <span className="text-[#BFA36F] font-bold mr-1">INFO MITRA:</span> CV. Tenun Troso (Jepara) bergabung sebagai Supplier Resmi
+        </span>
+        <span className="mx-2 text-[#BFA36F]">•</span>
+        <span className="mx-8">
+            <span className="text-[#BFA36F] font-bold mr-1">EKSPOR:</span> Volume perdagangan naik +12% minggu ini
+        </span>
+        <span className="mx-2 text-[#BFA36F]">•</span>
+    </>
+  );
+
   const renderContent = () => {
       switch (currentView) {
           case 'legality':
@@ -97,33 +128,13 @@ const App: React.FC = () => {
                 <>
                     <HeroCarousel onNavigate={navigateTo} />
                     
-                    {/* RUNNING NOTIFICATION TICKER */}
-                    <div className="bg-black py-3 overflow-hidden border-b border-[#BFA36F] relative z-20 shadow-lg">
-                        <div className="whitespace-nowrap animate-ticker inline-block text-white font-sans text-xs md:text-sm tracking-widest font-medium">
-                            <span className="mx-8 flex items-center inline-flex">
-                                <Bell className="w-3 h-3 text-[#BFA36F] mr-2 animate-pulse" />
-                                <span className="text-[#BFA36F] font-bold mr-1">INFO MITRA:</span> Agung (Solo) telah bergabung menjadi Mitra Butik
-                            </span>
-                            <span className="mx-2 text-[#BFA36F]">•</span>
-                            <span className="mx-8">
-                                <span className="text-[#BFA36F] font-bold mr-1">PENCAIRAN:</span> Komisi Rp 45.000.000 sukses ditransfer ke 'Batik Pesisir Atelier'
-                            </span>
-                            <span className="mx-2 text-[#BFA36F]">•</span>
-                            <span className="mx-8">
-                                <span className="text-[#BFA36F] font-bold mr-1">LOGISTIK:</span> Kontainer #8821 (Sutra) Tiba di Milan, Italia
-                            </span>
-                            <span className="mx-2 text-[#BFA36F]">•</span>
-                            <span className="mx-8">
-                                <span className="text-[#BFA36F] font-bold mr-1">VERIFIKASI:</span> Rina (Bali) lolos sertifikasi Gucci Tier 1
-                            </span>
-                            <span className="mx-2 text-[#BFA36F]">•</span>
-                            <span className="mx-8">
-                                <span className="text-[#BFA36F] font-bold mr-1">INFO MITRA:</span> CV. Tenun Troso (Jepara) bergabung sebagai Supplier Resmi
-                            </span>
-                            <span className="mx-2 text-[#BFA36F]">•</span>
-                            <span className="mx-8">
-                                <span className="text-[#BFA36F] font-bold mr-1">EKSPOR:</span> Volume perdagangan naik +12% minggu ini
-                            </span>
+                    {/* RUNNING NOTIFICATION TICKER (SEAMLESS LOOP) */}
+                    <div className="bg-black py-3 overflow-hidden border-b border-[#BFA36F] relative z-20 shadow-lg flex">
+                        <div className="whitespace-nowrap animate-ticker flex-shrink-0 flex items-center text-white font-sans text-xs md:text-sm tracking-widest font-medium">
+                            <TickerContent />
+                        </div>
+                        <div className="whitespace-nowrap animate-ticker flex-shrink-0 flex items-center text-white font-sans text-xs md:text-sm tracking-widest font-medium">
+                            <TickerContent />
                         </div>
                     </div>
 
