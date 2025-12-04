@@ -8,7 +8,8 @@ const SUGGESTED_QUESTIONS = [
   "Cara Daftar Mitra?",
   "Apa itu Sistem P4P?",
   "Legalitas Perusahaan?",
-  "Lihat Koleksi Batik"
+  "Lihat Koleksi Batik",
+  "Lokasi Kantor?"
 ];
 
 const ChatWidget: React.FC = () => {
@@ -85,7 +86,7 @@ const ChatWidget: React.FC = () => {
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end font-sans">
       {/* Chat Window - Responsive Width */}
       {isOpen && (
-        <div className="mb-4 w-[calc(100vw-32px)] md:w-96 bg-[#FAF9F6] rounded-t-xl rounded-b-xl shadow-2xl border border-[#8B1D1D]/30 overflow-hidden flex flex-col h-[500px] md:h-[600px] animate-fadeIn">
+        <div className="mb-4 w-[calc(100vw-32px)] md:w-96 bg-[#FAF9F6] rounded-t-xl rounded-b-xl shadow-2xl border border-[#8B1D1D]/30 overflow-hidden flex flex-col h-[500px] md:h-[600px] animate-fadeInUp">
           {/* Header - Holiday Red */}
           <div className="bg-[#8B1D1D] p-4 flex justify-between items-center text-white border-b border-[#BFA36F]">
             <div className="flex items-center space-x-3">
@@ -132,7 +133,7 @@ const ChatWidget: React.FC = () => {
                   
                   {/* Action Button (If exists) */}
                   {msg.action && (
-                    <div className="mt-3 pt-3 border-t border-gray-100">
+                    <div className="mt-3 pt-3 border-t border-gray-100/20">
                       <button 
                         onClick={() => window.open(msg.action?.url, '_blank')}
                         className="w-full flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white py-2 px-3 rounded-lg transition-colors text-xs font-bold uppercase tracking-wide shadow-sm"

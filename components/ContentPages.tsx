@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, ShoppingBag, MapPin, TrendingUp, Calendar, Camera, Send, FileText, Download, CheckCircle, Shield, Star, Award, ChevronRight, ShieldCheck, Globe, List, Map as MapIcon, X, BarChart3, TrendingDown, Clock, Feather, Ruler, Info, User, Mail, Phone, Ticket, ExternalLink, Printer, Package, Truck, Plane, Landmark, ArrowUpRight, ArrowDownRight, CircleDollarSign, Activity, Play } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, MapPin, TrendingUp, Calendar, Camera, Send, FileText, Download, CheckCircle, Shield, Star, Award, ChevronRight, ShieldCheck, Globe, List, Map as MapIcon, X, BarChart3, TrendingDown, Clock, Feather, Ruler, Info, User, Mail, Phone, Ticket, ExternalLink, Printer, Package, Truck, Plane, Landmark, ArrowUpRight, ArrowDownRight, CircleDollarSign, Activity, Play, Box } from 'lucide-react';
 import { NEWS_ITEMS } from '../constants';
 
 interface PageProps {
@@ -315,7 +315,8 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
             spec: "Batik Warna Alam", 
             desc: "Pewarnaan indigo alami dengan motif buketan pengaruh Eropa-Cina. Terkenal dengan teknik 'colet' yang menghasilkan warna-warna cerah namun ramah lingkungan.", 
             mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126727.56708785718!2d109.6105809!3d-6.8946761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e702454058d7287%3A0x4027a76e352e4e0!2sPekalongan!5e0!3m2!1sen!2sid!4v1709228000002",
-            img: "https://i.pinimg.com/1200x/0c/cb/f2/0ccbf2d19f821cc1680694c576aaa9c8.jpg" 
+            // UPDATED IMAGE
+            img: "https://i.pinimg.com/736x/40/90/32/409032882a7247f4e5025c5fdf6517db.jpg" 
         },
         { 
             id: 3, 
@@ -324,7 +325,8 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
             spec: "Mega Mendung", 
             desc: "Sanggar warisan Trusmi yang fokus pada gradasi 7 warna Mega Mendung. Menggabungkan filosofi Taoisme Cina dengan nilai keislaman Cirebon.", 
             mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126830.82845618772!2d108.49622955!3d-6.7412762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ee2649e6e5441%3A0x401e8f1fc28b5f0!2sCirebon!5e0!3m2!1sen!2sid!4v1709228000003",
-            img: "https://i.pinimg.com/1200x/84/88/dd/8488dd4305e6267ffc8e6b34c75cab536c.jpg" 
+            // UPDATED IMAGE
+            img: "https://i.pinimg.com/736x/db/6a/c8/db6ac8bf7bed3718fd0833cbedd8250d.jpg" 
         },
         { 
             id: 4, 
@@ -459,7 +461,7 @@ export const PartnerDetailPage: React.FC<PartnerDetailPageProps> = ({ onBack, pa
                 </button>
                 <div className="flex flex-col md:flex-row gap-8 md:gap-12">
                     <div className="w-full md:w-1/2">
-                        <img src={partner.img} alt={partner.name} className="w-full rounded-lg shadow-2xl mb-8" />
+                        <img src={partner.img} alt={partner.name} className="w-full rounded-lg shadow-2xl mb-8 object-cover aspect-video" />
                     </div>
                     <div className="w-full md:w-1/2">
                         <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">{partner.name}</h1>
@@ -637,247 +639,168 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
 );
 
 // ----------------------------------------------------------------------
-// 4. IMPACT PAGE (EKSPOR GLOBAL & DAMPAK)
+// 4. IMPACT PAGE (EKSPOR GLOBAL & DAMPAK - LIVE COMMAND CENTER)
 // ----------------------------------------------------------------------
 
 export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     
-    // Helper to get Jakarta Time (WIB)
-    const getJakartaTime = (offsetHours: number) => {
-        const now = new Date();
-        now.setHours(now.getHours() - offsetHours);
-        return new Intl.DateTimeFormat('en-GB', {
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZone: 'Asia/Jakarta'
-        }).format(now);
-    };
-
-    const [liveChartData, setLiveChartData] = useState(() => {
-        // Initialize with random starting data, moving in a somewhat connected path
-        const data = [];
-        let currentValue = 50;
-        for(let i=11; i>=0; i--) {
-             // Random walk for initialization
-             const change = (Math.random() - 0.5) * 20; 
-             currentValue = Math.max(10, Math.min(90, currentValue + change));
-             
-             data.push({
-                 time: getJakartaTime(i),
-                 volume: 12000 + Math.floor(Math.random() * 5000),
-                 value: currentValue
-             });
-        }
-        return data;
-    });
-
-    // --- DATA FOR GLOBAL MARKET BOARD (UPDATED TO RUPIAH & FLAGS) ---
+    // --- MOCK DATA FOR "REALISM" ---
     const ALL_COUNTRIES = [
-        { 
-            code: "IT", 
-            name: "ITALIA (Milan)", 
-            flagUrl: "https://flagcdn.com/w80/it.png",
-            share: "45.2%", 
-            income: "Rp 213.180.000.000", 
-            change: "+12.4%" 
-        },
-        { 
-            code: "FR", 
-            name: "PERANCIS (Paris)", 
-            flagUrl: "https://flagcdn.com/w80/fr.png",
-            share: "28.5%", 
-            income: "Rp 139.570.000.000", 
-            change: "+8.1%" 
-        },
-        { 
-            code: "US", 
-            name: "USA (New York)", 
-            flagUrl: "https://flagcdn.com/w80/us.png",
-            share: "15.1%", 
-            income: "Rp 70.550.000.000", 
-            change: "+5.3%" 
-        },
-        { 
-            code: "JP", 
-            name: "JEPANG (Tokyo)", 
-            flagUrl: "https://flagcdn.com/w80/jp.png",
-            share: "12.0%", 
-            income: "Rp 59.500.000.000", 
-            change: "+2.1%" 
-        },
-        { 
-            code: "GB", 
-            name: "INGGRIS (London)", 
-            flagUrl: "https://flagcdn.com/w80/gb.png",
-            share: "10.4%", 
-            income: "Rp 47.600.000.000", 
-            change: "-1.2%" 
-        },
-        { 
-            code: "AE", 
-            name: "UAE (Dubai)", 
-            flagUrl: "https://flagcdn.com/w80/ae.png",
-            share: "8.8%", 
-            income: "Rp 37.400.000.000", 
-            change: "+15.7%" 
-        },
-        { 
-            code: "SG", 
-            name: "SINGAPURA", 
-            flagUrl: "https://flagcdn.com/w80/sg.png",
-            share: "7.2%", 
-            income: "Rp 33.150.000.000", 
-            change: "+1.5%" 
-        },
-        { 
-            code: "CN", 
-            name: "CHINA (Shanghai)", 
-            flagUrl: "https://flagcdn.com/w80/cn.png",
-            share: "6.5%", 
-            income: "Rp 30.260.000.000", 
-            change: "+4.2%" 
-        },
+        { code: "IT", name: "ITALIA (Milan)", flagUrl: "https://flagcdn.com/w80/it.png", share: "45.2%", income: "Rp 213.180.000.000", change: "+12.4%" },
+        { code: "FR", name: "PERANCIS (Paris)", flagUrl: "https://flagcdn.com/w80/fr.png", share: "28.5%", income: "Rp 139.570.000.000", change: "+8.1%" },
+        { code: "US", name: "USA (New York)", flagUrl: "https://flagcdn.com/w80/us.png", share: "15.1%", income: "Rp 70.550.000.000", change: "+5.3%" },
+        { code: "JP", name: "JEPANG (Tokyo)", flagUrl: "https://flagcdn.com/w80/jp.png", share: "12.0%", income: "Rp 59.500.000.000", change: "+2.1%" },
+        { code: "GB", name: "INGGRIS (London)", flagUrl: "https://flagcdn.com/w80/gb.png", share: "10.4%", income: "Rp 47.600.000.000", change: "-1.2%" },
+    ];
+
+    const ARTISAN_LOGS = [
+        { id: "WS-SOLO-01", name: "Keraton Royal Atelier", task: "Batik Tulis Halus", progress: 85, status: "Finishing", deadline: "2 Hari Lagi" },
+        { id: "WS-PKL-04", name: "Pesisir Vibrant Studio", task: "Pewarnaan Indigo", progress: 40, status: "Processing", deadline: "1 Minggu Lagi" },
+        { id: "WS-CRB-02", name: "Cloud Motif Workshop", task: "Mega Mendung Pattern", progress: 92, status: "Quality Check", deadline: "Hari Ini" },
+        { id: "WS-BALI-09", name: "Ubud Sacred Weavers", task: "Tenun Ikat Gold", progress: 20, status: "Weaving", deadline: "2 Minggu Lagi" },
+    ];
+
+    const SHIPMENTS = [
+        { awb: "8821-EX-IT", dest: "Milan, IT", items: "250 yds Silk", status: "Cleared Customs", time: "10:42 AM" },
+        { awb: "8824-EX-FR", dest: "Paris, FR", items: "120 yds Velvet", status: "In Transit", time: "09:15 AM" },
+        { awb: "8829-EX-US", dest: "New York, US", items: "500 pcs Scarf", status: "Warehouse", time: "08:00 AM" },
     ];
 
     const [startIndex, setStartIndex] = useState(0);
 
-    // Effect to cycle through countries
+    // Rotate Countries
     useEffect(() => {
         const interval = setInterval(() => {
             setStartIndex((prev) => (prev + 1) % ALL_COUNTRIES.length);
-        }, 3000); // Shift every 3 seconds
+        }, 3000); 
         return () => clearInterval(interval);
     }, []);
 
-    // Create a rotating slice of 7 items
     const visibleCountries = [];
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 4; i++) {
         visibleCountries.push(ALL_COUNTRIES[(startIndex + i) % ALL_COUNTRIES.length]);
     }
 
-    // Effect for Realistic Chart Fluctuation (Random Walk)
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setLiveChartData(prev => {
-                const now = new Date();
-                const newTime = new Intl.DateTimeFormat('en-GB', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit', 
-                    timeZone: 'Asia/Jakarta'
-                }).format(now);
-                
-                const lastValue = prev[prev.length - 1].value;
-                const change = (Math.random() - 0.5) * 30; 
-                let newValue = lastValue + change;
-                newValue = Math.max(10, Math.min(95, newValue));
-
-                const newEntry = {
-                    time: newTime,
-                    volume: 12000 + Math.floor(Math.random() * 5000),
-                    value: newValue
-                };
-                return [...prev.slice(1), newEntry];
-            });
-        }, 1000); 
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn font-sans">
-             <div className="container mx-auto px-4 md:px-12">
+             
+             {/* RUNNING TICKER - REALISM */}
+             <div className="fixed top-[88px] md:top-24 left-0 w-full bg-black text-[#BFA36F] z-30 overflow-hidden py-2 border-b border-[#8B1D1D] hidden md:block">
+                 <div className="whitespace-nowrap animate-ticker inline-block font-mono text-xs font-bold tracking-widest">
+                     USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  COTTON FUTURES: $82.40  •  RAW SILK INDEX: $45.20  •  PT. GRAHA CITRA PRIMA EXPORT VOL: 128K YDS (YTD)  •  GUCCI ARTISAN NETWORK ONLINE: 98%  • 
+                     USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  COTTON FUTURES: $82.40  •  RAW SILK INDEX: $45.20  •  PT. GRAHA CITRA PRIMA EXPORT VOL: 128K YDS (YTD)  •  GUCCI ARTISAN NETWORK ONLINE: 98%  •
+                 </div>
+             </div>
+
+             <div className="container mx-auto px-4 md:px-12 mt-8 md:mt-12">
                  <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline sticky top-24 md:static bg-[#FAF9F6] py-2 z-10 w-full">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
 
                 <div className="mb-12">
                      <h1 className="text-3xl md:text-5xl font-serif font-bold text-black mb-4">Laporan Dampak Ekspor</h1>
-                     <p className="text-sm md:text-lg text-gray-600 max-w-3xl">Transparansi data real-time mengenai volume perdagangan dan kontribusi ekonomi.</p>
+                     <p className="text-sm md:text-lg text-gray-600 max-w-3xl">Dashboard real-time logistik, performa artisan, dan nilai pasar global.</p>
                 </div>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
-                    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-                        <div className="flex justify-between items-center mb-4">
-                            <span className="text-xs font-bold uppercase text-gray-400 tracking-wider">Total Ekspor (YTD)</span>
-                            <Globe className="w-5 h-5 text-[#8B1D1D]" />
-                        </div>
-                        <h3 className="text-3xl font-bold text-black mb-1">Rp 768 M</h3>
-                        <span className="text-xs font-bold text-green-600 flex items-center"><TrendingUp className="w-3 h-3 mr-1" /> +24% YoY</span>
-                    </div>
-                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-                        <div className="flex justify-between items-center mb-4">
-                            <span className="text-xs font-bold uppercase text-gray-400 tracking-wider">Volume Kain</span>
-                            <Package className="w-5 h-5 text-[#8B1D1D]" />
-                        </div>
-                        <h3 className="text-3xl font-bold text-black mb-1">128K <span className="text-sm font-normal text-gray-500">Yards</span></h3>
-                    </div>
-                </div>
-
-                {/* NEW GLOBAL MARKET BOARD (Maximised Aesthetics) */}
-                <div className="bg-[#0A0A0A] p-4 md:p-10 rounded-2xl shadow-2xl border border-gray-800 mb-16 relative overflow-hidden">
-                    {/* Background Shine */}
-                    <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#BFA36F] blur-[100px] opacity-10"></div>
+                {/* --- COMMAND CENTER LAYOUT --- */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
                     
-                    {/* Header */}
-                    <div className="flex justify-between items-center mb-8 border-b border-gray-800 pb-4 relative z-10">
-                        <div>
-                            <h3 className="font-serif font-bold text-lg md:text-3xl text-white tracking-widest flex items-center">
-                                <Activity className="w-5 h-5 md:w-8 md:h-8 mr-3 md:mr-4 text-[#BFA36F] animate-pulse" />
-                                BURSA GLOBAL
-                            </h3>
-                            <p className="text-[9px] md:text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
-                                Live Update • {new Date().toLocaleTimeString('en-GB')}
-                            </p>
+                    {/* LEFT COL: GLOBAL MARKET (Dark Theme) */}
+                    <div className="lg:col-span-2 bg-[#0A0A0A] rounded-2xl p-6 md:p-8 border border-gray-800 text-white shadow-2xl relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-4 opacity-20"><Globe className="w-24 h-24 text-[#BFA36F]" /></div>
+                        
+                        <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest mb-6 flex items-center">
+                            <Activity className="w-4 h-4 mr-2 animate-pulse" /> Live Market Data
+                        </h3>
+
+                        {/* Chart / Table Hybrid */}
+                        <div className="space-y-4">
+                            <div className="grid grid-cols-12 text-[10px] text-gray-500 uppercase tracking-widest mb-2 font-bold">
+                                <div className="col-span-2">Kode</div>
+                                <div className="col-span-4">Negara</div>
+                                <div className="col-span-3 text-right">Volume (IDR)</div>
+                                <div className="col-span-3 text-right">Growth</div>
+                            </div>
+                            {visibleCountries.map((c, i) => (
+                                <div key={i} className="grid grid-cols-12 items-center bg-[#151515] p-3 rounded border-l-2 border-[#BFA36F] hover:bg-[#222] transition-colors">
+                                    <div className="col-span-2 font-mono text-xs text-gray-400">{c.code}</div>
+                                    <div className="col-span-4 font-bold text-sm flex items-center">
+                                        <img src={c.flagUrl} className="w-4 h-3 mr-2 rounded-sm" /> {c.name.split('(')[0]}
+                                    </div>
+                                    <div className="col-span-3 text-right font-mono text-[#BFA36F] text-xs">{c.income}</div>
+                                    <div className="col-span-3 text-right font-bold text-xs text-green-500">{c.change}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Mini Stats Bottom */}
+                        <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-gray-800">
+                            <div>
+                                <span className="text-[10px] text-gray-500 uppercase">Total Ekspor</span>
+                                <div className="text-xl font-bold text-white">Rp 768 M</div>
+                            </div>
+                            <div>
+                                <span className="text-[10px] text-gray-500 uppercase">Active Routes</span>
+                                <div className="text-xl font-bold text-white">14 Negara</div>
+                            </div>
+                             <div>
+                                <span className="text-[10px] text-gray-500 uppercase">Artisan Paid</span>
+                                <div className="text-xl font-bold text-[#BFA36F]">100%</div>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Desktop Table Header */}
-                    <div className="hidden md:grid grid-cols-12 gap-4 text-[#BFA36F] font-mono text-xs uppercase tracking-widest mb-4 px-6 font-bold opacity-70">
-                        <div className="col-span-1">KODE</div>
-                        <div className="col-span-4">NEGARA</div>
-                        <div className="col-span-2 text-right">SHARE</div>
-                        <div className="col-span-3 text-right">INCOME</div>
-                        <div className="col-span-2 text-right">TREN</div>
+                    {/* RIGHT COL: LOGISTICS TRACKER (Paper Style) */}
+                    <div className="bg-white rounded-2xl p-6 md:p-8 border border-gray-200 shadow-lg">
+                        <h3 className="text-[#8B1D1D] font-bold text-xs uppercase tracking-widest mb-6 flex items-center">
+                            <Truck className="w-4 h-4 mr-2" /> Manifest Pengiriman
+                        </h3>
+                        <div className="space-y-6 relative">
+                            {/* Vertical Line */}
+                            <div className="absolute left-2 top-2 bottom-2 w-0.5 bg-gray-100"></div>
+
+                            {SHIPMENTS.map((s, i) => (
+                                <div key={i} className="relative pl-8">
+                                    <div className="absolute left-0 top-1 w-4 h-4 bg-white border-2 border-[#8B1D1D] rounded-full z-10"></div>
+                                    <div className="flex justify-between items-start mb-1">
+                                        <span className="font-mono text-xs font-bold text-gray-400">{s.awb}</span>
+                                        <span className="text-[10px] font-bold bg-gray-100 px-2 py-0.5 rounded text-gray-600">{s.time}</span>
+                                    </div>
+                                    <h4 className="font-bold text-sm text-black">{s.dest}</h4>
+                                    <p className="text-xs text-gray-500 mb-1">{s.items}</p>
+                                    <span className={`text-[10px] font-bold uppercase tracking-wider ${s.status.includes('Cleared') ? 'text-green-600' : 'text-blue-600'}`}>
+                                        ● {s.status}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                         <button className="w-full mt-8 border border-gray-300 text-gray-600 py-3 text-xs font-bold uppercase tracking-widest hover:bg-gray-50 rounded">
+                            Download Manifest Lengkap
+                        </button>
                     </div>
+                </div>
 
-                    {/* Rows Container */}
-                    <div className="space-y-3 relative min-h-[400px]">
-                         {visibleCountries.map((country, idx) => (
-                            <div 
-                                key={`${country.code}-${idx}`} 
-                                className="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-4 text-sm font-mono items-center bg-[#151515] p-4 md:px-6 rounded-lg border-l-4 border-transparent hover:border-[#BFA36F] transition-all hover:bg-[#1F1F1F] group animate-fadeIn cursor-default"
-                            >
-                                {/* Mobile View: Stacked Card Style - Compact */}
-                                <div className="md:hidden col-span-2 flex justify-between items-center mb-1">
-                                     <div className="flex items-center text-white font-bold">
-                                        <img src={country.flagUrl} alt="flag" className="w-6 h-4 object-cover rounded-sm mr-2 shadow-sm opacity-80" />
-                                        {country.name.split('(')[0]} {/* Shorten name on mobile */}
-                                    </div>
-                                    <div className={`font-bold ${country.change.includes('+') ? 'text-green-500' : 'text-red-500'}`}>
-                                        {country.change}
-                                    </div>
+                {/* --- ARTISAN PERFORMANCE SECTION (NEW REQUEST) --- */}
+                <div className="mb-16">
+                    <h2 className="text-2xl font-serif font-bold text-black mb-6 flex items-center">
+                         <User className="w-6 h-6 mr-3 text-[#8B1D1D]" /> Performa & Catatan Pengrajin
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {ARTISAN_LOGS.map((log, i) => (
+                            <div key={i} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="flex justify-between items-start mb-4">
+                                    <span className="font-mono text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-500">{log.id}</span>
+                                    <div className={`w-2 h-2 rounded-full ${log.progress > 80 ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
                                 </div>
-                                <div className="md:hidden col-span-2 flex justify-between text-[10px] text-gray-400 border-t border-gray-800 pt-2 mt-1">
-                                    <span>Share: {country.share}</span>
-                                    <span className="text-[#BFA36F] font-bold">{country.income}</span>
+                                <h4 className="font-serif font-bold text-lg mb-1 line-clamp-1">{log.name}</h4>
+                                <p className="text-xs text-gray-500 uppercase tracking-wide mb-4">{log.task}</p>
+                                
+                                <div className="w-full bg-gray-100 rounded-full h-1.5 mb-2">
+                                    <div className="bg-[#8B1D1D] h-1.5 rounded-full" style={{ width: `${log.progress}%` }}></div>
                                 </div>
-
-                                {/* Desktop View */}
-                                <div className="hidden md:block col-span-1 font-bold text-gray-500 group-hover:text-white transition-colors">{country.code}</div>
-                                <div className="hidden md:flex col-span-4 items-center text-white font-bold text-base">
-                                    <img 
-                                        src={country.flagUrl} 
-                                        alt={`${country.name} flag`}
-                                        className="w-8 h-6 object-cover rounded-sm mr-4 shadow-sm grayscale group-hover:grayscale-0 transition-all"
-                                    />
-                                    <span className="truncate">{country.name}</span>
-                                </div>
-                                <div className="hidden md:block col-span-2 text-right text-gray-300 font-medium">{country.share}</div>
-                                <div className="hidden md:block col-span-3 text-right text-[#BFA36F] font-bold tracking-wider">{country.income}</div>
-                                <div className={`hidden md:flex col-span-2 justify-end items-center font-bold ${country.change.includes('+') ? 'text-green-400' : 'text-red-400'}`}>
-                                    {country.change.includes('+') ? <ArrowUpRight className="w-4 h-4 mr-2"/> : <ArrowDownRight className="w-4 h-4 mr-2"/>}
-                                    {country.change}
+                                <div className="flex justify-between text-[10px] font-bold text-gray-600">
+                                    <span>{log.status}</span>
+                                    <span>{log.progress}%</span>
                                 </div>
                             </div>
                         ))}
@@ -885,7 +808,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                 </div>
 
                 {/* News Archive Section */}
-                <div className="mt-20 border-t border-gray-200 pt-16">
+                <div className="border-t border-gray-200 pt-16">
                     <h3 className="font-serif font-bold text-2xl md:text-4xl mb-8 md:mb-12 text-black leading-tight">Berita Terkini</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {NEWS_ITEMS.map((item) => (
