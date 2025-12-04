@@ -4,7 +4,6 @@ import { GoogleGenAI } from "@google/genai";
 const apiKey = process.env.API_KEY;
 
 // Inisialisasi AI dengan aman
-// Menggunakan try-catch saat inisialisasi untuk mencegah crash di browser jika env var bermasalah
 let ai: GoogleGenAI | null = null;
 try {
   if (apiKey) {
@@ -14,66 +13,89 @@ try {
   console.warn("Failed to initialize Gemini Client:", error);
 }
 
-// Jawaban Cadangan (Fallback) yang LEBIH NATURAL & MANUSIAWI
+// ---------------------------------------------------------------------------
+// PERPUSTAKAAN JAWABAN CERDAS (FALLBACK EXPLANATIONS)
+// Digunakan jika AI belum aktif, agar user tetap mendapat PENJELASAN RINCI.
+// ---------------------------------------------------------------------------
 const FALLBACK_RESPONSES = {
-  greeting: "Salam hangat. Selamat datang di Gucci Indonesia Export Hub. Saya di sini untuk membantu Anda menelusuri koleksi warisan kami atau peluang kemitraan global. Adakah yang bisa saya jelaskan untuk Anda hari ini? (Untuk respon instan, silakan hubungi Customer Service kami).",
-  batik: "Koleksi 'Batik Renaissance' kami adalah wujud cinta pada wastra nusantara. Kami memadukan motif sakral seperti Mega Mendung dan Parang dengan estetika Florence. Setiap helai kain memiliki narasi filosofis yang mendalam. Silakan hubungi Customer Service kami untuk melihat katalog lengkapnya.",
-  mitra: "Kami sangat menghargai minat Anda. Program Mitra Butik dirancang untuk mengangkat pengrajin lokal ke panggung dunia dengan standar kualitas Italia. Kami mencari partner yang memiliki dedikasi pada detail. Untuk diskusi lebih lanjut mengenai syarat bergabung, silakan hubungi Customer Service kami.",
-  daftar: "Pintu kami selalu terbuka untuk talenta terbaik. Proses pendaftaran melibatkan kurasi untuk memastikan standar kualitas ekspor. Mari kita bicarakan langkah selanjutnya, silakan hubungi Customer Service kami untuk panduan pendaftaran.",
-  lokasi: "Saat ini, mitra terpilih kami tersebar di pusat-pusat kebudayaan seperti Yogyakarta, Pekalongan, dan Cirebon. Kami mengundang Anda untuk melihat langsung proses kreatif ini. Untuk jadwal kunjungan atau lokasi detail, silakan hubungi Customer Service kami.",
-  legality: "Kami mengerti kehati-hatian Anda. Portal ini adalah representasi digital RESMI dari PT. Graha Citra Prima. Operasional kami dilindungi payung hukum SK Kemenkumham No. AHU-0058932.AH.01.01.Tahun 2025 dengan kantor pusat di Menteng. Kepercayaan Anda adalah prioritas kami. Silakan hubungi Customer Service kami untuk verifikasi dokumen legalitas.",
-  default: "Pertanyaan yang menarik. Izinkan kami memberikan penjelasan yang lebih komprehensif dan personal mengenai hal tersebut. Silakan hubungi Customer Service kami melalui WhatsApp agar kami dapat melayani Anda dengan lebih baik."
+  greeting: "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda hari ini. \n\nSaya dapat menjelaskan detail mengenai:\n1. Koleksi Batik Renaissance (Filosofi & Harga)\n2. Legalitas & Keamanan Transaksi\n3. Program Kemitraan UMKM\n\nTopik mana yang ingin saya jelaskan lebih rinci untuk Anda?",
+  
+  // PENJELASAN LEGALITAS / ANTI-PENIPUAN
+  legality: "Terima kasih atas pertanyaan kritis Anda. Keamanan dan kepercayaan adalah fondasi bisnis kami.\n\nIzinkan saya menjelaskan status legalitas kami:\n\n1. **Entitas Resmi**: Portal ini dikelola penuh oleh **PT. GRAHA CITRA PRIMA**, pemegang lisensi distribusi resmi.\n2. **Payung Hukum**: Operasional kami dilindungi oleh **SK Kemenkumham No. AHU-0058932.AH.01.01.Tahun 2025**. Ini bukan entitas fiktif.\n3. **Kantor Fisik**: Kantor pusat kami berada di kawasan premium Menteng, Jakarta Pusat (Gedung Optik Tunggal, Jl. Cikini Raya No. 89).\n4. **Verifikasi**: Kami menyediakan dokumen sertifikasi ISO 9001:2015 dan Izin Usaha Ekspor yang dapat Anda periksa di menu 'Legalitas'.\n\nKami mengundang Anda untuk melakukan verifikasi langsung atau video call dengan tim legal kami melalui Customer Service.",
+  
+  // PENJELASAN PRODUK BATIK
+  batik: "Koleksi **'The Batik Renaissance'** bukan sekadar pakaian, melainkan sebuah narasi budaya. \n\nPenjelasan Detail:\nSetiap helai kain dikerjakan menggunakan teknik canting tulis halus (0.1mm) yang memakan waktu 3-6 bulan pengerjaan. Kami memadukan motif sakral keraton (seperti Parang Barong) dengan siluet modern Italia.\n\nBahan yang digunakan adalah Sutra Organik dan Wol Cashmere, menjadikannya investasi seni yang bernilai tinggi. Untuk katalog visual dan daftar harga spesifik, rekan Customer Service kami siap mengirimkannya via WhatsApp.",
+  
+  // PENJELASAN KEMITRAAN
+  mitra: "Program **'Mitra Butik'** adalah inisiatif kami untuk membawa pengrajin lokal ke panggung global.\n\nPenjelasan Program:\nKami tidak hanya membeli produk, tetapi memberikan pendampingan (mentorship) standar kualitas Gucci Artisan Tier 1. Mitra yang lolos kurasi akan mendapatkan akses pasar ke 40 negara, bantuan logistik ekspor, dan branding internasional.\n\nApakah Anda pemilik sanggar yang kami cari? Mari diskusikan kriteria kurasi lebih lanjut dengan tim spesialis kami.",
+  
+  // PENJELASAN PENDAFTARAN
+  daftar: "Proses pendaftaran mitra bersifat eksklusif namun transparan.\n\nLangkah-langkahnya:\n1. Pengisian Formulir Digital (Data Usaha & Foto Produk).\n2. Kurasi Awal oleh Tim Desain (2-3 Hari Kerja).\n3. Verifikasi Lapangan (Visitasi Sanggar).\n4. Penandatanganan MoU Ekspor.\n\nUntuk memulai langkah pertama, saya sarankan Anda mengirimkan portofolio singkat ke WhatsApp resmi pendaftaran kami melalui tombol di bawah ini.",
+  
+  // PENJELASAN LOKASI
+  lokasi: "Sentra produksi dan mitra kami tersebar di titik-titik kebudayaan utama di Pulau Jawa dan Bali.\n\nLokasi Utama:\n- **Yogyakarta & Solo**: Pusat Batik Tulis Klasik & Keraton.\n- **Pekalongan & Cirebon**: Pusat Batik Pesisir & Warna Alam.\n- **Bali**: Pusat Tenun & Perhiasan.\n\nKantor Pusat Manajemen Ekspor kami berada di **Menteng, Jakarta Pusat**. Kami menerima kunjungan bisnis dengan perjanjian terlebih dahulu melalui Customer Service.",
+  
+  // DEFAULT RESPONSE
+  default: "Pertanyaan yang sangat menarik. Topik tersebut membutuhkan penjelasan spesifik yang melibatkan data terkini atau kebijakan khusus.\n\nAgar Anda mendapatkan jawaban yang akurat dan tidak keliru, saya akan menghubungkan Anda langsung dengan *Senior Relationship Manager* kami. Beliau dapat memberikan penjelasan mendalam via WhatsApp."
 };
 
-// Fungsi Logika Sederhana untuk mencocokkan kata kunci
+// Fungsi Deteksi Topik (Keyword Matching)
 const getFallbackResponse = (message: string): string => {
   const lowerMsg = message.toLowerCase();
   
-  // Logika Deteksi Topik
-  if (lowerMsg.includes('halo') || lowerMsg.includes('hi') || lowerMsg.includes('pagi') || lowerMsg.includes('siang') || lowerMsg.includes('malam')) return FALLBACK_RESPONSES.greeting;
-  
-  // Deteksi Pertanyaan Keamanan/Legalitas (Penipuan, Resmi, Asli, Scam)
-  if (lowerMsg.includes('tipu') || lowerMsg.includes('bohong') || lowerMsg.includes('resmi') || lowerMsg.includes('asli') || lowerMsg.includes('palsu') || lowerMsg.includes('scam') || lowerMsg.includes('aman') || lowerMsg.includes('legal')) {
+  // Deteksi Topik Legalitas/Penipuan (PRIORITAS TINGGI)
+  if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|izin|polisi)/)) {
     return FALLBACK_RESPONSES.legality;
   }
 
-  if (lowerMsg.includes('batik') || lowerMsg.includes('koleksi') || lowerMsg.includes('baju') || lowerMsg.includes('produk') || lowerMsg.includes('harga')) return FALLBACK_RESPONSES.batik;
-  if (lowerMsg.includes('mitra') || lowerMsg.includes('partner') || lowerMsg.includes('kerjasama') || lowerMsg.includes('usaha') || lowerMsg.includes('bisnis')) return FALLBACK_RESPONSES.mitra;
-  if (lowerMsg.includes('daftar') || lowerMsg.includes('gabung') || lowerMsg.includes('register') || lowerMsg.includes('cara') || lowerMsg.includes('syarat')) return FALLBACK_RESPONSES.daftar;
-  if (lowerMsg.includes('lokasi') || lowerMsg.includes('alamat') || lowerMsg.includes('dimana') || lowerMsg.includes('kantor')) return FALLBACK_RESPONSES.lokasi;
+  // Deteksi Topik Salam
+  if (lowerMsg.match(/(halo|hi|pagi|siang|malam|sore|assalam|permisi|test|tes|hai)/)) {
+    return FALLBACK_RESPONSES.greeting;
+  }
+  
+  // Deteksi Topik Produk/Batik
+  if (lowerMsg.match(/(batik|koleksi|baju|produk|harga|jual|beli|sutra|kain|motif|model)/)) {
+    return FALLBACK_RESPONSES.batik;
+  }
+
+  // Deteksi Topik Mitra/Kerjasama
+  if (lowerMsg.match(/(mitra|partner|kerjasama|usaha|bisnis|suplier|supplier|gabung|join)/)) {
+    return FALLBACK_RESPONSES.mitra;
+  }
+
+  // Deteksi Topik Cara Daftar
+  if (lowerMsg.match(/(daftar|register|cara|syarat|ketentuan|dokumen|form)/)) {
+    return FALLBACK_RESPONSES.daftar;
+  }
+
+  // Deteksi Topik Lokasi
+  if (lowerMsg.match(/(lokasi|alamat|dimana|kantor|posisi|kota|daerah|tempat)/)) {
+    return FALLBACK_RESPONSES.lokasi;
+  }
   
   return FALLBACK_RESPONSES.default;
 };
 
 export const getGeminiResponse = async (userMessage: string): Promise<string> => {
-  // 1. Coba gunakan AI Gemini jika tersedia
+  // 1. Prioritas Utama: Coba AI Gemini
   if (ai) {
     try {
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: userMessage,
         config: {
-          systemInstruction: `Anda adalah "Heritage Concierge" (Asisten Pribadi) dari Gucci Indonesia Export (PT. Graha Citra Prima).
+          systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
           
-          Karakter & Gaya Bicara Anda:
-          - Elegan, Hangat, dan Berwawasan Luas (Seperti seorang kurator seni atau manajer butik mewah).
-          - JANGAN kaku seperti robot. Gunakan bahasa Indonesia yang mengalir, sopan, dan persuasif.
-          - Berikan penjelasan yang cukup rinci (naratif) namun tetap mudah dipahami.
+          TUGAS ANDA:
+          Memberikan PENJELASAN RINCI dan EDUKATIF. Jangan menjawab pendek.
           
-          Misi Anda:
-          1. Menjawab pertanyaan pengguna dengan sentuhan personal. Berikan konteks budaya atau sejarah jika relevan.
-          2. Menjelaskan bahwa kolaborasi ini mengangkat Batik ke level 'High Fashion' dunia.
-          3. Meyakinkan pengguna tentang LEGALITAS perusahaan (PT. Graha Citra Prima, SK Kemenkumham, Kantor Menteng) dengan nada yang tenang dan profesional jika mereka ragu.
-          
-          STRUKTUR JAWABAN (PENTING):
-          - Mulailah dengan sapaan atau apresiasi atas pertanyaan mereka.
-          - Jelaskan jawaban inti dengan gaya bercerita (storytelling).
-          - WAJIB MENUTUP setiap respon dengan ajakan halus untuk menghubungi Customer Service via WhatsApp untuk tindakan selanjutnya (pendaftaran, katalog, atau verifikasi).
+          PANDUAN JAWABAN:
+          1. **Jika ditanya soal Penipuan/Legalitas**: Jawab dengan TEGAS dan RINCI tentang data perusahaan (PT Graha Citra Prima, Alamat Menteng, SK Kemenkumham). Yakinkan user bahwa ini adalah platform resmi pemerintah & swasta.
+          2. **Jika ditanya Batik**: Jelaskan filosofi motifnya, proses pembuatannya (canting, lama pengerjaan), dan kenapa harganya mahal (eksklusivitas).
+          3. **Gaya Bicara**: Profesional, tenang, elegan, seperti pelayan butik bintang 5.
+          4. **Akhiran**: Selalu arahkan ke WhatsApp CS untuk tindakan nyata.
 
-          Contoh Gaya Bicara:
-          "Tentu, sebuah pertanyaan yang sangat bagus. Batik Mega Mendung yang kami gunakan..."
-          "Kami sangat memahami kekhawatiran Anda. Sebagai entitas korporat resmi di bawah PT. Graha Citra Prima..."
-          `,
+          Konteks: User mungkin ragu apakah ini penipuan. Tugas Anda adalah membangun kepercayaan (Trust Building).`,
         }
       });
       
@@ -81,11 +103,10 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
         return response.text;
       }
     } catch (error) {
-      console.warn("Gemini AI Error (Switching to Fallback Mode):", error);
-      // Jika error, lanjut ke logika fallback di bawah
+      console.warn("Gemini AI Error (Switching to Smart Fallback):", error);
     }
   }
 
-  // 2. Gunakan Jawaban Statis (Fallback) jika AI gagal atau tidak ada Key
+  // 2. Jika AI Gagal/Tidak Ada Key, gunakan Jawaban Penjelasan Rinci (Fallback)
   return getFallbackResponse(userMessage);
 };
