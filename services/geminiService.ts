@@ -18,33 +18,43 @@ try {
 // Digunakan jika AI belum aktif, agar user tetap mendapat PENJELASAN RINCI.
 // ---------------------------------------------------------------------------
 const FALLBACK_RESPONSES = {
-  greeting: "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda hari ini. \n\nSaya dapat menjelaskan detail mengenai:\n1. Koleksi Batik Renaissance (Filosofi & Harga)\n2. Legalitas & Keamanan Transaksi\n3. Program Kemitraan UMKM\n\nTopik mana yang ingin saya jelaskan lebih rinci untuk Anda?",
+  greeting: "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda.\n\nSaya siap membantu menjelaskan:\n1. Sistem Advertising P4P\n2. Cara Pendaftaran Mitra\n3. Legalitas Resmi Perusahaan\n\nApa yang ingin Anda ketahui?",
   
   // PENJELASAN LEGALITAS / ANTI-PENIPUAN
-  legality: "Terima kasih atas pertanyaan kritis Anda. Keamanan dan kepercayaan adalah fondasi bisnis kami.\n\nIzinkan saya menjelaskan status legalitas kami:\n\n1. **Entitas Resmi**: Portal ini dikelola penuh oleh **PT. GRAHA CITRA PRIMA**, pemegang lisensi distribusi resmi.\n2. **Payung Hukum**: Operasional kami dilindungi oleh **SK Kemenkumham No. AHU-0058932.AH.01.01.Tahun 2025**. Ini bukan entitas fiktif.\n3. **Kantor Fisik**: Kantor pusat kami berada di kawasan premium Menteng, Jakarta Pusat (Gedung Optik Tunggal, Jl. Cikini Raya No. 89).\n4. **Verifikasi**: Kami menyediakan dokumen sertifikasi ISO 9001:2015 dan Izin Usaha Ekspor yang dapat Anda periksa di menu 'Legalitas'.\n\nKami mengundang Anda untuk melakukan verifikasi langsung atau video call dengan tim legal kami melalui Customer Service.",
+  legality: "Kami mengerti kehati-hatian Anda. Keamanan adalah prioritas kami.\n\nLegalitas Resmi:\n1. **Entitas**: PT. GRAHA CITRA PRIMA (Distributor Resmi).\n2. **Izin**: SK Kemenkumham No. AHU-0058932.AH.01.01.Tahun 2025.\n3. **Sistem**: Kami menggunakan sistem manajemen **Advertising P4P** yang transparan dan terukur.\n\nKantor kami berlokasi di Menteng, Jakarta Pusat. Silakan hubungi Customer Service untuk verifikasi dokumen fisik.",
   
   // PENJELASAN PRODUK BATIK
-  batik: "Koleksi **'The Batik Renaissance'** bukan sekadar pakaian, melainkan sebuah narasi budaya. \n\nPenjelasan Detail:\nSetiap helai kain dikerjakan menggunakan teknik canting tulis halus (0.1mm) yang memakan waktu 3-6 bulan pengerjaan. Kami memadukan motif sakral keraton (seperti Parang Barong) dengan siluet modern Italia.\n\nBahan yang digunakan adalah Sutra Organik dan Wol Cashmere, menjadikannya investasi seni yang bernilai tinggi. Untuk katalog visual dan daftar harga spesifik, rekan Customer Service kami siap mengirimkannya via WhatsApp.",
+  batik: "Koleksi **'The Batik Renaissance'** adalah perpaduan mahakarya Batik Tulis halus dengan standar *High Fashion* Italia.\n\nSetiap karya dikurasi menggunakan sistem Advertising P4P untuk memastikan eksposur maksimal di pasar global. Motif yang kami angkat seperti Mega Mendung dan Parang Barong memiliki nilai filosofis tinggi dan pengerjaan 3-6 bulan.",
   
-  // PENJELASAN KEMITRAAN
-  mitra: "Program **'Mitra Butik'** adalah inisiatif kami untuk membawa pengrajin lokal ke panggung global.\n\nPenjelasan Program:\nKami tidak hanya membeli produk, tetapi memberikan pendampingan (mentorship) standar kualitas Gucci Artisan Tier 1. Mitra yang lolos kurasi akan mendapatkan akses pasar ke 40 negara, bantuan logistik ekspor, dan branding internasional.\n\nApakah Anda pemilik sanggar yang kami cari? Mari diskusikan kriteria kurasi lebih lanjut dengan tim spesialis kami.",
+  // PENJELASAN KEMITRAAN & SISTEM P4P
+  mitra: "Program kemitraan kami menggunakan sistem **Advertising P4P (Pay for Performance)**.\n\nApa artinya?\nSistem ini menjamin bahwa setiap mitra butik mendapatkan eksposur dan bagi hasil yang adil berdasarkan kinerja ekspor nyata, bukan sekadar janji. Kami memberikan akses pasar global, sementara Anda fokus pada kualitas karya.",
   
-  // PENJELASAN PENDAFTARAN
-  daftar: "Proses pendaftaran mitra bersifat eksklusif namun transparan.\n\nLangkah-langkahnya:\n1. Pengisian Formulir Digital (Data Usaha & Foto Produk).\n2. Kurasi Awal oleh Tim Desain (2-3 Hari Kerja).\n3. Verifikasi Lapangan (Visitasi Sanggar).\n4. Penandatanganan MoU Ekspor.\n\nUntuk memulai langkah pertama, saya sarankan Anda mengirimkan portofolio singkat ke WhatsApp resmi pendaftaran kami melalui tombol di bawah ini.",
+  // PENJELASAN PENDAFTARAN (WAJIB KE CS)
+  daftar: "Terima kasih atas minat Anda untuk bergabung.\n\n**Untuk mendaftar, silakan hubungi Customer Service kami.**\n\nProses pendaftaran meliputi verifikasi data usaha dan penjelasan lebih rinci mengenai sistem Advertising P4P yang kami gunakan. Tim CS kami siap memandu Anda langkah demi langkah via WhatsApp.",
   
   // PENJELASAN LOKASI
-  lokasi: "Sentra produksi dan mitra kami tersebar di titik-titik kebudayaan utama di Pulau Jawa dan Bali.\n\nLokasi Utama:\n- **Yogyakarta & Solo**: Pusat Batik Tulis Klasik & Keraton.\n- **Pekalongan & Cirebon**: Pusat Batik Pesisir & Warna Alam.\n- **Bali**: Pusat Tenun & Perhiasan.\n\nKantor Pusat Manajemen Ekspor kami berada di **Menteng, Jakarta Pusat**. Kami menerima kunjungan bisnis dengan perjanjian terlebih dahulu melalui Customer Service.",
+  lokasi: "Kantor Pusat kami berada di **Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Menteng, Jakarta Pusat**.\n\nKami juga memiliki jaringan mitra butik (Advertising P4P Network) yang tersebar di Yogyakarta, Solo, Pekalongan, dan Bali.",
   
   // DEFAULT RESPONSE
-  default: "Pertanyaan yang sangat menarik. Topik tersebut membutuhkan penjelasan spesifik yang melibatkan data terkini atau kebijakan khusus.\n\nAgar Anda mendapatkan jawaban yang akurat dan tidak keliru, saya akan menghubungkan Anda langsung dengan *Senior Relationship Manager* kami. Beliau dapat memberikan penjelasan mendalam via WhatsApp."
+  default: "Untuk informasi lebih lanjut mengenai hal tersebut, atau jika Anda ingin mendaftar, **silakan hubungi Customer Service**.\n\nTim kami akan menjelaskan secara rinci tentang sistem Advertising P4P dan peluang kerjasama yang tersedia."
 };
 
 // Fungsi Deteksi Topik (Keyword Matching)
 const getFallbackResponse = (message: string): string => {
   const lowerMsg = message.toLowerCase();
   
-  // Deteksi Topik Legalitas/Penipuan (PRIORITAS TINGGI)
-  if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|izin|polisi)/)) {
+  // Deteksi Topik Pendaftaran (PRIORITAS TINGGI)
+  if (lowerMsg.match(/(daftar|register|gabung|join|cara|syarat|form)/)) {
+    return FALLBACK_RESPONSES.daftar;
+  }
+
+  // Deteksi Topik Sistem/P4P
+  if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising)/)) {
+    return FALLBACK_RESPONSES.mitra;
+  }
+  
+  // Deteksi Topik Legalitas/Penipuan
+  if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham)/)) {
     return FALLBACK_RESPONSES.legality;
   }
 
@@ -59,13 +69,8 @@ const getFallbackResponse = (message: string): string => {
   }
 
   // Deteksi Topik Mitra/Kerjasama
-  if (lowerMsg.match(/(mitra|partner|kerjasama|usaha|bisnis|suplier|supplier|gabung|join)/)) {
+  if (lowerMsg.match(/(mitra|partner|kerjasama|usaha|bisnis|suplier|supplier)/)) {
     return FALLBACK_RESPONSES.mitra;
-  }
-
-  // Deteksi Topik Cara Daftar
-  if (lowerMsg.match(/(daftar|register|cara|syarat|ketentuan|dokumen|form)/)) {
-    return FALLBACK_RESPONSES.daftar;
   }
 
   // Deteksi Topik Lokasi
@@ -86,16 +91,18 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
         config: {
           systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
           
-          TUGAS ANDA:
-          Memberikan PENJELASAN RINCI dan EDUKATIF. Jangan menjawab pendek.
+          POIN KUNCI INFORMASI:
+          1. **Sistem Bisnis**: Kami menggunakan sistem **"Advertising P4P"**. Jelaskan ini sebagai keunggulan transparansi.
+          2. **Pendaftaran**: Jawab dengan kalimat: **"Untuk mendaftar, hubungi Customer Service."**
+          3. **Legalitas**: PT Graha Citra Prima adalah resmi dan berizin Kemenkumham.
           
-          PANDUAN JAWABAN:
-          1. **Jika ditanya soal Penipuan/Legalitas**: Jawab dengan TEGAS dan RINCI tentang data perusahaan (PT Graha Citra Prima, Alamat Menteng, SK Kemenkumham). Yakinkan user bahwa ini adalah platform resmi pemerintah & swasta.
-          2. **Jika ditanya Batik**: Jelaskan filosofi motifnya, proses pembuatannya (canting, lama pengerjaan), dan kenapa harganya mahal (eksklusivitas).
-          3. **Gaya Bicara**: Profesional, tenang, elegan, seperti pelayan butik bintang 5.
-          4. **Akhiran**: Selalu arahkan ke WhatsApp CS untuk tindakan nyata.
-
-          Konteks: User mungkin ragu apakah ini penipuan. Tugas Anda adalah membangun kepercayaan (Trust Building).`,
+          GAYA BICARA:
+          Profesional, singkat, padat, dan meyakinkan.
+          
+          INSTRUKSI:
+          - Jika user bertanya "cara daftar?", arahkan ke Customer Service.
+          - Jika user bertanya "sistemnya apa?", jawab "Advertising P4P".
+          - Selalu akhiri dengan ajakan ke WhatsApp CS.`,
         }
       });
       
