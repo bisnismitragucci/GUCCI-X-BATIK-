@@ -1081,7 +1081,8 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                 {/* Mobile View: Stacked */}
                                 <div className="md:hidden col-span-2 flex justify-between items-center mb-2">
                                      <div className="flex items-center text-white font-bold">
-                                        <img src={country.flagUrl} alt="flag" className="w-6 h-4 object-cover mr-2" />
+                                        {/* Flag Restored */}
+                                        <img src={country.flagUrl} alt="flag" className="w-6 h-4 object-cover rounded-sm mr-2 shadow-sm" />
                                         {country.name}
                                     </div>
                                     <div className={`font-bold ${country.change.includes('+') ? 'text-green-500' : 'text-red-500'}`}>
@@ -1096,17 +1097,11 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                 {/* Desktop View */}
                                 <div className="hidden md:block col-span-1 font-bold text-gray-500 group-hover:text-white transition-colors">{country.code}</div>
                                 <div className="hidden md:flex col-span-4 items-center text-white font-bold text-base">
-                                    {/* Flag made significantly larger and clearly separated */}
+                                    {/* Flag Restored */}
                                     <img 
                                         src={country.flagUrl} 
-                                        alt={`${country.name} flag`} 
+                                        alt={`${country.name} flag`}
                                         className="w-8 h-6 object-cover rounded-sm mr-4 shadow-sm"
-                                    />
-                                    {/* Coat of Arms / Emblem */}
-                                    <img 
-                                        src={country.emblemUrl} 
-                                        alt={`${country.name} emblem`}
-                                        className="w-6 h-6 object-contain mr-4 filter drop-shadow-md opacity-80 group-hover:opacity-100 transition-opacity"
                                     />
                                     <span className="truncate">{country.name}</span>
                                 </div>
