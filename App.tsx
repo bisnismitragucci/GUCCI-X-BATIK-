@@ -99,21 +99,21 @@ const App: React.FC = () => {
                     <HeroCarousel onNavigate={navigateTo} />
                     
                     {/* Info Strip - Gucci Holiday Red */}
-                    <div className="bg-[#8B1D1D] py-10 md:py-14 border-b-4 border-[#BFA36F]">
-                        <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
-                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-6 md:pb-0">
-                                <div className="text-4xl md:text-6xl font-serif italic text-[#BFA36F] mb-2 md:mb-3 font-bold">500+</div>
-                                <div className="text-xs uppercase tracking-[0.25em] font-bold">Butik Tersertifikasi</div>
+                    <div className="bg-[#8B1D1D] py-8 md:py-14 border-b-4 border-[#BFA36F]">
+                        <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center text-white">
+                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-4 md:pb-0">
+                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold">500+</div>
+                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold">Butik Tersertifikasi</div>
                                 <div className="hidden md:block absolute right-0 top-1/4 h-1/2 w-[2px] bg-[#BFA36F]/30"></div>
                             </div>
-                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-6 md:pb-0">
-                                <div className="text-4xl md:text-6xl font-serif italic text-[#BFA36F] mb-2 md:mb-3 font-bold">120K</div>
-                                <div className="text-xs uppercase tracking-[0.25em] font-bold">Yard Batik Diekspor</div>
+                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-4 md:pb-0">
+                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold">120K</div>
+                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold">Yard Batik Diekspor</div>
                                 <div className="hidden md:block absolute right-0 top-1/4 h-1/2 w-[2px] bg-[#BFA36F]/30"></div>
                             </div>
                             <div className="p-2 md:p-4">
-                                <div className="text-4xl md:text-6xl font-serif italic text-[#BFA36F] mb-2 md:mb-3 font-bold">Global</div>
-                                <div className="text-xs uppercase tracking-[0.25em] font-bold">Jangkauan Pasar</div>
+                                <div className="text-3xl md:text-6xl font-serif italic text-[#BFA36F] mb-1 md:mb-3 font-bold">Global</div>
+                                <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold">Jangkauan Pasar</div>
                             </div>
                         </div>
                     </div>
@@ -122,11 +122,11 @@ const App: React.FC = () => {
                     <ExportPillars onNavigateToLegality={() => navigateTo('legality')} />
 
                     {/* Feature Section - Batik & Boutique Focus */}
-                    <section className="py-16 md:py-24 bg-white border-y border-gray-100">
+                    <section className="py-12 md:py-24 bg-white border-y border-gray-100">
                         <div className="container mx-auto px-6 lg:px-12">
                             <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
                                 <div className="w-full md:w-1/2 relative">
-                                    <div className="absolute top-4 left-4 w-full h-full border-2 border-[#8B1D1D] z-0"></div>
+                                    <div className="absolute top-4 left-4 w-full h-full border-2 border-[#8B1D1D] z-0 hidden md:block"></div>
                                     {/* Image: Pinterest image requested by user */}
                                     <img 
                                         src="https://i.pinimg.com/1200x/12/69/25/126925d65a43ce73e1871b1fb57e27ba.jpg" 
@@ -135,20 +135,20 @@ const App: React.FC = () => {
                                         onError={(e) => {
                                             e.currentTarget.src = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop";
                                         }}
-                                        className="relative z-10 w-full grayscale contrast-125 hover:grayscale-0 transition-all duration-700 shadow-2xl object-cover h-[350px] md:h-[550px]"
+                                        className="relative z-10 w-full grayscale contrast-125 hover:grayscale-0 transition-all duration-700 shadow-2xl object-cover h-[300px] md:h-[550px]"
                                     />
                                 </div>
                                 <div className="w-full md:w-1/2 text-center md:text-left">
                                     <span className="text-[#8B1D1D] text-xs font-black uppercase tracking-[0.3em] mb-4 block">
                                         Kemitraan Budaya
                                     </span>
-                                    <h2 className="text-4xl md:text-5xl font-serif text-black mb-6 md:mb-8 leading-tight font-bold">
+                                    <h2 className="text-3xl md:text-5xl font-serif text-black mb-6 md:mb-8 leading-tight font-bold">
                                         Mengangkat Batik <br/><span className="italic text-[#8B1D1D]">ke Fashion Mewah</span>
                                     </h2>
-                                    <p className="text-gray-900 mb-6 leading-relaxed font-medium text-base md:text-xl">
+                                    <p className="text-gray-900 mb-6 leading-relaxed font-medium text-sm md:text-xl text-justify md:text-left">
                                         Melalui program <strong>"Gucci x Batik Boutique"</strong>, kami mengkurasi butik-butik terbaik di Solo, Pekalongan, dan Yogyakarta untuk berkolaborasi langsung dengan desainer Italia. 
                                     </p>
-                                    <p className="text-gray-900 mb-10 leading-relaxed font-medium text-base md:text-xl">
+                                    <p className="text-gray-900 mb-10 leading-relaxed font-medium text-sm md:text-xl text-justify md:text-left">
                                         Tujuannya bukan hanya ekspor kain, tetapi membangun branding internasional bahwa Batik dan Kebaya adalah simbol kemewahan yang setara dengan sutra Eropa.
                                     </p>
                                     <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -179,7 +179,7 @@ const App: React.FC = () => {
                     <div className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-40 animate-fadeIn">
                         <button
                             onClick={openWhatsAppRegistration}
-                            className="bg-[#BFA36F] hover:bg-[#a38b55] text-[#0F2420] px-6 py-3 md:px-8 md:py-4 rounded-full font-serif font-bold text-xs md:text-sm uppercase tracking-[0.15em] shadow-[0_4px_20px_rgba(191,163,111,0.4)] border-2 border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center group"
+                            className="bg-[#BFA36F] hover:bg-[#a38b55] text-[#0F2420] px-5 py-3 md:px-8 md:py-4 rounded-full font-serif font-bold text-xs md:text-sm uppercase tracking-[0.15em] shadow-[0_4px_20px_rgba(191,163,111,0.4)] border-2 border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center group"
                         >
                             <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
                             <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full"></span>

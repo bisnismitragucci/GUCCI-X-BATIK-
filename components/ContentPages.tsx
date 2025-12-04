@@ -107,29 +107,28 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ onBack, onProduc
     ];
 
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn">
-            <div className="container mx-auto px-6 lg:px-12">
-                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
+        <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn">
+            <div className="container mx-auto px-4 md:px-6 lg:px-12">
+                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-[10px] md:text-xs mb-8 flex items-center hover:underline sticky top-24 md:static bg-[#FAF9F6] py-2 z-10 w-full">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
                 
-                <div className="mb-10 md:mb-16 border-b border-gray-200 pb-8">
-                    <span className="text-[#BFA36F] font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Kapsul Eksklusif 2025</span>
-                    <h1 className="text-3xl md:text-6xl font-serif font-bold text-black mb-6">The Batik Renaissance</h1>
-                    <p className="text-base md:text-xl text-gray-600 max-w-3xl leading-relaxed">
+                <div className="mb-8 md:mb-16 border-b border-gray-200 pb-8">
+                    <span className="text-[#BFA36F] font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-3 md:mb-4 block">Kapsul Eksklusif 2025</span>
+                    <h1 className="text-3xl md:text-6xl font-serif font-bold text-black mb-4 md:mb-6">The Batik Renaissance</h1>
+                    <p className="text-sm md:text-xl text-gray-600 max-w-3xl leading-relaxed">
                         Koleksi kapsul eksklusif yang memadukan motif Flora ikonik Gucci dengan warisan wastra nusantara. 
-                        Setiap helai benang menceritakan pertemuan dua budaya besar.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-10 md:gap-y-12">
                     {collectionItems.map((item, index) => (
                         <div 
                             key={index} 
                             onClick={() => onProductSelect && onProductSelect(item)}
                             className="group cursor-pointer flex flex-col h-full"
                         >
-                            <div className="relative overflow-hidden aspect-[3/4] mb-6 bg-gray-200 shadow-lg">
+                            <div className="relative overflow-hidden aspect-[3/4] mb-4 md:mb-6 bg-gray-200 shadow-lg">
                                  <img 
                                     src={item.url} 
                                     alt={item.title}
@@ -137,22 +136,26 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ onBack, onProduc
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out"
                                 />
                                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <div className="absolute bottom-0 left-0 w-full bg-[#8B1D1D] text-white p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                <div className="absolute bottom-0 left-0 w-full bg-[#8B1D1D] text-white p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out hidden md:block">
                                     <span className="uppercase text-[10px] font-bold tracking-[0.2em] flex items-center justify-between">
                                         Lihat Detail <ChevronRight className="w-4 h-4"/>
                                     </span>
+                                </div>
+                                {/* Mobile Only Badge */}
+                                <div className="absolute bottom-2 right-2 md:hidden bg-white/90 text-black px-2 py-1 text-[9px] font-bold uppercase tracking-widest">
+                                    Detail
                                 </div>
                             </div>
                             
                             {/* Product Info */}
                             <div className="flex flex-col flex-grow">
-                                <span className="text-[#BFA36F] text-[10px] font-black uppercase tracking-widest mb-2 line-clamp-1">
+                                <span className="text-[#BFA36F] text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-1 md:mb-2 line-clamp-1">
                                     {item.material}
                                 </span>
-                                <h3 className="font-serif font-bold text-xl md:text-2xl text-black mb-3 group-hover:text-[#8B1D1D] transition-colors leading-tight">
+                                <h3 className="font-serif font-bold text-lg md:text-2xl text-black mb-2 md:mb-3 group-hover:text-[#8B1D1D] transition-colors leading-tight">
                                     {item.title}
                                 </h3>
-                                <p className="text-gray-500 text-sm leading-relaxed font-medium line-clamp-3 group-hover:text-gray-800 transition-colors">
+                                <p className="text-gray-500 text-xs md:text-sm leading-relaxed font-medium line-clamp-3 group-hover:text-gray-800 transition-colors">
                                     {item.description}
                                 </p>
                             </div>
@@ -171,15 +174,15 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
     if (!product) return null;
 
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-28 pb-20 animate-fadeIn font-sans">
-             <div className="container mx-auto px-6 lg:px-12">
+        <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-28 pb-20 animate-fadeIn font-sans">
+             <div className="container mx-auto px-4 md:px-12">
                  {/* Breadcrumb / Back */}
-                <nav className="flex items-center text-xs font-bold uppercase tracking-widest mb-8 md:mb-12 text-gray-500">
-                    <button onClick={onBack} className="hover:text-[#8B1D1D] transition-colors flex items-center">
+                <nav className="flex items-center text-[10px] md:text-xs font-bold uppercase tracking-widest mb-6 md:mb-12 text-gray-500 overflow-x-auto whitespace-nowrap py-2">
+                    <button onClick={onBack} className="hover:text-[#8B1D1D] transition-colors flex items-center shrink-0">
                         <ArrowLeft className="w-4 h-4 mr-2" /> Koleksi
                     </button>
-                    <span className="mx-4">/</span>
-                    <span className="text-[#8B1D1D] truncate max-w-[150px] md:max-w-none">{product.title}</span>
+                    <span className="mx-2 md:mx-4">/</span>
+                    <span className="text-[#8B1D1D]">{product.title}</span>
                 </nav>
 
                 <div className="flex flex-col lg:flex-row gap-8 md:gap-16">
@@ -194,7 +197,7 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                             />
                             {/* Badge */}
                             <div className="absolute top-4 left-4 md:top-6 md:left-6">
-                                <span className="bg-[#8B1D1D] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 shadow-lg">
+                                <span className="bg-[#8B1D1D] text-white text-[9px] md:text-[10px] font-black uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 shadow-lg">
                                     Limited Edition 2025
                                 </span>
                             </div>
@@ -204,60 +207,60 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                     {/* Content Section */}
                     <div className="w-full lg:w-1/2 flex flex-col">
                         <div className="border-b border-[#BFA36F] pb-6 md:pb-8 mb-6 md:mb-8">
-                            <span className="text-[#BFA36F] text-xs font-black uppercase tracking-[0.25em] mb-4 block flex items-center">
-                                <MapPin className="w-4 h-4 mr-2" /> {product.origin}
+                            <span className="text-[#BFA36F] text-[10px] md:text-xs font-black uppercase tracking-[0.25em] mb-3 md:mb-4 block flex items-center">
+                                <MapPin className="w-3 h-3 md:w-4 md:h-4 mr-2" /> {product.origin}
                             </span>
-                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-black mb-4 leading-tight">
+                            <h1 className="text-2xl md:text-5xl lg:text-6xl font-serif font-bold text-black mb-3 md:mb-4 leading-tight">
                                 {product.title}
                             </h1>
-                            <p className="text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500">
+                            <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500">
                                 {product.material}
                             </p>
                         </div>
 
                         {/* Story / Description */}
                         <div className="mb-8 md:mb-10">
-                            <h3 className="text-[#8B1D1D] font-bold text-sm uppercase tracking-wider mb-4 flex items-center">
+                            <h3 className="text-[#8B1D1D] font-bold text-xs md:text-sm uppercase tracking-wider mb-3 md:mb-4 flex items-center">
                                 <Info className="w-4 h-4 mr-2" /> Narasi Produk
                             </h3>
-                            <p className="text-gray-800 leading-7 md:leading-8 text-base md:text-lg font-medium font-serif">
+                            <p className="text-gray-800 leading-7 md:leading-8 text-sm md:text-lg font-medium font-serif text-justify">
                                 {product.description}
                             </p>
                         </div>
 
                         {/* Philosophy Box */}
-                        <div className="bg-white p-6 md:p-8 border-l-4 border-[#BFA36F] shadow-sm mb-8 md:mb-10 relative">
-                             <Feather className="w-6 h-6 text-[#BFA36F]/20 absolute top-4 right-4" />
-                            <h3 className="text-[#988053] font-bold text-xs uppercase tracking-wider mb-4">
+                        <div className="bg-white p-5 md:p-8 border-l-4 border-[#BFA36F] shadow-sm mb-8 md:mb-10 relative rounded-r-lg">
+                             <Feather className="w-5 h-5 md:w-6 md:h-6 text-[#BFA36F]/20 absolute top-4 right-4" />
+                            <h3 className="text-[#988053] font-bold text-[10px] md:text-xs uppercase tracking-wider mb-3 md:mb-4">
                                 Filosofi Motif
                             </h3>
-                            <p className="text-gray-600 leading-relaxed italic text-base md:text-lg">
+                            <p className="text-gray-600 leading-relaxed italic text-sm md:text-lg">
                                 "{product.philosophy}"
                             </p>
                         </div>
 
                         {/* Specifications Grid */}
-                        <div className="grid grid-cols-2 gap-y-6 md:gap-y-8 gap-x-4 border-t border-gray-200 pt-8 mb-12">
+                        <div className="grid grid-cols-2 gap-y-6 md:gap-y-8 gap-x-4 border-t border-gray-200 pt-8 mb-8 md:mb-12">
                              <div>
-                                <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
+                                <h4 className="text-gray-400 font-bold text-[9px] md:text-[10px] uppercase tracking-widest mb-1 flex items-center">
                                     <Ruler className="w-3 h-3 mr-1" /> Teknik
                                 </h4>
                                 <p className="font-bold text-black text-xs md:text-sm">{product.process}</p>
                             </div>
                             <div>
-                                <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
+                                <h4 className="text-gray-400 font-bold text-[9px] md:text-[10px] uppercase tracking-widest mb-1 flex items-center">
                                     <Clock className="w-3 h-3 mr-1" /> Durasi
                                 </h4>
                                 <p className="font-bold text-black text-xs md:text-sm">{product.time}</p>
                             </div>
                              <div>
-                                <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
+                                <h4 className="text-gray-400 font-bold text-[9px] md:text-[10px] uppercase tracking-widest mb-1 flex items-center">
                                     <ShoppingBag className="w-3 h-3 mr-1" /> Status
                                 </h4>
                                 <p className="font-bold text-[#8B1D1D] text-xs md:text-sm">Made to Order</p>
                             </div>
                             <div>
-                                <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
+                                <h4 className="text-gray-400 font-bold text-[9px] md:text-[10px] uppercase tracking-widest mb-1 flex items-center">
                                     <Award className="w-3 h-3 mr-1" /> Sertifikasi
                                 </h4>
                                 <p className="font-bold text-black text-xs md:text-sm flex items-center">
@@ -267,16 +270,16 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                         </div>
 
                         {/* CTA Actions */}
-                        <div className="mt-auto space-y-4">
+                        <div className="mt-auto space-y-3 md:space-y-4">
                              <button 
                                 onClick={openWhatsAppRegistration}
-                                className="w-full bg-[#8B1D1D] text-white py-4 md:py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-black transition-colors shadow-lg flex justify-center items-center group"
+                                className="w-full bg-[#8B1D1D] text-white py-4 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-black transition-colors shadow-lg flex justify-center items-center group rounded-sm"
                             >
                                 <ShoppingBag className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" /> Pesan Sekarang
                             </button>
                             <button 
                                 onClick={openWhatsAppRegistration}
-                                className="w-full bg-white text-black border border-black py-4 md:py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-gray-50 transition-colors flex justify-center items-center"
+                                className="w-full bg-white text-black border border-black py-4 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-gray-50 transition-colors flex justify-center items-center rounded-sm"
                             >
                                 Chat Concierge
                             </button>
@@ -293,8 +296,6 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
 // ----------------------------------------------------------------------
 export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSelect }) => {
     const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
-    
-    // Default Map URL (Java Overview)
     const [currentMapUrl, setCurrentMapUrl] = useState("https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3265057.863158025!2d109.43572886470397!3d-7.39803529341492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e65561a06734d6f%3A0x3f5c9d2f66453990!2sJava!5e0!3m2!1sen!2sid!4v1709228000000!5m2!1sen!2sid");
 
     const partners = [
@@ -337,34 +338,34 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
     ];
 
     return (
-        <div className="bg-white min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn">
-            <div className="container mx-auto px-6 lg:px-12">
-                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
+        <div className="bg-white min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn">
+            <div className="container mx-auto px-4 md:px-6 lg:px-12">
+                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-6 md:mb-8 flex items-center hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
                 
                 {/* Header Section */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-8 border-b border-gray-100 pb-8">
-                    <div>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-gray-100 pb-8">
+                    <div className="mb-6 md:mb-0">
                         <div className="flex items-center space-x-3 mb-2">
                              <span className="text-[#BFA36F] uppercase tracking-[0.2em] font-bold text-xs block">Kurasi Lokal</span>
                              <span className="bg-[#BFA36F] text-white text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">Gucci Artisan Tier 1</span>
                         </div>
                         <h1 className="text-3xl md:text-5xl font-serif font-bold text-black mb-4">Jaringan Mitra Artisan</h1>
-                        <p className="text-base md:text-lg text-gray-600 max-w-xl">500+ Butik & Sanggar di bawah naungan PT. Graha Citra Prima.</p>
+                        <p className="text-sm md:text-lg text-gray-600 max-w-xl">500+ Butik & Sanggar di bawah naungan PT. Graha Citra Prima.</p>
                     </div>
                     
                     {/* Toggle Buttons */}
-                    <div className="mt-6 md:mt-0 flex bg-gray-100 p-1 rounded-lg w-full md:w-auto">
+                    <div className="flex bg-gray-100 p-1 rounded-lg w-full md:w-auto">
                         <button 
                             onClick={() => setViewMode('list')}
-                            className={`flex-1 md:flex-none flex items-center justify-center px-6 py-3 uppercase text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'list' ? 'bg-white text-[#8B1D1D] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                            className={`flex-1 md:flex-none flex items-center justify-center px-4 md:px-6 py-3 uppercase text-[10px] md:text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'list' ? 'bg-white text-[#8B1D1D] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
                         >
                             <List className="w-4 h-4 mr-2" /> Daftar
                         </button>
                         <button 
                             onClick={() => setViewMode('map')}
-                            className={`flex-1 md:flex-none flex items-center justify-center px-6 py-3 uppercase text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'map' ? 'bg-[#0F2420] text-[#BFA36F] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                            className={`flex-1 md:flex-none flex items-center justify-center px-4 md:px-6 py-3 uppercase text-[10px] md:text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'map' ? 'bg-[#0F2420] text-[#BFA36F] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
                         >
                             <MapIcon className="w-4 h-4 mr-2" /> Peta
                         </button>
@@ -378,18 +379,18 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
                             <div 
                                 key={partner.id} 
                                 onClick={() => onPartnerSelect && onPartnerSelect(partner)}
-                                className="group border-b border-gray-200 pb-8 flex items-start cursor-pointer hover:bg-gray-50 p-4 rounded-xl transition-all"
+                                className="group border border-gray-100 md:border-b md:border-t-0 md:border-x-0 md:border-gray-200 pb-6 md:pb-8 flex flex-col md:flex-row items-start cursor-pointer hover:bg-gray-50 p-4 md:px-4 md:py-0 rounded-xl transition-all shadow-sm md:shadow-none"
                             >
-                                <div className="bg-[#FAF9F6] p-4 md:p-5 rounded-full mr-4 md:mr-6 group-hover:bg-[#8B1D1D] transition-colors duration-500 shrink-0">
+                                <div className="bg-[#FAF9F6] p-4 md:p-5 rounded-full mb-4 md:mb-0 md:mr-6 group-hover:bg-[#8B1D1D] transition-colors duration-500 shrink-0 self-start">
                                     <MapPin className="w-5 h-5 md:w-6 md:h-6 text-[#8B1D1D] group-hover:text-white transition-colors duration-500" />
                                 </div>
-                                <div className="flex-1">
+                                <div className="flex-1 w-full">
                                     <div className="flex justify-between items-start">
-                                        <div>
-                                            <span className="text-[#8B1D1D] font-bold text-xs uppercase tracking-widest mb-2 block">{partner.loc}</span>
+                                        <div className="w-full">
+                                            <span className="text-[#8B1D1D] font-bold text-[10px] md:text-xs uppercase tracking-widest mb-1 md:mb-2 block">{partner.loc}</span>
                                             <h3 className="text-xl md:text-2xl font-serif font-bold mb-2 text-black group-hover:text-[#BFA36F] transition-colors">{partner.name}</h3>
-                                            <p className="text-gray-800 mb-2 font-bold text-sm">{partner.spec}</p>
-                                            <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{partner.desc}</p>
+                                            <p className="text-gray-800 mb-2 font-bold text-xs md:text-sm">{partner.spec}</p>
+                                            <p className="text-gray-500 text-xs md:text-sm leading-relaxed line-clamp-2">{partner.desc}</p>
                                         </div>
                                     </div>
                                     <span 
@@ -429,7 +430,7 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
                          </div>
                          
                          {/* Map Frame */}
-                         <div className="flex-1 bg-gray-200 rounded-2xl overflow-hidden shadow-inner relative">
+                         <div className="flex-1 bg-gray-200 rounded-2xl overflow-hidden shadow-inner relative h-[300px] lg:h-auto order-first lg:order-last">
                             <iframe 
                                 src={currentMapUrl}
                                 width="100%" 
@@ -451,8 +452,8 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
 export const PartnerDetailPage: React.FC<PartnerDetailPageProps> = ({ onBack, partner }) => {
     if (!partner) return null;
     return (
-         <div className="bg-white min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn">
-            <div className="container mx-auto px-6 lg:px-12">
+         <div className="bg-white min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn">
+            <div className="container mx-auto px-4 md:px-12">
                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
                 </button>
@@ -462,7 +463,7 @@ export const PartnerDetailPage: React.FC<PartnerDetailPageProps> = ({ onBack, pa
                     </div>
                     <div className="w-full md:w-1/2">
                         <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">{partner.name}</h1>
-                        <p className="text-gray-600 mb-6 leading-relaxed">{partner.desc}</p>
+                        <p className="text-gray-600 mb-6 leading-relaxed text-justify">{partner.desc}</p>
                         <div className="bg-gray-100 p-6 rounded-lg">
                             <h3 className="font-bold mb-2 uppercase tracking-wider text-xs">Lokasi</h3>
                             <p className="font-serif text-lg">{partner.loc}</p>
@@ -487,27 +488,27 @@ export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => {
     return (
         <div className="bg-gray-100 min-h-screen pt-24 pb-12 font-['Roboto'] font-medium text-gray-800">
             <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-                <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-sm tracking-widest uppercase font-bold">
+                <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-xs md:text-sm tracking-widest uppercase font-bold">
                     <ArrowLeft className="w-5 h-5 mr-2" /> KEMBALI
                 </button>
                 <div className="bg-white p-6 md:p-16 shadow-2xl border-t-8 border-[#8B1D1D] relative">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gray-100 rounded-bl-full"></div>
+                    <div className="absolute top-0 right-0 w-16 h-16 md:w-20 md:h-20 bg-gray-100 rounded-bl-full"></div>
                     
                     <div className="flex justify-center mb-8">
                         <img 
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_the_Ministry_of_Law_and_Human_Rights_of_the_Republic_of_Indonesia.png/1200px-Flag_of_the_Ministry_of_Law_and_Human_Rights_of_the_Republic_of_Indonesia.png" 
                             alt="Logo" 
-                            className="h-16 md:h-20 mb-4"
+                            className="h-12 md:h-16 mb-4"
                         />
                     </div>
 
-                    <h1 className="text-lg md:text-2xl font-bold mb-10 text-center uppercase border-b-2 border-black pb-6 leading-relaxed">
+                    <h1 className="text-lg md:text-2xl font-bold mb-8 md:mb-10 text-center uppercase border-b-2 border-black pb-6 leading-relaxed">
                         KEPUTUSAN MENTERI HUKUM DAN HAK ASASI MANUSIA <br/> REPUBLIK INDONESIA
                     </h1>
                     
                     <div className="bg-gray-50 p-4 md:p-8 rounded-lg border border-gray-200 mb-8 overflow-x-auto">
-                        {/* Grid for colons alignment - Mobile Optimized */}
-                        <div className="min-w-[300px] grid grid-cols-[100px_10px_1fr] md:grid-cols-[220px_20px_1fr] gap-y-4 text-xs md:text-base font-medium">
+                        {/* Grid for colons alignment - Mobile Optimized with min-width */}
+                        <div className="min-w-[280px] grid grid-cols-[80px_10px_1fr] md:grid-cols-[220px_20px_1fr] gap-y-4 text-xs md:text-base font-medium">
                             <div>NOMOR</div> <div className="text-center">:</div> <div className="font-bold">AHU-0058932.AH.01.01.TAHUN 2025</div>
                             <div>TANGGAL</div> <div className="text-center">:</div> <div>24 DESEMBER 2025</div>
                             <div>TENTANG</div> <div className="text-center">:</div> <div>PENGESAHAN PENDIRIAN BADAN HUKUM PERSEROAN TERBATAS PT. GRAHA CITRA PRIMA</div>
@@ -549,7 +550,7 @@ export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => {
 export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
   <div className="bg-gray-100 min-h-screen pt-24 pb-12 font-['Roboto'] font-medium text-gray-800">
     <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-        <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-sm tracking-widest uppercase font-bold">
+        <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-xs md:text-sm tracking-widest uppercase font-bold">
             <ArrowLeft className="w-5 h-5 mr-2" /> KEMBALI
         </button>
         <div className="bg-white p-6 md:p-16 shadow-2xl border-l-8 border-blue-900">
@@ -561,15 +562,15 @@ export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
                 />
                 <div className="text-right">
                     <h2 className="text-sm md:text-lg font-bold text-blue-900">KEMENTERIAN PERDAGANGAN</h2>
-                    <p className="text-xs md:text-sm font-bold">REPUBLIK INDONESIA</p>
+                    <p className="text-[10px] md:text-sm font-bold">REPUBLIK INDONESIA</p>
                 </div>
             </div>
 
-            <h1 className="text-xl md:text-2xl font-bold mb-10 text-center uppercase tracking-wide">
+            <h1 className="text-lg md:text-2xl font-bold mb-10 text-center uppercase tracking-wide">
                 SURAT PERSETUJUAN EKSPOR (SPE)
             </h1>
 
-            <div className="grid grid-cols-[120px_10px_1fr] md:grid-cols-[240px_20px_1fr] gap-y-5 text-xs md:text-base mb-12 font-medium">
+            <div className="grid grid-cols-[80px_10px_1fr] md:grid-cols-[240px_20px_1fr] gap-y-5 text-xs md:text-base mb-12 font-medium">
                 <div>NO. AJU</div> <div className="text-center">:</div> <div className="font-mono bg-gray-100 p-1 inline-block">EKS-2025-01-00892</div>
                 <div>PERUSAHAAN</div> <div className="text-center">:</div> <div>PT. GRAHA CITRA PRIMA</div>
                 <div>PRODUK</div> <div className="text-center">:</div> <div>TEKSTIL & TPT</div>
@@ -581,7 +582,7 @@ export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
              <div className="bg-blue-50 p-6 rounded-lg border border-blue-100 flex items-start mb-8">
                  <ShieldCheck className="w-8 h-8 text-blue-900 mr-4 flex-shrink-0" />
                  <div>
-                     <h4 className="font-bold text-blue-900 mb-2">OTORISASI KHUSUS</h4>
+                     <h4 className="font-bold text-blue-900 mb-2 text-sm md:text-base">OTORISASI KHUSUS</h4>
                      <p className="text-xs md:text-sm text-blue-800 leading-relaxed">
                          Perusahaan ini telah memenuhi standar kepatuhan ekspor barang bernilai seni tinggi (Artisan Goods).
                      </p>
@@ -595,7 +596,7 @@ export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
 export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
   <div className="bg-gray-100 min-h-screen pt-24 pb-12 font-['Roboto'] font-medium text-gray-800">
     <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-        <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-sm tracking-widest uppercase font-bold">
+        <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-xs md:text-sm tracking-widest uppercase font-bold">
             <ArrowLeft className="w-5 h-5 mr-2" /> KEMBALI
         </button>
         <div className="bg-white p-6 md:p-16 shadow-2xl relative overflow-hidden">
@@ -606,16 +607,16 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
                  <div className="flex justify-between items-center mb-12">
                      <img src="https://i0.wp.com/rhodesprojects.com/wp-content/uploads/2020/02/ISO_9001-2015.jpg?fit=1763%2C1800&ssl=1" alt="ISO" className="h-12 md:h-20" />
                      <div className="text-right">
-                         <h3 className="text-lg md:text-xl font-bold text-gray-400">CERTIFICATE</h3>
+                         <h3 className="text-sm md:text-xl font-bold text-gray-400">CERTIFICATE</h3>
                          <p className="text-[10px] md:text-xs font-bold tracking-widest">QUALITY MANAGEMENT</p>
                      </div>
                  </div>
 
                  <div className="text-center mb-12">
                      <p className="text-[10px] md:text-sm uppercase tracking-widest mb-4">This is to certify that</p>
-                     <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#8B1D1D] mb-4">PT. GRAHA CITRA PRIMA</h2>
+                     <h2 className="text-xl md:text-3xl font-serif font-bold text-[#8B1D1D] mb-4">PT. GRAHA CITRA PRIMA</h2>
                      <p className="text-[10px] md:text-sm uppercase tracking-widest mb-8">Has been assessed and found to conform to:</p>
-                     <h1 className="text-4xl md:text-5xl font-bold text-black mb-2">ISO 9001:2015</h1>
+                     <h1 className="text-3xl md:text-5xl font-bold text-black mb-2">ISO 9001:2015</h1>
                  </div>
 
                  <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 mb-12 border-t border-b border-gray-200 py-6">
@@ -783,15 +784,15 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     }, []);
 
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn font-sans">
-             <div className="container mx-auto px-6 lg:px-12">
-                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
+        <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn font-sans">
+             <div className="container mx-auto px-4 md:px-12">
+                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline sticky top-24 md:static bg-[#FAF9F6] py-2 z-10 w-full">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
 
                 <div className="mb-12">
                      <h1 className="text-3xl md:text-5xl font-serif font-bold text-black mb-4">Laporan Dampak Ekspor</h1>
-                     <p className="text-base md:text-lg text-gray-600 max-w-3xl">Transparansi data real-time mengenai volume perdagangan dan kontribusi ekonomi.</p>
+                     <p className="text-sm md:text-lg text-gray-600 max-w-3xl">Transparansi data real-time mengenai volume perdagangan dan kontribusi ekonomi.</p>
                 </div>
 
                 {/* Stats Grid */}
@@ -818,11 +819,11 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                     {/* Header */}
                     <div className="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
                         <div>
-                            <h3 className="font-serif font-bold text-xl md:text-3xl text-white tracking-widest flex items-center">
+                            <h3 className="font-serif font-bold text-lg md:text-3xl text-white tracking-widest flex items-center">
                                 <Globe className="w-5 h-5 md:w-8 md:h-8 mr-3 md:mr-4 text-[#BFA36F]" />
                                 BURSA GLOBAL
                             </h3>
-                            <p className="text-[10px] md:text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
+                            <p className="text-[9px] md:text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
                                 Live Update • {new Date().toLocaleTimeString('en-GB')}
                             </p>
                         </div>
@@ -844,17 +845,17 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                 key={`${country.code}-${idx}`} 
                                 className="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-4 text-sm font-mono items-center bg-[#1A1A1A] p-4 md:px-6 rounded-lg border-l-4 border-transparent hover:border-[#BFA36F] transition-all hover:bg-[#222] group animate-fadeIn"
                             >
-                                {/* Mobile View: Stacked Card Style */}
-                                <div className="md:hidden col-span-2 flex justify-between items-center mb-2">
+                                {/* Mobile View: Stacked Card Style - Compact */}
+                                <div className="md:hidden col-span-2 flex justify-between items-center mb-1">
                                      <div className="flex items-center text-white font-bold">
                                         <img src={country.flagUrl} alt="flag" className="w-6 h-4 object-cover rounded-sm mr-2 shadow-sm" />
-                                        {country.name}
+                                        {country.name.split('(')[0]} {/* Shorten name on mobile */}
                                     </div>
                                     <div className={`font-bold ${country.change.includes('+') ? 'text-green-500' : 'text-red-500'}`}>
                                         {country.change}
                                     </div>
                                 </div>
-                                <div className="md:hidden col-span-2 flex justify-between text-xs text-gray-400 border-t border-gray-800 pt-2">
+                                <div className="md:hidden col-span-2 flex justify-between text-[10px] text-gray-400 border-t border-gray-800 pt-2 mt-1">
                                     <span>Share: {country.share}</span>
                                     <span className="text-[#BFA36F] font-bold">{country.income}</span>
                                 </div>
@@ -882,7 +883,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
 
                 {/* News Archive Section */}
                 <div className="mt-20 border-t border-gray-200 pt-16">
-                    <h3 className="font-serif font-bold text-3xl md:text-4xl mb-12 text-black leading-tight">Berita Terkini</h3>
+                    <h3 className="font-serif font-bold text-2xl md:text-4xl mb-8 md:mb-12 text-black leading-tight">Berita Terkini</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {NEWS_ITEMS.map((item) => (
                             <div key={item.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
@@ -894,7 +895,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                     />
                                 </div>
                                 <div className="p-6 flex flex-col flex-grow">
-                                    <h4 className="font-serif font-bold text-xl mb-3 text-black group-hover:text-[#8B1D1D] transition-colors line-clamp-2">
+                                    <h4 className="font-serif font-bold text-lg md:text-xl mb-3 text-black group-hover:text-[#8B1D1D] transition-colors line-clamp-2">
                                         {item.title}
                                     </h4>
                                     <p className="text-gray-600 mb-6 leading-relaxed font-medium text-sm line-clamp-3">
@@ -919,7 +920,7 @@ export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
         <div className="bg-black min-h-screen text-white relative">
             <button 
                 onClick={onBack} 
-                className="absolute top-8 left-8 z-50 text-white font-bold uppercase tracking-widest text-xs flex items-center hover:text-[#BFA36F] transition-colors bg-black/50 p-2 rounded-full"
+                className="absolute top-6 left-6 z-50 text-white font-bold uppercase tracking-widest text-xs flex items-center hover:text-[#BFA36F] transition-colors bg-black/50 p-2 rounded-full"
             >
                 <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
             </button>
@@ -935,14 +936,14 @@ export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
                 
                 <div className="absolute bottom-0 left-0 w-full p-6 md:p-24 text-center">
-                    <span className="text-[#BFA36F] uppercase tracking-[0.5em] font-bold text-xs mb-6 block animate-fadeIn">Exclusive Invitation</span>
-                    <h1 className="text-4xl md:text-8xl font-serif font-bold italic mb-6 animate-fadeIn delay-100">
+                    <span className="text-[#BFA36F] uppercase tracking-[0.5em] font-bold text-[10px] md:text-xs mb-4 md:mb-6 block animate-fadeIn">Exclusive Invitation</span>
+                    <h1 className="text-4xl md:text-8xl font-serif font-bold italic mb-6 animate-fadeIn delay-100 leading-tight">
                         The Equinox Gala
                     </h1>
-                    <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-medium tracking-wide leading-relaxed animate-fadeIn delay-200">
+                    <p className="text-sm md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-medium tracking-wide leading-relaxed animate-fadeIn delay-200">
                         Malam apresiasi bagi para artisan dan mitra strategis.
                     </p>
-                    <button className="border border-[#BFA36F] text-[#BFA36F] px-8 py-3 md:px-12 md:py-4 text-xs font-black uppercase tracking-[0.25em] hover:bg-[#BFA36F] hover:text-black transition-all animate-fadeIn delay-300">
+                    <button className="border border-[#BFA36F] text-[#BFA36F] px-8 py-3 md:px-12 md:py-4 text-xs font-black uppercase tracking-[0.25em] hover:bg-[#BFA36F] hover:text-black transition-all animate-fadeIn delay-300 w-full md:w-auto">
                         RSVP VIA CONCIERGE
                     </button>
                 </div>

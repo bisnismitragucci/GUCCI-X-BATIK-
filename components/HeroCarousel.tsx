@@ -26,12 +26,12 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 7000); // Slower for luxury feel
+    const timer = setInterval(nextSlide, 7000); 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="relative w-full h-[550px] md:h-[750px] overflow-hidden bg-black group">
+    <div className="relative w-full h-[600px] md:h-[750px] overflow-hidden bg-black group">
       {/* Slides */}
       {HERO_SLIDES.map((slide, index) => (
         <div
@@ -55,30 +55,30 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
                 }}
              />
              {/* Dark gradient overlay - Mobile optimized to be darker for readability */}
-             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 md:via-black/60 to-black/20 md:to-transparent"></div>
+             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 md:via-black/60 to-black/20 md:to-transparent"></div>
           </div>
 
           {/* Content - Centered Bottom */}
-          <div className="absolute inset-0 flex items-center md:items-end justify-center pb-0 md:pb-28 text-center px-6 pointer-events-none">
-            <div className="max-w-5xl mx-auto text-white pointer-events-auto mt-16 md:mt-0">
-              <h2 className="text-xs md:text-base font-black tracking-[0.3em] uppercase text-[#BFA36F] mb-4 md:mb-6 animate-fadeIn flex items-center justify-center gap-2 md:gap-4 drop-shadow-xl">
+          <div className="absolute inset-0 flex items-center md:items-end justify-center pb-0 md:pb-28 text-center px-4 md:px-6 pointer-events-none">
+            <div className="max-w-5xl mx-auto text-white pointer-events-auto mt-0 md:mt-0 flex flex-col items-center justify-center h-full md:h-auto md:block">
+              <h2 className="text-[10px] md:text-base font-black tracking-[0.2em] md:tracking-[0.3em] uppercase text-[#BFA36F] mb-3 md:mb-6 animate-fadeIn flex items-center justify-center gap-2 md:gap-4 drop-shadow-xl mt-16 md:mt-0">
                  <span className="w-8 md:w-12 h-[2px] bg-[#BFA36F]"></span> 
                  GUCCI & BATIK
                  <span className="w-8 md:w-12 h-[2px] bg-[#BFA36F]"></span>
               </h2>
               
-              {/* Responsive Title: Smaller on mobile, massive on desktop */}
-              <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif font-bold italic mb-6 md:mb-8 leading-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] text-white">
+              {/* Responsive Title: Smaller on mobile to fit screen */}
+              <h1 className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl font-serif font-bold italic mb-4 md:mb-8 leading-tight drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] text-white px-2">
                 {slide.title}
               </h1>
               
-              <p className="text-sm md:text-xl mb-8 md:mb-12 font-semibold text-gray-200 md:text-white tracking-wide max-w-4xl mx-auto drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] leading-relaxed px-2">
+              <p className="text-xs sm:text-sm md:text-xl mb-6 md:mb-12 font-semibold text-gray-200 md:text-white tracking-wide max-w-4xl mx-auto drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] leading-relaxed px-4 line-clamp-3 md:line-clamp-none">
                 {slide.subtitle}
               </p>
               
               <button 
                 onClick={() => handleCtaClick(slide.cta)}
-                className="bg-[#8B1D1D] border-2 border-[#8B1D1D] text-white hover:bg-black hover:border-white px-8 py-3 md:px-12 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.25em] transition-all duration-300 w-full md:w-auto min-w-[200px] md:min-w-[240px] shadow-2xl backdrop-blur-sm"
+                className="bg-[#8B1D1D] border-2 border-[#8B1D1D] text-white hover:bg-black hover:border-white px-6 py-3 md:px-12 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] md:tracking-[0.25em] transition-all duration-300 w-auto min-w-[180px] md:min-w-[240px] shadow-2xl backdrop-blur-sm rounded-sm"
               >
                 {slide.cta}
               </button>
@@ -102,13 +102,13 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ onNavigate }) => {
       </button>
 
       {/* Pagination Lines */}
-      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-3 md:space-x-4">
+      <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex space-x-2 md:space-x-4">
         {HERO_SLIDES.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`h-[3px] transition-all duration-500 shadow-md ${
-              index === currentSlide ? 'w-12 md:w-16 bg-[#8B1D1D]' : 'w-6 md:w-8 bg-white/60 hover:bg-white'
+              index === currentSlide ? 'w-8 md:w-16 bg-[#8B1D1D]' : 'w-4 md:w-8 bg-white/60 hover:bg-white'
             }`}
           />
         ))}
