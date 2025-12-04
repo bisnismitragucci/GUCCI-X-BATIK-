@@ -67,10 +67,10 @@ const ChatWidget: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end font-sans">
-      {/* Chat Window */}
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end font-sans">
+      {/* Chat Window - Responsive Width */}
       {isOpen && (
-        <div className="mb-4 w-80 md:w-96 bg-[#FAF9F6] rounded-t-lg shadow-2xl border border-[#8B1D1D]/30 overflow-hidden flex flex-col h-[500px]">
+        <div className="mb-4 w-[calc(100vw-32px)] md:w-96 bg-[#FAF9F6] rounded-t-lg shadow-2xl border border-[#8B1D1D]/30 overflow-hidden flex flex-col h-[450px] md:h-[500px]">
           {/* Header - Holiday Red */}
           <div className="bg-[#8B1D1D] p-4 flex justify-between items-center text-white border-b border-[#BFA36F]">
             <div className="flex items-center space-x-3">
@@ -95,14 +95,14 @@ const ChatWidget: React.FC = () => {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 p-5 overflow-y-auto bg-[#FAF9F6] scrollbar-hide">
+          <div className="flex-1 p-4 md:p-5 overflow-y-auto bg-[#FAF9F6] scrollbar-hide">
             {messages.map((msg) => (
               <div 
                 key={msg.id} 
-                className={`flex mb-6 ${msg.sender === ChatSender.USER ? 'justify-end' : 'justify-start'}`}
+                className={`flex mb-4 md:mb-6 ${msg.sender === ChatSender.USER ? 'justify-end' : 'justify-start'}`}
               >
                 <div 
-                  className={`max-w-[85%] p-4 text-sm leading-relaxed shadow-sm ${
+                  className={`max-w-[85%] p-3 md:p-4 text-sm leading-relaxed shadow-sm ${
                     msg.sender === ChatSender.USER 
                       ? 'bg-[#8B1D1D] text-white rounded-t-xl rounded-bl-xl' 
                       : 'bg-white border border-gray-200 text-gray-800 rounded-t-xl rounded-br-xl'
@@ -140,12 +140,12 @@ const ChatWidget: React.FC = () => {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSendMessage} className="p-4 bg-white border-t border-gray-200 flex gap-2">
+          <form onSubmit={handleSendMessage} className="p-3 md:p-4 bg-white border-t border-gray-200 flex gap-2">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Tanya tentang Batik atau Kemitraan..."
+              placeholder="Tanya Batik/Kemitraan..."
               className="flex-1 border-b border-gray-300 px-2 py-2 text-sm focus:outline-none focus:border-[#8B1D1D] bg-transparent"
             />
             <button 

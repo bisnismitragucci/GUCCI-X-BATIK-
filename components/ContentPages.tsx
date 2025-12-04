@@ -107,22 +107,22 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ onBack, onProduc
     ];
 
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-32 pb-12 animate-fadeIn">
+        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn">
             <div className="container mx-auto px-6 lg:px-12">
                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
                 
-                <div className="mb-16 border-b border-gray-200 pb-8">
+                <div className="mb-10 md:mb-16 border-b border-gray-200 pb-8">
                     <span className="text-[#BFA36F] font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Kapsul Eksklusif 2025</span>
-                    <h1 className="text-4xl md:text-6xl font-serif font-bold text-black mb-6">The Batik Renaissance</h1>
-                    <p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed">
+                    <h1 className="text-3xl md:text-6xl font-serif font-bold text-black mb-6">The Batik Renaissance</h1>
+                    <p className="text-base md:text-xl text-gray-600 max-w-3xl leading-relaxed">
                         Koleksi kapsul eksklusif yang memadukan motif Flora ikonik Gucci dengan warisan wastra nusantara. 
-                        Setiap helai benang menceritakan pertemuan dua budaya besar: Romantisme Florence dan Mistisisme Jawa.
+                        Setiap helai benang menceritakan pertemuan dua budaya besar.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
                     {collectionItems.map((item, index) => (
                         <div 
                             key={index} 
@@ -146,13 +146,13 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ onBack, onProduc
                             
                             {/* Product Info */}
                             <div className="flex flex-col flex-grow">
-                                <span className="text-[#BFA36F] text-[10px] font-black uppercase tracking-widest mb-2">
+                                <span className="text-[#BFA36F] text-[10px] font-black uppercase tracking-widest mb-2 line-clamp-1">
                                     {item.material}
                                 </span>
-                                <h3 className="font-serif font-bold text-2xl text-black mb-3 group-hover:text-[#8B1D1D] transition-colors leading-tight">
+                                <h3 className="font-serif font-bold text-xl md:text-2xl text-black mb-3 group-hover:text-[#8B1D1D] transition-colors leading-tight">
                                     {item.title}
                                 </h3>
-                                <p className="text-gray-500 text-sm leading-relaxed font-medium line-clamp-4 group-hover:text-gray-800 transition-colors">
+                                <p className="text-gray-500 text-sm leading-relaxed font-medium line-clamp-3 group-hover:text-gray-800 transition-colors">
                                     {item.description}
                                 </p>
                             </div>
@@ -171,18 +171,18 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
     if (!product) return null;
 
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-28 pb-20 animate-fadeIn font-sans">
+        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-28 pb-20 animate-fadeIn font-sans">
              <div className="container mx-auto px-6 lg:px-12">
                  {/* Breadcrumb / Back */}
-                <nav className="flex items-center text-xs font-bold uppercase tracking-widest mb-12 text-gray-500">
+                <nav className="flex items-center text-xs font-bold uppercase tracking-widest mb-8 md:mb-12 text-gray-500">
                     <button onClick={onBack} className="hover:text-[#8B1D1D] transition-colors flex items-center">
                         <ArrowLeft className="w-4 h-4 mr-2" /> Koleksi
                     </button>
                     <span className="mx-4">/</span>
-                    <span className="text-[#8B1D1D]">{product.title}</span>
+                    <span className="text-[#8B1D1D] truncate max-w-[150px] md:max-w-none">{product.title}</span>
                 </nav>
 
-                <div className="flex flex-col lg:flex-row gap-16">
+                <div className="flex flex-col lg:flex-row gap-8 md:gap-16">
                     {/* Image Section - Sticky on Desktop */}
                     <div className="w-full lg:w-1/2 lg:sticky lg:top-32 h-fit">
                         <div className="relative aspect-[3/4] overflow-hidden shadow-2xl rounded-sm">
@@ -193,8 +193,8 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                                 className="w-full h-full object-cover"
                             />
                             {/* Badge */}
-                            <div className="absolute top-6 left-6">
-                                <span className="bg-[#8B1D1D] text-white text-[10px] font-black uppercase tracking-widest px-4 py-2 shadow-lg">
+                            <div className="absolute top-4 left-4 md:top-6 md:left-6">
+                                <span className="bg-[#8B1D1D] text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 md:px-4 md:py-2 shadow-lg">
                                     Limited Edition 2025
                                 </span>
                             </div>
@@ -203,65 +203,65 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
 
                     {/* Content Section */}
                     <div className="w-full lg:w-1/2 flex flex-col">
-                        <div className="border-b border-[#BFA36F] pb-8 mb-8">
+                        <div className="border-b border-[#BFA36F] pb-6 md:pb-8 mb-6 md:mb-8">
                             <span className="text-[#BFA36F] text-xs font-black uppercase tracking-[0.25em] mb-4 block flex items-center">
                                 <MapPin className="w-4 h-4 mr-2" /> {product.origin}
                             </span>
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-black mb-4 leading-tight">
+                            <h1 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-black mb-4 leading-tight">
                                 {product.title}
                             </h1>
-                            <p className="text-sm font-bold uppercase tracking-widest text-gray-500">
+                            <p className="text-xs md:text-sm font-bold uppercase tracking-widest text-gray-500">
                                 {product.material}
                             </p>
                         </div>
 
                         {/* Story / Description */}
-                        <div className="mb-10">
+                        <div className="mb-8 md:mb-10">
                             <h3 className="text-[#8B1D1D] font-bold text-sm uppercase tracking-wider mb-4 flex items-center">
                                 <Info className="w-4 h-4 mr-2" /> Narasi Produk
                             </h3>
-                            <p className="text-gray-800 leading-8 text-lg font-medium font-serif">
+                            <p className="text-gray-800 leading-7 md:leading-8 text-base md:text-lg font-medium font-serif">
                                 {product.description}
                             </p>
                         </div>
 
                         {/* Philosophy Box */}
-                        <div className="bg-white p-8 border-l-4 border-[#BFA36F] shadow-sm mb-10 relative">
+                        <div className="bg-white p-6 md:p-8 border-l-4 border-[#BFA36F] shadow-sm mb-8 md:mb-10 relative">
                              <Feather className="w-6 h-6 text-[#BFA36F]/20 absolute top-4 right-4" />
                             <h3 className="text-[#988053] font-bold text-xs uppercase tracking-wider mb-4">
                                 Filosofi Motif
                             </h3>
-                            <p className="text-gray-600 leading-relaxed italic text-lg">
+                            <p className="text-gray-600 leading-relaxed italic text-base md:text-lg">
                                 "{product.philosophy}"
                             </p>
                         </div>
 
                         {/* Specifications Grid */}
-                        <div className="grid grid-cols-2 gap-y-8 gap-x-4 border-t border-gray-200 pt-8 mb-12">
+                        <div className="grid grid-cols-2 gap-y-6 md:gap-y-8 gap-x-4 border-t border-gray-200 pt-8 mb-12">
                              <div>
                                 <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
-                                    <Ruler className="w-3 h-3 mr-1" /> Teknik Pembuatan
+                                    <Ruler className="w-3 h-3 mr-1" /> Teknik
                                 </h4>
-                                <p className="font-bold text-black text-sm">{product.process}</p>
+                                <p className="font-bold text-black text-xs md:text-sm">{product.process}</p>
                             </div>
                             <div>
                                 <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
-                                    <Clock className="w-3 h-3 mr-1" /> Durasi Pengerjaan
+                                    <Clock className="w-3 h-3 mr-1" /> Durasi
                                 </h4>
-                                <p className="font-bold text-black text-sm">{product.time}</p>
+                                <p className="font-bold text-black text-xs md:text-sm">{product.time}</p>
                             </div>
                              <div>
                                 <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
-                                    <ShoppingBag className="w-3 h-3 mr-1" /> Ketersediaan
+                                    <ShoppingBag className="w-3 h-3 mr-1" /> Status
                                 </h4>
-                                <p className="font-bold text-[#8B1D1D] text-sm">Made to Order (Pre-Order)</p>
+                                <p className="font-bold text-[#8B1D1D] text-xs md:text-sm">Made to Order</p>
                             </div>
                             <div>
                                 <h4 className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-1 flex items-center">
                                     <Award className="w-3 h-3 mr-1" /> Sertifikasi
                                 </h4>
-                                <p className="font-bold text-black text-sm flex items-center">
-                                    <ShieldCheck className="w-3 h-3 mr-1 text-green-600" /> Gucci Artisan Tier 1
+                                <p className="font-bold text-black text-xs md:text-sm flex items-center">
+                                    <ShieldCheck className="w-3 h-3 mr-1 text-green-600" /> Tier 1
                                 </p>
                             </div>
                         </div>
@@ -270,20 +270,17 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                         <div className="mt-auto space-y-4">
                              <button 
                                 onClick={openWhatsAppRegistration}
-                                className="w-full bg-[#8B1D1D] text-white py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-black transition-colors shadow-lg flex justify-center items-center group"
+                                className="w-full bg-[#8B1D1D] text-white py-4 md:py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-black transition-colors shadow-lg flex justify-center items-center group"
                             >
                                 <ShoppingBag className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" /> Pesan Sekarang
                             </button>
                             <button 
                                 onClick={openWhatsAppRegistration}
-                                className="w-full bg-white text-black border border-black py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-gray-50 transition-colors flex justify-center items-center"
+                                className="w-full bg-white text-black border border-black py-4 md:py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-gray-50 transition-colors flex justify-center items-center"
                             >
-                                Hubungi Private Concierge
+                                Chat Concierge
                             </button>
                         </div>
-                        <p className="text-[10px] text-gray-400 mt-6 text-center lg:text-left italic">
-                            *Setiap karya adalah unik (one-of-a-kind). Dilengkapi sertifikat keaslian digital (NFT).
-                        </p>
                     </div>
                 </div>
              </div>
@@ -340,7 +337,7 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
     ];
 
     return (
-        <div className="bg-white min-h-screen pt-32 pb-12 animate-fadeIn">
+        <div className="bg-white min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn">
             <div className="container mx-auto px-6 lg:px-12">
                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
@@ -353,53 +350,52 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
                              <span className="text-[#BFA36F] uppercase tracking-[0.2em] font-bold text-xs block">Kurasi Lokal</span>
                              <span className="bg-[#BFA36F] text-white text-[9px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">Gucci Artisan Tier 1</span>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-serif font-bold text-black mb-4">Jaringan Mitra Artisan</h1>
-                        <p className="text-lg text-gray-600 max-w-xl">500+ Butik & Sanggar di bawah naungan PT. Graha Citra Prima – GUCCI, membawa standar Italia ke tanah air.</p>
+                        <h1 className="text-3xl md:text-5xl font-serif font-bold text-black mb-4">Jaringan Mitra Artisan</h1>
+                        <p className="text-base md:text-lg text-gray-600 max-w-xl">500+ Butik & Sanggar di bawah naungan PT. Graha Citra Prima.</p>
                     </div>
                     
                     {/* Toggle Buttons */}
-                    <div className="mt-6 md:mt-0 flex bg-gray-100 p-1 rounded-lg">
+                    <div className="mt-6 md:mt-0 flex bg-gray-100 p-1 rounded-lg w-full md:w-auto">
                         <button 
                             onClick={() => setViewMode('list')}
-                            className={`flex items-center px-6 py-3 uppercase text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'list' ? 'bg-white text-[#8B1D1D] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                            className={`flex-1 md:flex-none flex items-center justify-center px-6 py-3 uppercase text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'list' ? 'bg-white text-[#8B1D1D] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
                         >
                             <List className="w-4 h-4 mr-2" /> Daftar
                         </button>
                         <button 
                             onClick={() => setViewMode('map')}
-                            className={`flex items-center px-6 py-3 uppercase text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'map' ? 'bg-[#0F2420] text-[#BFA36F] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                            className={`flex-1 md:flex-none flex items-center justify-center px-6 py-3 uppercase text-xs font-bold tracking-widest transition-all rounded-md ${viewMode === 'map' ? 'bg-[#0F2420] text-[#BFA36F] shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
                         >
-                            <MapIcon className="w-4 h-4 mr-2" /> Google Maps
+                            <MapIcon className="w-4 h-4 mr-2" /> Peta
                         </button>
                     </div>
                 </div>
 
                 {/* VIEW MODE: LIST */}
                 {viewMode === 'list' && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 animate-fadeIn">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6 md:gap-y-12 animate-fadeIn">
                         {partners.map((partner) => (
                             <div 
                                 key={partner.id} 
                                 onClick={() => onPartnerSelect && onPartnerSelect(partner)}
                                 className="group border-b border-gray-200 pb-8 flex items-start cursor-pointer hover:bg-gray-50 p-4 rounded-xl transition-all"
                             >
-                                <div className="bg-[#FAF9F6] p-5 rounded-full mr-6 group-hover:bg-[#8B1D1D] transition-colors duration-500 shrink-0">
-                                    <MapPin className="w-6 h-6 text-[#8B1D1D] group-hover:text-white transition-colors duration-500" />
+                                <div className="bg-[#FAF9F6] p-4 md:p-5 rounded-full mr-4 md:mr-6 group-hover:bg-[#8B1D1D] transition-colors duration-500 shrink-0">
+                                    <MapPin className="w-5 h-5 md:w-6 md:h-6 text-[#8B1D1D] group-hover:text-white transition-colors duration-500" />
                                 </div>
                                 <div className="flex-1">
                                     <div className="flex justify-between items-start">
                                         <div>
                                             <span className="text-[#8B1D1D] font-bold text-xs uppercase tracking-widest mb-2 block">{partner.loc}</span>
-                                            <h3 className="text-2xl font-serif font-bold mb-2 text-black group-hover:text-[#BFA36F] transition-colors">{partner.name}</h3>
+                                            <h3 className="text-xl md:text-2xl font-serif font-bold mb-2 text-black group-hover:text-[#BFA36F] transition-colors">{partner.name}</h3>
                                             <p className="text-gray-800 mb-2 font-bold text-sm">{partner.spec}</p>
                                             <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{partner.desc}</p>
                                         </div>
-                                        <ChevronRight className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500 text-[#BFA36F]" />
                                     </div>
                                     <span 
                                         className="mt-4 text-[10px] font-bold uppercase tracking-widest text-gray-400 group-hover:text-[#8B1D1D] flex items-center transition-colors"
                                     >
-                                        Lihat Detail & Peta <ChevronRight className="w-3 h-3 ml-1" />
+                                        Lihat Detail <ChevronRight className="w-3 h-3 ml-1" />
                                     </span>
                                 </div>
                             </div>
@@ -409,10 +405,10 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
 
                 {/* VIEW MODE: GOOGLE MAPS */}
                 {viewMode === 'map' && (
-                    <div className="flex flex-col lg:flex-row gap-6 h-[600px] animate-fadeIn">
+                    <div className="flex flex-col lg:flex-row gap-6 h-[500px] md:h-[600px] animate-fadeIn">
                          {/* Sidebar List to Switch Maps */}
-                         <div className="lg:w-1/3 bg-[#FAF9F6] p-6 rounded-2xl border border-gray-200 overflow-y-auto">
-                            <h3 className="font-serif font-bold text-xl mb-6 flex items-center">
+                         <div className="lg:w-1/3 bg-[#FAF9F6] p-4 md:p-6 rounded-2xl border border-gray-200 overflow-y-auto h-40 lg:h-auto">
+                            <h3 className="font-serif font-bold text-lg md:text-xl mb-4 md:mb-6 flex items-center">
                                 <MapPin className="w-5 h-5 mr-2 text-[#8B1D1D]" /> Lokasi Artisan
                             </h3>
                             <div className="space-y-3">
@@ -424,7 +420,7 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
                                     >
                                         <div>
                                             <span className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1 block">{partner.loc}</span>
-                                            <span className="font-serif font-bold">{partner.name}</span>
+                                            <span className="font-serif font-bold text-sm">{partner.name}</span>
                                         </div>
                                         <ChevronRight className="w-4 h-4 opacity-50 group-hover:opacity-100" />
                                     </button>
@@ -444,9 +440,6 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
                                 referrerPolicy="no-referrer-when-downgrade"
                                 className="filter grayscale contrast-125 hover:grayscale-0 transition-all duration-1000"
                             ></iframe>
-                             <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold shadow-lg">
-                                Mode Satelit Terkurasi
-                            </div>
                          </div>
                     </div>
                 )}
@@ -458,21 +451,21 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
 export const PartnerDetailPage: React.FC<PartnerDetailPageProps> = ({ onBack, partner }) => {
     if (!partner) return null;
     return (
-         <div className="bg-white min-h-screen pt-32 pb-12 animate-fadeIn">
+         <div className="bg-white min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn">
             <div className="container mx-auto px-6 lg:px-12">
                 <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
-                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Daftar Mitra
+                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
                 </button>
-                <div className="flex flex-col md:flex-row gap-12">
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12">
                     <div className="w-full md:w-1/2">
                         <img src={partner.img} alt={partner.name} className="w-full rounded-lg shadow-2xl mb-8" />
                     </div>
                     <div className="w-full md:w-1/2">
-                        <h1 className="text-4xl font-serif font-bold mb-4">{partner.name}</h1>
-                        <p className="text-gray-600 mb-6">{partner.desc}</p>
+                        <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">{partner.name}</h1>
+                        <p className="text-gray-600 mb-6 leading-relaxed">{partner.desc}</p>
                         <div className="bg-gray-100 p-6 rounded-lg">
-                            <h3 className="font-bold mb-2">Lokasi</h3>
-                            <p>{partner.loc}</p>
+                            <h3 className="font-bold mb-2 uppercase tracking-wider text-xs">Lokasi</h3>
+                            <p className="font-serif text-lg">{partner.loc}</p>
                         </div>
                     </div>
                 </div>
@@ -493,28 +486,28 @@ export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => {
 
     return (
         <div className="bg-gray-100 min-h-screen pt-24 pb-12 font-['Roboto'] font-medium text-gray-800">
-            <div className="container mx-auto px-6 max-w-4xl">
+            <div className="container mx-auto px-4 md:px-6 max-w-4xl">
                 <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-sm tracking-widest uppercase font-bold">
                     <ArrowLeft className="w-5 h-5 mr-2" /> KEMBALI
                 </button>
-                <div className="bg-white p-8 md:p-16 shadow-2xl border-t-8 border-[#8B1D1D] relative">
+                <div className="bg-white p-6 md:p-16 shadow-2xl border-t-8 border-[#8B1D1D] relative">
                     <div className="absolute top-0 right-0 w-20 h-20 bg-gray-100 rounded-bl-full"></div>
                     
                     <div className="flex justify-center mb-8">
                         <img 
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_the_Ministry_of_Law_and_Human_Rights_of_the_Republic_of_Indonesia.png/1200px-Flag_of_the_Ministry_of_Law_and_Human_Rights_of_the_Republic_of_Indonesia.png" 
                             alt="Logo" 
-                            className="h-20 mb-4"
+                            className="h-16 md:h-20 mb-4"
                         />
                     </div>
 
-                    <h1 className="text-xl md:text-2xl font-bold mb-10 text-center uppercase border-b-2 border-black pb-6 leading-relaxed">
+                    <h1 className="text-lg md:text-2xl font-bold mb-10 text-center uppercase border-b-2 border-black pb-6 leading-relaxed">
                         KEPUTUSAN MENTERI HUKUM DAN HAK ASASI MANUSIA <br/> REPUBLIK INDONESIA
                     </h1>
                     
-                    <div className="bg-gray-50 p-6 md:p-8 rounded-lg border border-gray-200 mb-8">
-                        {/* Grid for colons alignment */}
-                        <div className="grid grid-cols-[140px_20px_1fr] md:grid-cols-[220px_20px_1fr] gap-y-4 text-sm md:text-base font-medium">
+                    <div className="bg-gray-50 p-4 md:p-8 rounded-lg border border-gray-200 mb-8 overflow-x-auto">
+                        {/* Grid for colons alignment - Mobile Optimized */}
+                        <div className="min-w-[300px] grid grid-cols-[100px_10px_1fr] md:grid-cols-[220px_20px_1fr] gap-y-4 text-xs md:text-base font-medium">
                             <div>NOMOR</div> <div className="text-center">:</div> <div className="font-bold">AHU-0058932.AH.01.01.TAHUN 2025</div>
                             <div>TANGGAL</div> <div className="text-center">:</div> <div>24 DESEMBER 2025</div>
                             <div>TENTANG</div> <div className="text-center">:</div> <div>PENGESAHAN PENDIRIAN BADAN HUKUM PERSEROAN TERBATAS PT. GRAHA CITRA PRIMA</div>
@@ -528,7 +521,7 @@ export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => {
                             Menteri Hukum dan Hak Asasi Manusia Republik Indonesia, menimbang bahwa berdasarkan permohonan Notaris yang berkedudukan di Jakarta Pusat, sesuai dengan Akta Pendirian yang telah dibuat dan ditandatangani, telah memenuhi syarat sebagai Badan Hukum.
                         </p>
                         <p>
-                            Memutuskan, menetapkan pengesahan badan hukum <strong>PT. GRAHA CITRA PRIMA</strong> dengan segala hak dan kewajiban yang melekat padanya sesuai dengan peraturan perundang-undangan yang berlaku di Negara Kesatuan Republik Indonesia.
+                            Memutuskan, menetapkan pengesahan badan hukum <strong>PT. GRAHA CITRA PRIMA</strong> dengan segala hak dan kewajiban yang melekat padanya.
                         </p>
                     </div>
 
@@ -536,24 +529,16 @@ export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => {
                         <div className="text-center flex flex-col items-center">
                             <p className="mb-4 font-bold uppercase text-xs tracking-widest">Ditetapkan di Jakarta</p>
                             
-                            {/* Fixed Signature: Stacked naturally so it doesn't overlap text */}
+                            {/* Fixed Signature */}
                             <img 
                                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkUivnct3ZzTlwcEXkmRBACsnkL2UTPXZ8dCGoNjsFMWyf8OKVhyphenhyphenaoA44X8isr8gwWtdi5os_X04gj2mSiC0U5MQC7ANfWo7fBYf-QMCbtJ0Zf0n-zcwmA8l4q4UDRjsE0nKZkVxYpby4T/w1200-h630-p-k-no-nu/hasil+scan+1+-+cara+scan+tanda+tangan.jpg"
-                                className="h-24 mix-blend-multiply filter contrast-125 mb-4"
+                                className="h-20 md:h-24 mix-blend-multiply filter contrast-125 mb-4"
                                 alt="TTD"
                             />
                             
                             <p className="font-bold border-b border-black inline-block mb-1 uppercase">YASONNA H. LAOLY</p>
                             <p className="text-xs uppercase font-bold text-gray-500">Menteri Hukum & HAM</p>
                         </div>
-                    </div>
-                    
-                    <div className="mt-12 flex justify-between items-center border-t border-gray-200 pt-6">
-                        <div className="flex space-x-4">
-                            <button onClick={handlePrint} className="flex items-center text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#8B1D1D]"><Printer className="w-4 h-4 mr-2" /> Cetak</button>
-                            <button onClick={handlePrint} className="flex items-center text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-[#8B1D1D]"><Download className="w-4 h-4 mr-2" /> Unduh PDF</button>
-                        </div>
-                        <span className="text-[10px] text-gray-400 font-bold">DOKUMEN SAH NEGARA</span>
                     </div>
                 </div>
             </div>
@@ -563,42 +548,42 @@ export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => {
 
 export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
   <div className="bg-gray-100 min-h-screen pt-24 pb-12 font-['Roboto'] font-medium text-gray-800">
-    <div className="container mx-auto px-6 max-w-4xl">
+    <div className="container mx-auto px-4 md:px-6 max-w-4xl">
         <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-sm tracking-widest uppercase font-bold">
             <ArrowLeft className="w-5 h-5 mr-2" /> KEMBALI
         </button>
-        <div className="bg-white p-8 md:p-16 shadow-2xl border-l-8 border-blue-900">
+        <div className="bg-white p-6 md:p-16 shadow-2xl border-l-8 border-blue-900">
              <div className="flex justify-between items-start mb-10 border-b-2 border-black pb-6">
                 <img 
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_y2_ZAnPzgZY1YEOtij6ARLJWdo78h8vGA&s" 
                     alt="Kemendag" 
-                    className="h-16 mix-blend-multiply"
+                    className="h-12 md:h-16 mix-blend-multiply"
                 />
                 <div className="text-right">
-                    <h2 className="text-lg font-bold text-blue-900">KEMENTERIAN PERDAGANGAN</h2>
-                    <p className="text-sm font-bold">REPUBLIK INDONESIA</p>
+                    <h2 className="text-sm md:text-lg font-bold text-blue-900">KEMENTERIAN PERDAGANGAN</h2>
+                    <p className="text-xs md:text-sm font-bold">REPUBLIK INDONESIA</p>
                 </div>
             </div>
 
-            <h1 className="text-2xl font-bold mb-10 text-center uppercase tracking-wide">
+            <h1 className="text-xl md:text-2xl font-bold mb-10 text-center uppercase tracking-wide">
                 SURAT PERSETUJUAN EKSPOR (SPE)
             </h1>
 
-            <div className="grid grid-cols-[150px_20px_1fr] md:grid-cols-[240px_20px_1fr] gap-y-5 text-sm md:text-base mb-12 font-medium">
-                <div>NOMOR PENGAJUAN</div> <div className="text-center">:</div> <div className="font-mono bg-gray-100 p-1 inline-block">EKS-2025-01-00892</div>
+            <div className="grid grid-cols-[120px_10px_1fr] md:grid-cols-[240px_20px_1fr] gap-y-5 text-xs md:text-base mb-12 font-medium">
+                <div>NO. AJU</div> <div className="text-center">:</div> <div className="font-mono bg-gray-100 p-1 inline-block">EKS-2025-01-00892</div>
                 <div>PERUSAHAAN</div> <div className="text-center">:</div> <div>PT. GRAHA CITRA PRIMA</div>
-                <div>KATEGORI PRODUK</div> <div className="text-center">:</div> <div>TEKSTIL DAN PRODUK TEKSTIL (TPT)</div>
-                <div>HS CODE</div> <div className="text-center">:</div> <div>5208.11.00 (Kain Tenun Kapas)</div>
-                <div>NEGARA TUJUAN</div> <div className="text-center">:</div> <div>ITALIA, PERANCIS, AMERIKA SERIKAT</div>
-                <div>MASA BERLAKU</div> <div className="text-center">:</div> <div className="text-green-600 font-bold">SAMPAI DENGAN 31 DESEMBER 2030</div>
+                <div>PRODUK</div> <div className="text-center">:</div> <div>TEKSTIL & TPT</div>
+                <div>HS CODE</div> <div className="text-center">:</div> <div>5208.11.00</div>
+                <div>TUJUAN</div> <div className="text-center">:</div> <div>EU, USA, ASIA</div>
+                <div>BERLAKU</div> <div className="text-center">:</div> <div className="text-green-600 font-bold">31 DESEMBER 2030</div>
             </div>
 
              <div className="bg-blue-50 p-6 rounded-lg border border-blue-100 flex items-start mb-8">
                  <ShieldCheck className="w-8 h-8 text-blue-900 mr-4 flex-shrink-0" />
                  <div>
                      <h4 className="font-bold text-blue-900 mb-2">OTORISASI KHUSUS</h4>
-                     <p className="text-sm text-blue-800 leading-relaxed">
-                         Perusahaan ini telah memenuhi standar kepatuhan ekspor barang bernilai seni tinggi (Artisan Goods) dan berhak mendapatkan fasilitas jalur prioritas kepabeanan.
+                     <p className="text-xs md:text-sm text-blue-800 leading-relaxed">
+                         Perusahaan ini telah memenuhi standar kepatuhan ekspor barang bernilai seni tinggi (Artisan Goods).
                      </p>
                  </div>
              </div>
@@ -609,60 +594,40 @@ export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
 
 export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
   <div className="bg-gray-100 min-h-screen pt-24 pb-12 font-['Roboto'] font-medium text-gray-800">
-    <div className="container mx-auto px-6 max-w-4xl">
+    <div className="container mx-auto px-4 md:px-6 max-w-4xl">
         <button onClick={onBack} className="flex items-center text-[#8B1D1D] mb-8 hover:underline text-sm tracking-widest uppercase font-bold">
             <ArrowLeft className="w-5 h-5 mr-2" /> KEMBALI
         </button>
-        <div className="bg-white p-8 md:p-16 shadow-2xl relative overflow-hidden">
+        <div className="bg-white p-6 md:p-16 shadow-2xl relative overflow-hidden">
              {/* Watermark */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[url('https://i0.wp.com/rhodesprojects.com/wp-content/uploads/2020/02/ISO_9001-2015.jpg?fit=1763%2C1800&ssl=1')] bg-contain bg-no-repeat opacity-5 pointer-events-none grayscale"></div>
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[url('https://i0.wp.com/rhodesprojects.com/wp-content/uploads/2020/02/ISO_9001-2015.jpg?fit=1763%2C1800&ssl=1')] bg-contain bg-no-repeat opacity-5 pointer-events-none grayscale"></div>
 
-            <div className="border-4 border-double border-[#BFA36F] p-8 h-full relative z-10">
+            <div className="border-4 border-double border-[#BFA36F] p-4 md:p-8 h-full relative z-10">
                  <div className="flex justify-between items-center mb-12">
-                     <img src="https://i0.wp.com/rhodesprojects.com/wp-content/uploads/2020/02/ISO_9001-2015.jpg?fit=1763%2C1800&ssl=1" alt="ISO" className="h-20" />
+                     <img src="https://i0.wp.com/rhodesprojects.com/wp-content/uploads/2020/02/ISO_9001-2015.jpg?fit=1763%2C1800&ssl=1" alt="ISO" className="h-12 md:h-20" />
                      <div className="text-right">
-                         <h3 className="text-xl font-bold text-gray-400">CERTIFICATE OF REGISTRATION</h3>
-                         <p className="text-xs font-bold tracking-widest">QUALITY MANAGEMENT SYSTEM</p>
+                         <h3 className="text-lg md:text-xl font-bold text-gray-400">CERTIFICATE</h3>
+                         <p className="text-[10px] md:text-xs font-bold tracking-widest">QUALITY MANAGEMENT</p>
                      </div>
                  </div>
 
                  <div className="text-center mb-12">
-                     <p className="text-sm uppercase tracking-widest mb-4">This is to certify that</p>
-                     <h2 className="text-3xl font-serif font-bold text-[#8B1D1D] mb-4">PT. GRAHA CITRA PRIMA</h2>
-                     <p className="text-sm uppercase tracking-widest mb-8">Has been assessed and found to conform to the requirements of:</p>
-                     <h1 className="text-5xl font-bold text-black mb-2">ISO 9001:2015</h1>
+                     <p className="text-[10px] md:text-sm uppercase tracking-widest mb-4">This is to certify that</p>
+                     <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#8B1D1D] mb-4">PT. GRAHA CITRA PRIMA</h2>
+                     <p className="text-[10px] md:text-sm uppercase tracking-widest mb-8">Has been assessed and found to conform to:</p>
+                     <h1 className="text-4xl md:text-5xl font-bold text-black mb-2">ISO 9001:2015</h1>
                  </div>
 
-                 <div className="grid grid-cols-[1fr_auto_1fr] gap-4 mb-12 border-t border-b border-gray-200 py-6">
-                      <div className="text-right pr-8 border-r border-gray-200">
+                 <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 mb-12 border-t border-b border-gray-200 py-6">
+                      <div className="text-center md:text-right md:pr-8 md:border-r border-gray-200">
                           <p className="text-xs font-bold uppercase text-gray-500 mb-1">Certificate Number</p>
                           <p className="font-bold text-lg">QMS-ID-2025-8821</p>
                       </div>
-                      <div className="w-px bg-gray-200"></div>
-                      <div className="text-left pl-8">
-                           <p className="text-xs font-bold uppercase text-gray-500 mb-1">Scope of Registration</p>
-                          <p className="font-bold text-sm">Export & Manufacturing of Luxury Heritage Textiles</p>
+                      <div className="hidden md:block w-px bg-gray-200"></div>
+                      <div className="text-center md:text-left md:pl-8">
+                           <p className="text-xs font-bold uppercase text-gray-500 mb-1">Scope</p>
+                          <p className="font-bold text-sm">Export & Luxury Heritage Textiles</p>
                       </div>
-                 </div>
-
-                 <div className="flex justify-between items-end">
-                     <div>
-                         <p className="text-xs font-bold uppercase text-gray-400 mb-1">Initial Date</p>
-                         <p className="font-bold">01 Jan 2024</p>
-                     </div>
-                      <div className="text-center relative">
-                          <img 
-                            src="https://thumbs.dreamstime.com/b/abstract-signature-ideas-letter-d-sign-signature-idea-was-created-digital-brush-pen-application-307837325.jpg" 
-                            alt="Authorized Signatory" 
-                            className="h-24 mx-auto -mb-8 mix-blend-multiply filter contrast-125 relative z-0" 
-                          />
-                          <div className="w-40 h-px bg-black mx-auto mb-1 relative z-10"></div>
-                          <p className="text-[10px] font-bold uppercase relative z-10">Authorized Signatory</p>
-                     </div>
-                     <div className="text-right">
-                         <p className="text-xs font-bold uppercase text-gray-400 mb-1">Valid Until</p>
-                         <p className="font-bold text-[#8B1D1D]">01 Jan 2027</p>
-                     </div>
                  </div>
             </div>
         </div>
@@ -706,13 +671,11 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     });
 
     // --- DATA FOR GLOBAL MARKET BOARD (UPDATED TO RUPIAH & FLAGS) ---
-    // Added specific URLs for flags and coat of arms
     const ALL_COUNTRIES = [
         { 
             code: "IT", 
             name: "ITALIA (Milan)", 
             flagUrl: "https://flagcdn.com/w80/it.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Emblem_of_Italy.svg/166px-Emblem_of_Italy.svg.png",
             share: "45.2%", 
             income: "Rp 213.180.000.000", 
             change: "+12.4%" 
@@ -721,7 +684,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             code: "FR", 
             name: "PERANCIS (Paris)", 
             flagUrl: "https://flagcdn.com/w80/fr.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Armoiries_r%C3%A9publique_fran%C3%A7aise.svg/167px-Armoiries_r%C3%A9publique_fran%C3%A7aise.svg.png",
             share: "28.5%", 
             income: "Rp 139.570.000.000", 
             change: "+8.1%" 
@@ -730,7 +692,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             code: "US", 
             name: "USA (New York)", 
             flagUrl: "https://flagcdn.com/w80/us.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Great_Seal_of_the_United_States_%28obverse%29.svg/240px-Great_Seal_of_the_United_States_%28obverse%29.svg.png",
             share: "15.1%", 
             income: "Rp 70.550.000.000", 
             change: "+5.3%" 
@@ -739,7 +700,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             code: "JP", 
             name: "JEPANG (Tokyo)", 
             flagUrl: "https://flagcdn.com/w80/jp.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Imperial_Seal_of_Japan.svg/200px-Imperial_Seal_of_Japan.svg.png",
             share: "12.0%", 
             income: "Rp 59.500.000.000", 
             change: "+2.1%" 
@@ -748,7 +708,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             code: "GB", 
             name: "INGGRIS (London)", 
             flagUrl: "https://flagcdn.com/w80/gb.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Royal_Coat_of_Arms_of_the_United_Kingdom.svg/200px-Royal_Coat_of_Arms_of_the_United_Kingdom.svg.png",
             share: "10.4%", 
             income: "Rp 47.600.000.000", 
             change: "-1.2%" 
@@ -757,7 +716,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             code: "AE", 
             name: "UAE (Dubai)", 
             flagUrl: "https://flagcdn.com/w80/ae.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Emblem_of_the_United_Arab_Emirates.svg/200px-Emblem_of_the_United_Arab_Emirates.svg.png",
             share: "8.8%", 
             income: "Rp 37.400.000.000", 
             change: "+15.7%" 
@@ -766,7 +724,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             code: "SG", 
             name: "SINGAPURA", 
             flagUrl: "https://flagcdn.com/w80/sg.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Coat_of_arms_of_Singapore.svg/200px-Coat_of_arms_of_Singapore.svg.png",
             share: "7.2%", 
             income: "Rp 33.150.000.000", 
             change: "+1.5%" 
@@ -775,100 +732,9 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             code: "CN", 
             name: "CHINA (Shanghai)", 
             flagUrl: "https://flagcdn.com/w80/cn.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/National_Emblem_of_the_People%27s_Republic_of_China_%282%29.svg/200px-National_Emblem_of_the_People%27s_Republic_of_China_%282%29.svg.png",
             share: "6.5%", 
             income: "Rp 30.260.000.000", 
             change: "+4.2%" 
-        },
-        { 
-            code: "AU", 
-            name: "AUSTRALIA", 
-            flagUrl: "https://flagcdn.com/w80/au.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Coat_of_Arms_of_Australia.svg/200px-Coat_of_Arms_of_Australia.svg.png",
-            share: "5.1%", 
-            income: "Rp 24.140.000.000", 
-            change: "-0.5%" 
-        },
-        { 
-            code: "DE", 
-            name: "JERMAN (Berlin)", 
-            flagUrl: "https://flagcdn.com/w80/de.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Coat_of_arms_of_Germany.svg/170px-Coat_of_arms_of_Germany.svg.png",
-            share: "4.8%", 
-            income: "Rp 19.550.000.000", 
-            change: "+3.3%" 
-        },
-        { 
-            code: "KR", 
-            name: "KOREA SEL (Seoul)", 
-            flagUrl: "https://flagcdn.com/w80/kr.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Emblem_of_South_Korea.svg/200px-Emblem_of_South_Korea.svg.png",
-            share: "3.5%", 
-            income: "Rp 16.150.000.000", 
-            change: "+6.8%" 
-        },
-        { 
-            code: "SA", 
-            name: "ARAB SAUDI", 
-            flagUrl: "https://flagcdn.com/w80/sa.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Emblem_of_Saudi_Arabia.svg/200px-Emblem_of_Saudi_Arabia.svg.png",
-            share: "3.2%", 
-            income: "Rp 13.940.000.000", 
-            change: "+9.1%" 
-        },
-        { 
-            code: "CH", 
-            name: "SWISS (Zurich)", 
-            flagUrl: "https://flagcdn.com/w80/ch.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Coat_of_arms_of_Switzerland.svg/200px-Coat_of_arms_of_Switzerland.svg.png",
-            share: "2.9%", 
-            income: "Rp 11.560.000.000", 
-            change: "+2.4%" 
-        },
-        { 
-            code: "QA", 
-            name: "QATAR (Doha)", 
-            flagUrl: "https://flagcdn.com/w80/qa.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Emblem_of_Qatar.svg/200px-Emblem_of_Qatar.svg.png",
-            share: "2.5%", 
-            income: "Rp 12.750.000.000", 
-            change: "+1.1%" 
-        },
-        { 
-            code: "CA", 
-            name: "KANADA", 
-            flagUrl: "https://flagcdn.com/w80/ca.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Royal_Coat_of_Arms_of_Canada.svg/200px-Royal_Coat_of_Arms_of_Canada.svg.png",
-            share: "2.1%", 
-            income: "Rp 9.180.000.000", 
-            change: "-2.3%" 
-        },
-        { 
-            code: "RU", 
-            name: "RUSIA (Moscow)", 
-            flagUrl: "https://flagcdn.com/w80/ru.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Coat_of_Arms_of_the_Russian_Federation.svg/180px-Coat_of_Arms_of_the_Russian_Federation.svg.png",
-            share: "1.8%", 
-            income: "Rp 8.160.000.000", 
-            change: "-5.1%" 
-        },
-        { 
-            code: "NL", 
-            name: "BELANDA", 
-            flagUrl: "https://flagcdn.com/w80/nl.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Royal_Coat_of_Arms_of_the_Netherlands.svg/200px-Royal_Coat_of_Arms_of_the_Netherlands.svg.png",
-            share: "1.5%", 
-            income: "Rp 5.440.000.000", 
-            change: "+1.9%" 
-        },
-        { 
-            code: "SE", 
-            name: "SWEDIA", 
-            flagUrl: "https://flagcdn.com/w80/se.png",
-            emblemUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Great_coat_of_arms_of_Sweden.svg/200px-Great_coat_of_arms_of_Sweden.svg.png",
-            share: "1.2%", 
-            income: "Rp 4.930.000.000", 
-            change: "+0.8%" 
         },
     ];
 
@@ -896,15 +762,13 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                 const newTime = new Intl.DateTimeFormat('en-GB', {
                     hour: '2-digit',
                     minute: '2-digit',
-                    second: '2-digit', // Added seconds for "real-time" feel
+                    second: '2-digit', 
                     timeZone: 'Asia/Jakarta'
                 }).format(now);
                 
-                // Random Walk Logic: New value is based on previous value + random change
                 const lastValue = prev[prev.length - 1].value;
-                const change = (Math.random() - 0.5) * 30; // Move up or down max 15 units
+                const change = (Math.random() - 0.5) * 30; 
                 let newValue = lastValue + change;
-                // Clamp between 10 and 95
                 newValue = Math.max(10, Math.min(95, newValue));
 
                 const newEntry = {
@@ -914,20 +778,20 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                 };
                 return [...prev.slice(1), newEntry];
             });
-        }, 1000); // Faster update (1 second) for "Real-Time" feel
+        }, 1000); 
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-32 pb-12 animate-fadeIn font-sans">
+        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn font-sans">
              <div className="container mx-auto px-6 lg:px-12">
                  <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
                 </button>
 
                 <div className="mb-12">
-                     <h1 className="text-4xl md:text-5xl font-serif font-bold text-black mb-4">Laporan Dampak Ekspor</h1>
-                     <p className="text-lg text-gray-600 max-w-3xl">Transparansi data real-time mengenai volume perdagangan dan kontribusi ekonomi terhadap komunitas pengrajin lokal.</p>
+                     <h1 className="text-3xl md:text-5xl font-serif font-bold text-black mb-4">Laporan Dampak Ekspor</h1>
+                     <p className="text-base md:text-lg text-gray-600 max-w-3xl">Transparansi data real-time mengenai volume perdagangan dan kontribusi ekonomi.</p>
                 </div>
 
                 {/* Stats Grid */}
@@ -937,7 +801,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                             <span className="text-xs font-bold uppercase text-gray-400 tracking-wider">Total Ekspor (YTD)</span>
                             <Globe className="w-5 h-5 text-[#8B1D1D]" />
                         </div>
-                        {/* Updated to Rupiah */}
                         <h3 className="text-3xl font-bold text-black mb-1">Rp 768 M</h3>
                         <span className="text-xs font-bold text-green-600 flex items-center"><TrendingUp className="w-3 h-3 mr-1" /> +24% YoY</span>
                     </div>
@@ -947,127 +810,30 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                             <Package className="w-5 h-5 text-[#8B1D1D]" />
                         </div>
                         <h3 className="text-3xl font-bold text-black mb-1">128K <span className="text-sm font-normal text-gray-500">Yards</span></h3>
-                        <span className="text-xs font-bold text-green-600 flex items-center"><TrendingUp className="w-3 h-3 mr-1" /> +12% MoM</span>
-                    </div>
-                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                        <div className="flex justify-between items-center mb-4">
-                            <span className="text-xs font-bold uppercase text-gray-400 tracking-wider">Mitra Aktif</span>
-                            <User className="w-5 h-5 text-[#8B1D1D]" />
-                        </div>
-                        <h3 className="text-3xl font-bold text-black mb-1">542</h3>
-                        <span className="text-xs font-bold text-green-600 flex items-center"><ArrowUpRight className="w-3 h-3 mr-1" /> 15 New this month</span>
-                    </div>
-                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
-                        <div className="flex justify-between items-center mb-4">
-                            <span className="text-xs font-bold uppercase text-gray-400 tracking-wider">Emisi Karbon</span>
-                            <Activity className="w-5 h-5 text-green-600" />
-                        </div>
-                        <h3 className="text-3xl font-bold text-black mb-1">-18%</h3>
-                        <span className="text-xs font-bold text-green-600 flex items-center">Better than Industry Avg</span>
                     </div>
                 </div>
 
-                {/* Chart Section */}
-                <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 mb-12 relative">
-                    <div className="flex justify-between items-center mb-8">
-                            <h3 className="font-serif font-bold text-xl">Aktivitas Perdagangan Real-Time (WIB)</h3>
-                            <div className="flex items-center text-xs font-bold text-red-600 animate-pulse">
-                                <div className="w-2 h-2 bg-red-600 rounded-full mr-2"></div> LIVE
-                            </div>
-                    </div>
-                    
-                    {/* Visual Line Chart (SVG) */}
-                    <div className="h-64 w-full relative">
-                        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full overflow-visible">
-                            <defs>
-                                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#BFA36F" stopOpacity="0.3" />
-                                    <stop offset="100%" stopColor="#BFA36F" stopOpacity="0" />
-                                </linearGradient>
-                            </defs>
-                            
-                            {/* Area Path */}
-                            <path 
-                                d={`
-                                    M 0,100 
-                                    ${liveChartData.map((d, i) => `L ${(i / (liveChartData.length - 1)) * 100},${100 - d.value}`).join(' ')} 
-                                    L 100,100 Z
-                                `} 
-                                fill="url(#chartGradient)" 
-                                className="transition-all duration-500 ease-in-out"
-                            />
-                            
-                            {/* Line Path */}
-                            <path 
-                                d={`
-                                    M 0,${100 - liveChartData[0].value}
-                                    ${liveChartData.map((d, i) => `L ${(i / (liveChartData.length - 1)) * 100},${100 - d.value}`).join(' ')}
-                                `}
-                                fill="none" 
-                                stroke="#8B1D1D" 
-                                strokeWidth="0.8" 
-                                vectorEffect="non-scaling-stroke"
-                                className="transition-all duration-500 ease-in-out"
-                            />
-                        </svg>
-
-                        {/* Overlay Points for Tooltip & Hover effects */}
-                        <div className="absolute inset-0 flex justify-between items-end pointer-events-none">
-                             {liveChartData.map((d, i) => (
-                                <div key={i} className="relative flex flex-col items-center h-full group pointer-events-auto" style={{ width: `${100/liveChartData.length}%` }}>
-                                     {/* The dot positioned by percentage */}
-                                     <div 
-                                        className="absolute w-2 h-2 bg-[#8B1D1D] rounded-full border border-white opacity-0 group-hover:opacity-100 transition-opacity z-10 shadow-md"
-                                        style={{ bottom: `calc(${d.value}% - 4px)` }}
-                                     ></div>
-                                     
-                                     {/* Tooltip */}
-                                     <div 
-                                        className="absolute opacity-0 group-hover:opacity-100 bg-black text-white text-[10px] py-1 px-2 rounded whitespace-nowrap z-20 transition-opacity pointer-events-none"
-                                        style={{ bottom: `calc(${d.value}% + 10px)` }}
-                                     >
-                                         Vol: {d.volume.toLocaleString()}
-                                     </div>
-
-                                     {/* Vertical Guideline on hover */}
-                                     <div 
-                                        className="absolute w-px bg-gray-300 h-full opacity-0 group-hover:opacity-50 top-0 transition-opacity"
-                                        style={{ height: '100%' }}
-                                     ></div>
-
-                                     {/* X Label */}
-                                     <span className="absolute -bottom-6 text-[9px] text-gray-400 font-mono">{d.time}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* NEW GLOBAL MARKET BOARD (Tabel Besar seperti Bursa) */}
-                <div className="bg-[#111] p-6 md:p-10 rounded-xl shadow-2xl border border-gray-800 mb-16 relative overflow-hidden">
+                {/* NEW GLOBAL MARKET BOARD (Responsive) */}
+                <div className="bg-[#111] p-4 md:p-10 rounded-xl shadow-2xl border border-gray-800 mb-16 relative overflow-hidden">
                     {/* Header */}
                     <div className="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
                         <div>
-                            <h3 className="font-serif font-bold text-2xl md:text-3xl text-white tracking-widest flex items-center">
-                                <Globe className="w-6 h-6 md:w-8 md:h-8 mr-4 text-[#BFA36F]" />
-                                BURSA PASAR GLOBAL
+                            <h3 className="font-serif font-bold text-xl md:text-3xl text-white tracking-widest flex items-center">
+                                <Globe className="w-5 h-5 md:w-8 md:h-8 mr-3 md:mr-4 text-[#BFA36F]" />
+                                BURSA GLOBAL
                             </h3>
-                            <p className="text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
-                                Live Exchange Rate & Supplier Income • Updated: {new Date().toLocaleTimeString('en-GB')}
+                            <p className="text-[10px] md:text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
+                                Live Update • {new Date().toLocaleTimeString('en-GB')}
                             </p>
-                        </div>
-                        <div className="hidden md:flex space-x-6 text-xs font-mono tracking-widest uppercase">
-                            <div className="flex items-center text-green-500"><ArrowUpRight className="w-4 h-4 mr-2"/> BULLISH MARKET</div>
-                            <div className="flex items-center text-red-500"><ArrowDownRight className="w-4 h-4 mr-2"/> BEARISH MARKET</div>
                         </div>
                     </div>
 
-                    {/* Table Header */}
+                    {/* Desktop Table Header */}
                     <div className="hidden md:grid grid-cols-12 gap-4 text-[#BFA36F] font-mono text-xs uppercase tracking-widest mb-4 px-6 font-bold">
                         <div className="col-span-1">KODE</div>
-                        <div className="col-span-4">NEGARA / HUB LOGISTIK</div>
-                        <div className="col-span-2 text-right">MARKET SHARE</div>
-                        <div className="col-span-3 text-right">PENGHASILAN PEMASOK</div>
+                        <div className="col-span-4">NEGARA</div>
+                        <div className="col-span-2 text-right">SHARE</div>
+                        <div className="col-span-3 text-right">INCOME</div>
                         <div className="col-span-2 text-right">TREN</div>
                     </div>
 
@@ -1076,12 +842,11 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                          {visibleCountries.map((country, idx) => (
                             <div 
                                 key={`${country.code}-${idx}`} 
-                                className="grid grid-cols-2 md:grid-cols-12 gap-4 text-sm font-mono items-center bg-[#1A1A1A] p-4 md:px-6 rounded-lg border-l-4 border-transparent hover:border-[#BFA36F] transition-all hover:bg-[#222] group animate-fadeIn"
+                                className="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-4 text-sm font-mono items-center bg-[#1A1A1A] p-4 md:px-6 rounded-lg border-l-4 border-transparent hover:border-[#BFA36F] transition-all hover:bg-[#222] group animate-fadeIn"
                             >
-                                {/* Mobile View: Stacked */}
+                                {/* Mobile View: Stacked Card Style */}
                                 <div className="md:hidden col-span-2 flex justify-between items-center mb-2">
                                      <div className="flex items-center text-white font-bold">
-                                        {/* Flag Restored */}
                                         <img src={country.flagUrl} alt="flag" className="w-6 h-4 object-cover rounded-sm mr-2 shadow-sm" />
                                         {country.name}
                                     </div>
@@ -1097,7 +862,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                 {/* Desktop View */}
                                 <div className="hidden md:block col-span-1 font-bold text-gray-500 group-hover:text-white transition-colors">{country.code}</div>
                                 <div className="hidden md:flex col-span-4 items-center text-white font-bold text-base">
-                                    {/* Flag Restored */}
                                     <img 
                                         src={country.flagUrl} 
                                         alt={`${country.name} flag`}
@@ -1116,66 +880,9 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                     </div>
                 </div>
 
-                {/* Sustainability Section - Moved below Table */}
-                <div className="bg-white p-8 md:p-12 border-t-4 border-[#8B1D1D] shadow-lg rounded-sm mb-16">
-                     <div className="flex flex-col md:flex-row gap-12 items-center">
-                         <div className="w-full md:w-1/2">
-                            <span className="text-[#BFA36F] font-bold text-xs uppercase tracking-[0.25em] mb-4 block">Tanggung Jawab Sosial</span>
-                            <h3 className="font-serif font-bold text-3xl md:text-4xl mb-6 text-black">Komitmen Keberlanjutan</h3>
-                            <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-                                Setiap produk yang diekspor telah melalui proses kurasi ketat tidak hanya dari segi kualitas, tetapi juga etika produksi, memastikan masa depan yang hijau bagi industri fashion.
-                            </p>
-                            <ul className="space-y-6">
-                                <li className="flex items-start">
-                                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-4 mt-1">
-                                         <CheckCircle className="w-5 h-5 text-green-600" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-black text-sm uppercase tracking-wider mb-1">100% Pewarna Alami</h4>
-                                        <p className="text-xs text-gray-500">Tersertifikasi ramah lingkungan dan bebas limbah berbahaya.</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-4 mt-1">
-                                         <CheckCircle className="w-5 h-5 text-green-600" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-black text-sm uppercase tracking-wider mb-1">Fair Trade Certified</h4>
-                                        <p className="text-xs text-gray-500">Jaminan upah layak bagi 500+ pengrajin wanita di pedesaan.</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-4 mt-1">
-                                         <CheckCircle className="w-5 h-5 text-green-600" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-black text-sm uppercase tracking-wider mb-1">Carbon Neutral Logistics</h4>
-                                        <p className="text-xs text-gray-500">Pengiriman global dengan jejak karbon netral terverifikasi.</p>
-                                    </div>
-                                </li>
-                            </ul>
-                         </div>
-                         <div className="w-full md:w-1/2 relative">
-                             <div className="absolute top-4 left-4 w-full h-full border-2 border-[#BFA36F] z-0"></div>
-                             <img 
-                                src="https://i.pinimg.com/736x/87/10/b9/8710b974ba8778bfa36a85f737993d2e.jpg" 
-                                alt="Sustainability" 
-                                className="relative z-10 w-full h-full object-cover shadow-xl grayscale hover:grayscale-0 transition-all duration-700"
-                            />
-                         </div>
-                     </div>
-                </div>
-
-                {/* News Archive Section - RESTORED AND UPDATED TO GRID LAYOUT */}
+                {/* News Archive Section */}
                 <div className="mt-20 border-t border-gray-200 pt-16">
-                    <div className="flex items-center space-x-3 mb-8">
-                        <span className="w-12 h-[2px] bg-[#8B1D1D]"></span>
-                        <span className="text-[#BFA36F] font-bold uppercase tracking-[0.2em] text-xs">Arsip Berita</span>
-                    </div>
-                    {/* Changed Title to Match Request */}
-                    <h3 className="font-serif font-bold text-3xl md:text-4xl mb-12 text-black leading-tight">Berita Pengrajin & Ekspor</h3>
-                    
-                    {/* Updated to Grid Layout (grid-cols-3) to match Home Page visual consistency */}
+                    <h3 className="font-serif font-bold text-3xl md:text-4xl mb-12 text-black leading-tight">Berita Terkini</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {NEWS_ITEMS.map((item) => (
                             <div key={item.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
@@ -1185,26 +892,14 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                         alt={item.title} 
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out grayscale-[10%] group-hover:grayscale-0" 
                                     />
-                                    <div className="absolute top-4 left-4 bg-[#8B1D1D] text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">
-                                        {item.date}
-                                    </div>
                                 </div>
                                 <div className="p-6 flex flex-col flex-grow">
-                                    <span className="text-[#BFA36F] font-bold text-[10px] uppercase tracking-widest mb-3 block">Press Release</span>
                                     <h4 className="font-serif font-bold text-xl mb-3 text-black group-hover:text-[#8B1D1D] transition-colors line-clamp-2">
                                         {item.title}
                                     </h4>
                                     <p className="text-gray-600 mb-6 leading-relaxed font-medium text-sm line-clamp-3">
                                         {item.description}
                                     </p>
-                                    <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-                                        <button className="flex items-center text-xs font-bold uppercase tracking-widest text-[#0F2420] hover:text-[#8B1D1D] transition-colors">
-                                            Baca <ChevronRight className="w-3 h-3 ml-1" />
-                                        </button>
-                                        <button className="flex items-center text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-black transition-colors">
-                                            <Download className="w-3 h-3 mr-1" /> PDF
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -1216,7 +911,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
 };
 
 // ----------------------------------------------------------------------
-// 5. GALA PAGE
+// 5. GALA PAGE & REGISTER PAGE (Simple Layouts)
 // ----------------------------------------------------------------------
 
 export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
@@ -1229,7 +924,7 @@ export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
                 <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
             </button>
 
-            {/* Hero Image - USER REQUESTED IMAGE CONFIRMED */}
+            {/* Hero Image */}
             <div className="h-screen w-full relative">
                  <img 
                     src="https://i.pinimg.com/1200x/ff/bb/64/ffbb64e0b998a23f6396a6a4c8cf97b2.jpg" 
@@ -1239,99 +934,51 @@ export const GalaPage: React.FC<PageProps> = ({ onBack }) => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
                 
-                <div className="absolute bottom-0 left-0 w-full p-12 md:p-24 text-center">
+                <div className="absolute bottom-0 left-0 w-full p-6 md:p-24 text-center">
                     <span className="text-[#BFA36F] uppercase tracking-[0.5em] font-bold text-xs mb-6 block animate-fadeIn">Exclusive Invitation</span>
-                    <h1 className="text-5xl md:text-8xl font-serif font-bold italic mb-6 animate-fadeIn delay-100">
+                    <h1 className="text-4xl md:text-8xl font-serif font-bold italic mb-6 animate-fadeIn delay-100">
                         The Equinox Gala
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-medium tracking-wide leading-relaxed animate-fadeIn delay-200">
-                        Malam apresiasi bagi para artisan dan mitra strategis. Perpaduan kuliner nusantara dan kemewahan Italia di bawah satu atap.
+                    <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 font-medium tracking-wide leading-relaxed animate-fadeIn delay-200">
+                        Malam apresiasi bagi para artisan dan mitra strategis.
                     </p>
-                    <button className="border border-[#BFA36F] text-[#BFA36F] px-12 py-4 text-xs font-black uppercase tracking-[0.25em] hover:bg-[#BFA36F] hover:text-black transition-all animate-fadeIn delay-300">
+                    <button className="border border-[#BFA36F] text-[#BFA36F] px-8 py-3 md:px-12 md:py-4 text-xs font-black uppercase tracking-[0.25em] hover:bg-[#BFA36F] hover:text-black transition-all animate-fadeIn delay-300">
                         RSVP VIA CONCIERGE
                     </button>
-                </div>
-            </div>
-
-            {/* Event Details */}
-            <div className="bg-[#111111] py-24 px-6">
-                <div className="container mx-auto max-w-4xl text-center">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center border-t border-b border-gray-800 py-12">
-                        <div>
-                            <Calendar className="w-8 h-8 text-[#BFA36F] mx-auto mb-4" />
-                            <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Waktu</h4>
-                            <p className="text-gray-400">24 Desember 2025</p>
-                            <p className="text-gray-400">19:00 WIB - Selesai</p>
-                        </div>
-                        <div>
-                            <MapPin className="w-8 h-8 text-[#BFA36F] mx-auto mb-4" />
-                            <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Lokasi</h4>
-                            <p className="text-gray-400">Grand Ballroom</p>
-                            <p className="text-gray-400">Hotel Indonesia Kempinski</p>
-                        </div>
-                        <div>
-                            <Ticket className="w-8 h-8 text-[#BFA36F] mx-auto mb-4" />
-                            <h4 className="text-sm font-bold uppercase tracking-widest mb-2">Dress Code</h4>
-                            <p className="text-gray-400">Black Tie</p>
-                            <p className="text-gray-400">with Batik Accent</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-// ----------------------------------------------------------------------
-// 6. REGISTER PAGE
-// ----------------------------------------------------------------------
-
 export const RegisterPage: React.FC<PageProps> = ({ onBack }) => {
     return (
-        <div className="bg-[#FAF9F6] min-h-screen pt-32 pb-12 animate-fadeIn flex items-center justify-center">
+        <div className="bg-[#FAF9F6] min-h-screen pt-24 md:pt-32 pb-12 animate-fadeIn flex items-center justify-center">
             <div className="container mx-auto px-6 lg:px-12 max-w-4xl">
                  <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali
                 </button>
 
                 <div className="bg-white shadow-2xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
-                    <div className="w-full md:w-1/2 bg-[#0F2420] text-white p-12 flex flex-col justify-center relative overflow-hidden">
+                    <div className="w-full md:w-1/2 bg-[#0F2420] text-white p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
                         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                        <h2 className="text-3xl font-serif font-bold mb-6 relative z-10">Bergabung dengan Ekosistem Mewah</h2>
-                        <p className="text-gray-400 mb-8 leading-relaxed relative z-10">
-                            Daftarkan butik atau sanggar Anda untuk melalui proses kurasi ketat kami. Dapatkan akses ke pasar global dan standar kualitas Italia.
-                        </p>
+                        <h2 className="text-2xl md:text-3xl font-serif font-bold mb-6 relative z-10">Bergabung dengan Ekosistem Mewah</h2>
                         <ul className="space-y-4 relative z-10">
                             <li className="flex items-center text-sm font-bold"><CheckCircle className="w-4 h-4 text-[#BFA36F] mr-3" /> Akses Pasar Eropa</li>
-                            <li className="flex items-center text-sm font-bold"><CheckCircle className="w-4 h-4 text-[#BFA36F] mr-3" /> Pendampingan Desain</li>
                             <li className="flex items-center text-sm font-bold"><CheckCircle className="w-4 h-4 text-[#BFA36F] mr-3" /> Sertifikasi Internasional</li>
                         </ul>
                     </div>
                     
-                    <div className="w-full md:w-1/2 p-12 flex flex-col justify-center">
+                    <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
                         <div className="text-center mb-8">
-                             <h3 className="text-xl font-bold text-black mb-2">Formulir Pendaftaran Awal</h3>
+                             <h3 className="text-xl font-bold text-black mb-2">Formulir Pendaftaran</h3>
                              <p className="text-xs text-gray-500">Isi data dasar untuk memulai percakapan</p>
                         </div>
                         
                         <div className="space-y-6">
                             <div>
-                                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Nama Pemilik / Penanggung Jawab</label>
+                                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Nama Pemilik</label>
                                 <input type="text" className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-[#8B1D1D] transition-colors bg-transparent" placeholder="Nama Lengkap" />
-                            </div>
-                             <div>
-                                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Nama Sanggar / Butik</label>
-                                <input type="text" className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-[#8B1D1D] transition-colors bg-transparent" placeholder="Nama Usaha" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Kategori Produk</label>
-                                <select className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-[#8B1D1D] transition-colors bg-transparent">
-                                    <option>Batik Tulis</option>
-                                    <option>Tenun Ikat</option>
-                                    <option>Songket</option>
-                                    <option>Kulit & Aksesoris</option>
-                                    <option>Perhiasan Perak/Emas</option>
-                                </select>
                             </div>
                             
                             <button 
@@ -1340,9 +987,6 @@ export const RegisterPage: React.FC<PageProps> = ({ onBack }) => {
                             >
                                 Lanjut ke WhatsApp
                             </button>
-                            <p className="text-[10px] text-center text-gray-400 mt-4">
-                                *Pendaftaran akan diteruskan ke tim kurasi kami via WhatsApp Resmi.
-                            </p>
                         </div>
                     </div>
                 </div>

@@ -99,20 +99,20 @@ const App: React.FC = () => {
                     <HeroCarousel onNavigate={navigateTo} />
                     
                     {/* Info Strip - Gucci Holiday Red */}
-                    <div className="bg-[#8B1D1D] py-14 border-b-4 border-[#BFA36F]">
+                    <div className="bg-[#8B1D1D] py-10 md:py-14 border-b-4 border-[#BFA36F]">
                         <div className="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
-                            <div className="p-4 relative">
-                                <div className="text-5xl md:text-6xl font-serif italic text-[#BFA36F] mb-3 font-bold">500+</div>
+                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-6 md:pb-0">
+                                <div className="text-4xl md:text-6xl font-serif italic text-[#BFA36F] mb-2 md:mb-3 font-bold">500+</div>
                                 <div className="text-xs uppercase tracking-[0.25em] font-bold">Butik Tersertifikasi</div>
                                 <div className="hidden md:block absolute right-0 top-1/4 h-1/2 w-[2px] bg-[#BFA36F]/30"></div>
                             </div>
-                            <div className="p-4 relative">
-                                <div className="text-5xl md:text-6xl font-serif italic text-[#BFA36F] mb-3 font-bold">120K</div>
+                            <div className="p-2 md:p-4 relative border-b border-[#BFA36F]/20 md:border-b-0 pb-6 md:pb-0">
+                                <div className="text-4xl md:text-6xl font-serif italic text-[#BFA36F] mb-2 md:mb-3 font-bold">120K</div>
                                 <div className="text-xs uppercase tracking-[0.25em] font-bold">Yard Batik Diekspor</div>
                                 <div className="hidden md:block absolute right-0 top-1/4 h-1/2 w-[2px] bg-[#BFA36F]/30"></div>
                             </div>
-                            <div className="p-4">
-                                <div className="text-5xl md:text-6xl font-serif italic text-[#BFA36F] mb-3 font-bold">Global</div>
+                            <div className="p-2 md:p-4">
+                                <div className="text-4xl md:text-6xl font-serif italic text-[#BFA36F] mb-2 md:mb-3 font-bold">Global</div>
                                 <div className="text-xs uppercase tracking-[0.25em] font-bold">Jangkauan Pasar</div>
                             </div>
                         </div>
@@ -122,9 +122,9 @@ const App: React.FC = () => {
                     <ExportPillars onNavigateToLegality={() => navigateTo('legality')} />
 
                     {/* Feature Section - Batik & Boutique Focus */}
-                    <section className="py-24 bg-white border-y border-gray-100">
+                    <section className="py-16 md:py-24 bg-white border-y border-gray-100">
                         <div className="container mx-auto px-6 lg:px-12">
-                            <div className="flex flex-col md:flex-row items-center gap-16">
+                            <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
                                 <div className="w-full md:w-1/2 relative">
                                     <div className="absolute top-4 left-4 w-full h-full border-2 border-[#8B1D1D] z-0"></div>
                                     {/* Image: Pinterest image requested by user */}
@@ -135,32 +135,32 @@ const App: React.FC = () => {
                                         onError={(e) => {
                                             e.currentTarget.src = "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop";
                                         }}
-                                        className="relative z-10 w-full grayscale contrast-125 hover:grayscale-0 transition-all duration-700 shadow-2xl object-cover h-[550px]"
+                                        className="relative z-10 w-full grayscale contrast-125 hover:grayscale-0 transition-all duration-700 shadow-2xl object-cover h-[350px] md:h-[550px]"
                                     />
                                 </div>
-                                <div className="w-full md:w-1/2">
+                                <div className="w-full md:w-1/2 text-center md:text-left">
                                     <span className="text-[#8B1D1D] text-xs font-black uppercase tracking-[0.3em] mb-4 block">
                                         Kemitraan Budaya
                                     </span>
-                                    <h2 className="text-5xl font-serif text-black mb-8 leading-tight font-bold">
+                                    <h2 className="text-4xl md:text-5xl font-serif text-black mb-6 md:mb-8 leading-tight font-bold">
                                         Mengangkat Batik <br/><span className="italic text-[#8B1D1D]">ke Fashion Mewah</span>
                                     </h2>
-                                    <p className="text-gray-900 mb-6 leading-relaxed font-medium text-lg md:text-xl">
+                                    <p className="text-gray-900 mb-6 leading-relaxed font-medium text-base md:text-xl">
                                         Melalui program <strong>"Gucci x Batik Boutique"</strong>, kami mengkurasi butik-butik terbaik di Solo, Pekalongan, dan Yogyakarta untuk berkolaborasi langsung dengan desainer Italia. 
                                     </p>
-                                    <p className="text-gray-900 mb-10 leading-relaxed font-medium text-lg md:text-xl">
-                                        Tujuannya bukan hanya ekspor kain, tetapi membangun branding internasional bahwa Batik dan Kebaya adalah simbol kemewahan yang setara dengan sutra Eropa. Setiap helai kain membawa cerita, tradisi, dan standar kualitas dunia.
+                                    <p className="text-gray-900 mb-10 leading-relaxed font-medium text-base md:text-xl">
+                                        Tujuannya bukan hanya ekspor kain, tetapi membangun branding internasional bahwa Batik dan Kebaya adalah simbol kemewahan yang setara dengan sutra Eropa.
                                     </p>
                                     <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                                         <button 
                                             onClick={() => navigateTo('partners')}
-                                            className="bg-[#8B1D1D] text-white px-10 py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-[#5e1414] transition-colors border-2 border-[#8B1D1D] hover:border-[#8B1D1D] shadow-lg"
+                                            className="bg-[#8B1D1D] text-white px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#5e1414] transition-colors border-2 border-[#8B1D1D] hover:border-[#8B1D1D] shadow-lg w-full md:w-auto"
                                         >
-                                            Temui Para Pengrajin
+                                            Temui Artisan
                                         </button>
                                         <button 
                                             onClick={() => navigateTo('impact')}
-                                            className="bg-transparent text-[#8B1D1D] px-10 py-5 text-sm font-black uppercase tracking-[0.2em] hover:bg-[#8B1D1D] hover:text-white transition-colors border-2 border-[#8B1D1D]"
+                                            className="bg-transparent text-[#8B1D1D] px-8 py-4 md:px-10 md:py-5 text-xs md:text-sm font-black uppercase tracking-[0.2em] hover:bg-[#8B1D1D] hover:text-white transition-colors border-2 border-[#8B1D1D] w-full md:w-auto"
                                         >
                                             Laporan Ekspor
                                         </button>
@@ -176,16 +176,16 @@ const App: React.FC = () => {
                     <NewsSection onReadMore={() => navigateTo('impact')} />
 
                     {/* FLOATING ACTION BUTTON - REGISTER NOW */}
-                    <div className="fixed bottom-8 left-8 z-40 animate-fadeIn">
+                    <div className="fixed bottom-4 left-4 md:bottom-8 md:left-8 z-40 animate-fadeIn">
                         <button
                             onClick={openWhatsAppRegistration}
-                            className="bg-[#BFA36F] hover:bg-[#a38b55] text-[#0F2420] px-8 py-4 rounded-full font-serif font-bold text-sm uppercase tracking-[0.15em] shadow-[0_4px_20px_rgba(191,163,111,0.4)] border-2 border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center group"
+                            className="bg-[#BFA36F] hover:bg-[#a38b55] text-[#0F2420] px-6 py-3 md:px-8 md:py-4 rounded-full font-serif font-bold text-xs md:text-sm uppercase tracking-[0.15em] shadow-[0_4px_20px_rgba(191,163,111,0.4)] border-2 border-white/20 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center group"
                         >
                             <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
                             <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-600 rounded-full"></span>
-                            <FileText className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" />
-                            Daftar Sekarang
-                            <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                            <FileText className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 group-hover:rotate-12 transition-transform" />
+                            Daftar Mitra
+                            <ArrowRight className="w-3 h-3 md:w-4 md:h-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                         </button>
                     </div>
                 </>
