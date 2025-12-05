@@ -712,7 +712,7 @@ const DocumentLayout: React.FC<{
     address?: string; // Add optional address for letterhead
 }> = ({ title, subtitle, docNumber, onBack, children, address }) => {
     return (
-        <div className="bg-[#525659] min-h-screen py-4 md:py-10 px-0 md:px-0 animate-fadeIn font-serif overflow-x-hidden">
+        <div className="bg-[#525659] min-h-screen py-4 md:py-10 px-0 md:px-0 animate-fadeIn font-['Roboto'] overflow-x-hidden">
             {/* Mobile Header Bar */}
             <div className="bg-white p-4 shadow-md mb-4 md:hidden flex items-center sticky top-0 z-50">
                 <button onClick={onBack} className="flex items-center text-gray-800 font-sans text-xs uppercase font-bold">
@@ -743,7 +743,7 @@ const DocumentLayout: React.FC<{
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 font-serif text-justify leading-relaxed text-gray-900 text-sm md:text-base border-b-0 pb-0">
+                <div className="relative z-10 font-['Roboto'] font-medium text-justify leading-relaxed text-gray-900 text-sm md:text-base border-b-0 pb-0">
                     {children}
                 </div>
 
@@ -887,7 +887,7 @@ export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
 );
 
 export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
-    <div className="bg-[#525659] min-h-screen py-4 md:py-10 animate-fadeIn font-sans">
+    <div className="bg-[#525659] min-h-screen py-4 md:py-10 animate-fadeIn font-['Roboto'] font-medium">
         {/* Mobile Header */}
         <div className="bg-white p-4 shadow-md mb-4 md:hidden flex items-center sticky top-0 z-50">
             <button onClick={onBack} className="flex items-center text-gray-800 font-sans text-xs uppercase font-bold">

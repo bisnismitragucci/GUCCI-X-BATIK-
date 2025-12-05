@@ -105,7 +105,7 @@ const ChatWidget: React.FC = () => {
                 </h3>
                 <span className="text-[10px] opacity-90 flex items-center tracking-wider text-white">
                     <span className="w-1.5 h-1.5 bg-[#00FF00] rounded-full mr-1 animate-pulse"></span>
-                    Online • Didukung AI
+                    Customer Service
                 </span>
               </div>
             </div>

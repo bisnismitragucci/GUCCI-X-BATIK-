@@ -14,71 +14,115 @@ try {
 }
 
 // ---------------------------------------------------------------------------
-// PERPUSTAKAAN JAWABAN CERDAS (FALLBACK EXPLANATIONS)
-// Digunakan jika AI belum aktif, agar user tetap mendapat PENJELASAN RINCI.
+// PERPUSTAKAAN JAWABAN CERDAS (FALLBACK EXPLANATIONS) WITH VARIATIONS
+// Digunakan jika AI belum aktif. Menggunakan Array untuk variasi jawaban.
 // ---------------------------------------------------------------------------
-const FALLBACK_RESPONSES = {
-  greeting: "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda.\n\nSaya siap memandu Anda mengenai:\n1. **Program Kemitraan** (Sistem P4P)\n2. **Koleksi Batik Renaissance**\n3. **Legalitas Resmi** (PT. Graha Citra Prima)\n\nBagaimana saya dapat melayani Anda hari ini?",
+const FALLBACK_RESPONSES: Record<string, string[]> = {
+  greeting: [
+    "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda. \n\nSaya siap memandu Anda mengenai Program Kemitraan (Sistem P4P), Koleksi Batik Renaissance, atau Legalitas Resmi kami. Apa yang bisa saya bantu?",
+    "Selamat datang di layanan eksklusif PT. Graha Citra Prima. Sebagai asisten virtual Anda, saya dapat menjelaskan detail mengenai ekspor batik dan cara bergabung menjadi mitra. Ada yang ingin Anda tanyakan?",
+    "Halo, terima kasih telah menghubungi kami. Kami bangga dapat melayani Anda. Silakan tanyakan apa saja mengenai legalitas perusahaan atau mekanisme kerjasama ekspor kami."
+  ],
   
-  // PENJELASAN LEGALITAS / ANTI-PENIPUAN (UPDATED: LEBIH TEGAS & EMPATIK)
-  legality: "Kami mengerti kekhawatiran Anda mengenai maraknya penipuan online. Kepercayaan Anda adalah prioritas kami.\n\n**Klarifikasi Resmi Gucci Indonesia:**\n1. **Bukan Penipuan**: Kami adalah PT. GRAHA CITRA PRIMA, entitas resmi berbadan hukum.\n2. **Legalitas Sah**: Izin kami tercatat di Kemenkumham (AHU-0058932.AH.01.01.Tahun 2025).\n3. **Kantor Fisik**: Anda dapat memverifikasi keberadaan kami secara langsung di Gedung Optik Tunggal, Menteng, Jakarta Pusat.\n\nKami tidak pernah meminta transfer ke rekening pribadi. Segala transaksi menggunakan rekening perusahaan resmi.",
+  // PENJELASAN LEGALITAS / ANTI-PENIPUAN (SANGAT DETAIL & VARIED)
+  legality: [
+    "Kami sangat memahami kekhawatiran Anda mengenai maraknya penipuan digital. \n\n**Klarifikasi Resmi:**\nPT. GRAHA CITRA PRIMA adalah entitas yang 100% legal dan terdaftar di Kemenkumham dengan nomor **AHU-0058932.AH.01.01.Tahun 2025**. Kami memiliki kantor fisik di Gedung Optik Tunggal, Menteng, yang terbuka untuk umum. Transparansi adalah fondasi bisnis kami.",
+    
+    "Terima kasih telah menanyakan hal krusial ini. Keamanan Anda adalah prioritas kami. \n\nMohon diperhatikan bahwa seluruh komunikasi resmi kami hanya melalui saluran terverifikasi. Legalitas kami dapat dicek langsung melalui website AHU Online Kemenkumham. Kami tidak pernah meminta transfer ke rekening pribadi yang tidak dikenal, semua melalui rekening perusahaan resmi.",
+    
+    "Isu penipuan memang sering terjadi, namun kami menjamin keaslian operasional kami. \n\n1. **Izin Resmi:** Kami memegang Izin Usaha Ekspor dari Kemendag.\n2. **Lokasi Fisik:** Anda diundang untuk memvalidasi keberadaan kantor kami di Menteng, Jakarta Pusat.\n3. **Sistem Terbuka:** Mekanisme P4P kami berbasis data riil ekspor, bukan skema investasi bodong.",
+
+    "Sebagai perusahaan berstandar ISO 9001:2015, integritas adalah nilai utama kami. Kami bukan entitas fiktif. Seluruh legalitas, mulai dari NIB hingga SK Menteri, dapat kami tunjukkan bukti fisiknya jika Anda berkunjung ke kantor pusat kami di Jakarta Pusat."
+  ],
   
   // PENJELASAN PRODUK BATIK
-  batik: "Koleksi **'The Batik Renaissance'** adalah perpaduan mahakarya Batik Tulis halus dengan standar *High Fashion* Italia.\n\nSetiap karya dikurasi menggunakan sistem Advertising P4P untuk memastikan eksposur maksimal di pasar global. Motif seperti Mega Mendung dan Parang Barong digoreskan di atas sutra Italia terbaik.",
+  batik: [
+    "Koleksi **'The Batik Renaissance'** adalah wujud cinta kami pada wastra nusantara. Kain sutra Italia dipadukan dengan motif Mega Mendung Cirebon dan Parang Barong, menciptakan mahakarya yang kini diperebutkan di Milan dan Paris.",
+    
+    "Produk unggulan kami fokus pada *High Fashion* yang mengawinkan teknik batik tulis halus tradisional dengan potongan modern khas Gucci. Setiap helai kain melewati proses kurasi selama 3 bulan sebelum diekspor.",
+    
+    "Kami mengekspor batik tulis dan tenun ikat kualitas premium. Salah satu *masterpiece* kami adalah 'The Cloud Garden Blazer' yang menggunakan pewarna indigo alami dari tanaman lokal, sebuah simbol kemewahan yang berkelanjutan."
+  ],
   
   // PENJELASAN KEMITRAAN & SISTEM P4P
-  mitra: "Program kemitraan kami menggunakan sistem revolusioner **Advertising P4P (Pay for Performance)**.\n\n**Keunggulan Utama:**\nSistem ini menjamin transparansi. Mitra butik mendapatkan bagi hasil yang adil berdasarkan kinerja ekspor nyata (real-time export data). Kami membuka akses langsung ke rantai pasok global Gucci.",
+  mitra: [
+    "Sistem kemitraan kami menggunakan model **Advertising P4P (Pay for Performance)**. \n\nArtinya, keuntungan Anda transparan dan berbasis kinerja. Tidak ada biaya tersembunyi. Kami menyediakan akses pasar, Anda menyediakan dedikasi untuk menjaga kualitas produk sesuai standar Gucci.",
+    
+    "Dalam ekosistem kami, mitra butik tidak ditinggalkan sendirian. Kami menerapkan sistem bagi hasil yang adil di mana setiap yard kain yang diekspor akan tercatat secara digital. Pendapatan Anda adalah cerminan langsung dari volume ekspor yang berhasil kita capai bersama.",
+    
+    "Mekanisme kerjasama kami dirancang untuk memberdayakan UMKM. Melalui sistem P4P, kami mengelola pemasaran global dan logistik, sementara Anda fokus pada produksi atau penyediaan stok. Keuntungan dibagikan secara berkala sesuai laporan audit ekspor."
+  ],
   
-  // PENJELASAN PENDAFTARAN (UPDATED: SYARAT SIMPEL)
-  daftar: "Bergabunglah dengan ekosistem kami secara eksklusif.\n\n**Syarat Pendaftaran Mitra:**\n1. **Nomor HP** aktif.\n2. **Akun Bisnis Gucci** (Dibuat melalui CS).\n\nTidak ada biaya tersembunyi. Silakan klik tombol WhatsApp untuk dipandu oleh agen prioritas kami.",
+  // PENJELASAN PENDAFTARAN
+  daftar: [
+    "Proses pendaftaran mitra sangat eksklusif namun mudah. \n\nAnda hanya perlu menghubungi Customer Service kami via WhatsApp untuk verifikasi data diri dan usaha. Tidak ada formulir rumit, tim kami yang akan memandu Anda langkah demi langkah.",
+    
+    "Ingin bergabung? Silakan klik tombol WhatsApp yang tersedia. Kami memerlukan validasi Nomor HP dan profil singkat usaha Anda untuk pembuatan **Akun Bisnis Gucci**. Slot kemitraan untuk kuartal ini terbatas, jadi kami sarankan untuk segera mendaftar.",
+    
+    "Pendaftaran dibuka untuk individu maupun pemilik butik. Syarat utamanya adalah komitmen. Hubungi agen prioritas kami sekarang melalui WhatsApp untuk mendapatkan formulir digital dan jadwal wawancara singkat."
+  ],
   
   // PENJELASAN LOKASI
-  lokasi: "Kantor Pusat kami berlokasi strategis di:\n**Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Menteng, Jakarta Pusat**.\n\nKami juga memiliki jaringan 'Artisan Hub' di Yogyakarta, Solo, Pekalongan, dan Bali yang dapat Anda kunjungi.",
+  lokasi: [
+    "Kantor Pusat operasional kami terletak di jantung kota Jakarta: **Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Menteng, Jakarta Pusat**. Kami menyambut kunjungan Anda pada jam kerja (Senin-Jumat).",
+    
+    "Anda dapat menemukan kami di kawasan Menteng, Jakarta Pusat, tepatnya di Gedung Optik Tunggal. Selain itu, kami memiliki beberapa sentra artisan binaan (Artisan Hub) yang tersebar di Yogyakarta, Solo, dan Bali.",
+    
+    "Lokasi fisik kami sangat strategis dan mudah diakses di Jl. Cikini Raya No. 89, Jakarta Pusat. Keberadaan kantor fisik ini adalah bukti komitmen jangka panjang kami di Indonesia."
+  ],
   
   // DEFAULT RESPONSE
-  default: "Terima kasih atas pertanyaan Anda. Untuk penjelasan mendalam mengenai hal tersebut, saya sarankan Anda terhubung langsung dengan **Customer Service Priority** kami.\n\nTim kami siap menjelaskan detail teknis sistem Advertising P4P dan peluang emas ini."
+  default: [
+    "Pertanyaan yang sangat menarik. Untuk memberikan jawaban yang paling akurat dan teknis mengenai hal tersebut, saya sangat menyarankan Anda untuk berbicara langsung dengan tim ahli kami di WhatsApp.",
+    
+    "Maaf, saya ingin memastikan Anda mendapatkan informasi yang 100% tepat. Bisakah Anda menekan tombol WhatsApp di bawah ini? Customer Service manusia kami akan menjelaskan detailnya kepada Anda.",
+    
+    "Terima kasih atas pertanyaannya. Topik ini membutuhkan penjelasan mendalam yang lebih baik disampaikan oleh agen spesialis kami. Silakan hubungi kami via WhatsApp untuk diskusi lebih lanjut."
+  ]
 };
 
-// Fungsi Deteksi Topik (Keyword Matching)
+// Fungsi Deteksi Topik (Keyword Matching) & Random Picker
 const getFallbackResponse = (message: string): string => {
   const lowerMsg = message.toLowerCase();
   
+  let topicKey = 'default';
+
   // Deteksi Topik Pendaftaran (PRIORITAS TINGGI)
   if (lowerMsg.match(/(daftar|register|gabung|join|cara|syarat|form|akun|hp)/)) {
-    return FALLBACK_RESPONSES.daftar;
+    topicKey = 'daftar';
   }
-
   // Deteksi Topik Sistem/P4P
-  if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising|bagi hasil)/)) {
-    return FALLBACK_RESPONSES.mitra;
+  else if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising|bagi hasil)/)) {
+    topicKey = 'mitra';
   }
-  
   // Deteksi Topik Legalitas/Penipuan (DIPERKUAT)
-  if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|hoax|bodong)/)) {
-    return FALLBACK_RESPONSES.legality;
+  else if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|hoax|bodong|benar|betul)/)) {
+    topicKey = 'legality';
   }
-
   // Deteksi Topik Salam
-  if (lowerMsg.match(/(halo|hi|pagi|siang|malam|sore|assalam|permisi|test|tes|hai)/)) {
-    return FALLBACK_RESPONSES.greeting;
+  else if (lowerMsg.match(/(halo|hi|pagi|siang|malam|sore|assalam|permisi|test|tes|hai)/)) {
+    topicKey = 'greeting';
   }
-  
   // Deteksi Topik Produk/Batik
-  if (lowerMsg.match(/(batik|koleksi|baju|produk|harga|jual|beli|sutra|kain|motif|model)/)) {
-    return FALLBACK_RESPONSES.batik;
+  else if (lowerMsg.match(/(batik|koleksi|baju|produk|harga|jual|beli|sutra|kain|motif|model)/)) {
+    topicKey = 'batik';
   }
-
   // Deteksi Topik Mitra/Kerjasama
-  if (lowerMsg.match(/(mitra|partner|kerjasama|usaha|bisnis|suplier|supplier)/)) {
-    return FALLBACK_RESPONSES.mitra;
+  else if (lowerMsg.match(/(mitra|partner|kerjasama|usaha|bisnis|suplier|supplier)/)) {
+    topicKey = 'mitra';
+  }
+  // Deteksi Topik Lokasi
+  else if (lowerMsg.match(/(lokasi|alamat|dimana|kantor|posisi|kota|daerah|tempat)/)) {
+    topicKey = 'lokasi';
   }
 
-  // Deteksi Topik Lokasi
-  if (lowerMsg.match(/(lokasi|alamat|dimana|kantor|posisi|kota|daerah|tempat)/)) {
-    return FALLBACK_RESPONSES.lokasi;
-  }
+  // Ambil Array Jawaban berdasarkan topik
+  const responses = FALLBACK_RESPONSES[topicKey];
   
-  return FALLBACK_RESPONSES.default;
+  // PILIH SATU JAWABAN SECARA ACAK DARI ARRAY
+  const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+  
+  return randomResponse;
 };
 
 export const getGeminiResponse = async (userMessage: string): Promise<string> => {
@@ -89,26 +133,27 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
         model: 'gemini-2.5-flash',
         contents: userMessage,
         config: {
-          systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
+          systemInstruction: `Anda adalah "Customer Service Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
 
-          TONE OF VOICE:
-          - Profesional, Elegan, namun Empatik.
-          - Gunakan Bahasa Indonesia baku yang mewah.
+          KARAKTER:
+          - Anda harus menjawab dengan variasi kalimat, jangan robotik.
+          - Gunakan empati tinggi, namun tetap profesional dan elegan.
+          - Jika user bertanya hal yang sama, cobalah memfrasakan ulang jawaban Anda.
 
-          INSTRUKSI KHUSUS UNTUK TOPIK PENIPUAN/KEAMANAN:
-          Jika pengguna bertanya apakah ini "Penipuan", "Scam", atau "Bohong", Anda WAJIB memberikan klarifikasi yang menenangkan dan tegas:
-          1. Jawab dengan empati: "Kami sangat memahami kekhawatiran Anda di era digital ini."
-          2. Tegaskan Legalitas: Sebutkan nama PT. GRAHA CITRA PRIMA dan No SK Kemenkumham (AHU-0058932.AH.01.01.Tahun 2025).
-          3. Bukti Fisik: Tekankan bahwa kantor fisik ada di Menteng, Jakarta Pusat dan terbuka untuk dikunjungi.
-          4. Transparansi: Jelaskan bahwa sistem P4P berbasis data real-time, bukan skema investasi uang.
+          INSTRUKSI KHUSUS TOPIK PENIPUAN/KEAMANAN:
+          Jika ditanya soal "Penipuan", "Scam", atau keraguan legalitas:
+          1. Jawab dengan tegas namun menenangkan.
+          2. Selalu sebutkan: PT. GRAHA CITRA PRIMA dan No SK Kemenkumham (AHU-0058932.AH.01.01.Tahun 2025).
+          3. Berikan opsi kunjungan fisik ke kantor di Gedung Optik Tunggal, Menteng.
+          4. Jelaskan transparansi sistem bisnis.
 
-          KEY POINTS LAIN:
-          - Validitas Bisnis: PT. Graha Citra Prima adalah entitas resmi.
-          - Sistem P4P: Advertising Pay-for-Performance, bagi hasil dari kinerja ekspor nyata.
-          - Pendaftaran: Cukup Nomor HP dan Akun Bisnis Gucci (via CS).
-
+          KEY POINTS:
+          - Bisnis resmi, bukan investasi bodong.
+          - Pendaftaran hanya via WhatsApp resmi.
+          - Sistem P4P (Pay for Performance) berbasis data ekspor riil.
+          
           CLOSING:
-          - Selalu arahkan ke WhatsApp Customer Service untuk verifikasi data lebih lanjut.`,
+          - Arahkan ke WhatsApp untuk verifikasi lanjut.`,
         }
       });
       
@@ -120,6 +165,6 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
     }
   }
 
-  // 2. Jika AI Gagal/Tidak Ada Key, gunakan Jawaban Penjelasan Rinci (Fallback)
+  // 2. Jika AI Gagal/Tidak Ada Key, gunakan Jawaban Acak dari Perpustakaan (Fallback)
   return getFallbackResponse(userMessage);
 };

@@ -9,7 +9,7 @@ interface LegalityPageProps {
 
 export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }) => {
   return (
-    <div className="bg-white min-h-screen animate-fadeIn font-['Roboto'] font-medium text-gray-800">
+    <div className="bg-white min-h-screen animate-fadeIn font-['Roboto'] font-medium text-gray-900">
       {/* Hero Header - Removed Pattern */}
       <div className="bg-[#0F2420] text-white pt-24 pb-12 relative overflow-hidden border-b-8 border-[#BFA36F]">
         <div className="container mx-auto px-6 lg:px-12 relative z-10 text-center">
@@ -31,11 +31,11 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
             <div className="mb-12 border-b border-gray-200 pb-8">
                 <div className="flex flex-col md:flex-row justify-between items-start">
                     <div className="w-full">
-                         <span className="text-gray-500 text-xs font-bold uppercase tracking-widest block mb-4">Entitas Terdaftar</span>
+                         <span className="text-gray-600 text-xs font-bold uppercase tracking-widest block mb-4">Entitas Terdaftar</span>
                          <h2 className="text-3xl font-serif font-bold text-black mb-6">PT. GRAHA CITRA PRIMA – GUCCI</h2>
                          
                          {/* Grid for alignment */}
-                         <div className="grid grid-cols-[140px_20px_1fr] md:grid-cols-[180px_20px_1fr] gap-y-3 text-sm md:text-base text-gray-700 font-medium">
+                         <div className="grid grid-cols-[140px_20px_1fr] md:grid-cols-[180px_20px_1fr] gap-y-3 text-sm md:text-base text-gray-900 font-medium">
                              <div>ALAMAT</div>
                              <div className="text-center">:</div>
                              <div>JL. Cikini Raya No. 89, Gedung Optik Tunggal, Kecamatan Menteng, Kota Jakarta Pusat, DKI Jakarta, 10330, Indonesia</div>
@@ -63,7 +63,7 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
             </div>
 
             {/* Document Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 font-medium">
                 {/* Left Column: Official Decrees */}
                 <div>
                     <h3 className="text-[#8B1D1D] font-bold text-sm uppercase tracking-[0.2em] mb-6 flex items-center">
@@ -79,10 +79,10 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                                 />
                                 <div>
                                     <h4 className="font-bold text-black text-sm uppercase">SK Kemenkumham</h4>
-                                    <p className="text-xs text-gray-500">AHU-0058932.AH.01.01.Tahun 2025</p>
+                                    <p className="text-xs text-gray-600 font-medium">AHU-0058932.AH.01.01.Tahun 2025</p>
                                 </div>
                             </div>
-                            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-[#8B1D1D]" />
+                            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#8B1D1D]" />
                         </div>
 
                         <div onClick={() => onNavigate('doc-iue')} className="group flex items-center justify-between p-4 border border-gray-200 hover:border-[#8B1D1D] hover:bg-gray-50 cursor-pointer transition-all">
@@ -94,10 +94,10 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                                 />
                                 <div>
                                     <h4 className="font-bold text-black text-sm uppercase">Izin Usaha Ekspor</h4>
-                                    <p className="text-xs text-gray-500">Kementerian Perdagangan RI</p>
+                                    <p className="text-xs text-gray-600 font-medium">Kementerian Perdagangan RI</p>
                                 </div>
                             </div>
-                            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-[#8B1D1D]" />
+                            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#8B1D1D]" />
                         </div>
                     </div>
                 </div>
@@ -117,10 +117,10 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                                 />
                                 <div>
                                     <h4 className="font-bold text-black text-sm uppercase">ISO 9001:2015</h4>
-                                    <p className="text-xs text-gray-500">Quality Management System</p>
+                                    <p className="text-xs text-gray-600 font-medium">Quality Management System</p>
                                 </div>
                             </div>
-                            <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-[#BFA36F]" />
+                            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-[#BFA36F]" />
                         </div>
 
                          <div onClick={() => onNavigate('partners')} className="group flex items-center justify-between p-4 border border-gray-200 hover:border-[#BFA36F] hover:bg-gray-50 cursor-pointer transition-all">
@@ -128,7 +128,7 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                                 <MapPin className="w-8 h-8 text-[#BFA36F] mr-4" />
                                 <div>
                                     <h4 className="font-bold text-black text-sm uppercase">Gucci Artisan Tier 1</h4>
-                                    <p className="text-xs text-gray-500">Akses Peta Lokasi Mitra</p>
+                                    <p className="text-xs text-gray-600 font-medium">Akses Peta Lokasi Mitra</p>
                                 </div>
                             </div>
                             <span className="text-[10px] font-bold uppercase bg-[#BFA36F] text-[#0F2420] px-2 py-1">Verified</span>
@@ -139,7 +139,7 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
 
             {/* Signature Section - Enlarged & Clean Background */}
             <div className="mt-16 pt-8 flex flex-col md:flex-row justify-between items-end gap-6">
-                <div className="text-xs text-gray-500 font-medium max-w-md mb-2 md:mb-0">
+                <div className="text-xs text-gray-600 font-medium max-w-md mb-2 md:mb-0">
                     <p className="italic leading-relaxed">Dokumen ini diterbitkan secara elektronik oleh Sistem Administrasi Badan Usaha (SABU). Tanda tangan elektronik memiliki kekuatan hukum yang sah sesuai UU ITE.</p>
                 </div>
                 
@@ -162,7 +162,7 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                     
                     <div className="text-center z-10 relative">
                         <h5 className="font-bold text-lg text-black border-b border-black pb-1 mb-1 inline-block uppercase">YASONNA H. LAOLY</h5>
-                        <p className="text-xs uppercase font-bold text-gray-500">Menteri Hukum dan HAM RI</p>
+                        <p className="text-xs uppercase font-bold text-gray-600">Menteri Hukum dan HAM RI</p>
                     </div>
                 </div>
             </div>
