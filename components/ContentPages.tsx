@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
-import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck, Plane, Package, Anchor, Printer, Share2, Download, FileText, Calendar, Zap, ArrowRight as ArrowRightIcon } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck, Plane, Package, Anchor, Printer, Share2, Download, FileText, Calendar, Zap, ArrowRight as ArrowRightIcon, TrendingUp, TrendingDown } from 'lucide-react';
 
 interface PageProps {
     onBack: () => void;
@@ -171,17 +171,114 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
 }
 
 // ----------------------------------------------------------------------
-// 3. IMPACT PAGE (ENHANCED SCANLINE EFFECT)
+// 3. IMPACT PAGE (ENHANCED REAL-TIME & SCALED DOWN VALUES)
 // ----------------------------------------------------------------------
 
 export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
-    // MOCK DATA
-    const ALL_COUNTRIES = [
-        { code: "IT", name: "ITALIA (Milan)", flagUrl: "https://flagcdn.com/w80/it.png", share: "45.2%", income: "Rp 213.180.000.000", change: "+12.4%" },
-        { code: "FR", name: "PERANCIS (Paris)", flagUrl: "https://flagcdn.com/w80/fr.png", share: "28.5%", income: "Rp 139.570.000.000", change: "+8.1%" },
-        { code: "US", name: "USA (New York)", flagUrl: "https://flagcdn.com/w80/us.png", share: "15.1%", income: "Rp 70.550.000.000", change: "+5.3%" },
-        { code: "JP", name: "JEPANG (Tokyo)", flagUrl: "https://flagcdn.com/w80/jp.png", share: "12.0%", income: "Rp 59.500.000.000", change: "+2.1%" },
+    // 1. Initial Data for Countries (Base values in Billions IDR - Scaled to Tens/Units)
+    // Range: 2 Miliar - 80 Miliar
+    const INITIAL_MARKET_NODES = [
+        { code: "IT", name: "ITALIA (Milan)", flagUrl: "https://flagcdn.com/w80/it.png", baseIncome: 45.2, currency: "EUR" },
+        { code: "FR", name: "PERANCIS (Paris)", flagUrl: "https://flagcdn.com/w80/fr.png", baseIncome: 28.5, currency: "EUR" },
+        { code: "US", name: "USA (New York)", flagUrl: "https://flagcdn.com/w80/us.png", baseIncome: 18.1, currency: "USD" },
+        { code: "JP", name: "JEPANG (Tokyo)", flagUrl: "https://flagcdn.com/w80/jp.png", baseIncome: 12.4, currency: "JPY" },
+        { code: "CN", name: "CHINA (Shanghai)", flagUrl: "https://flagcdn.com/w80/cn.png", baseIncome: 9.8, currency: "CNY" },
+        { code: "AE", name: "UAE (Dubai)", flagUrl: "https://flagcdn.com/w80/ae.png", baseIncome: 7.2, currency: "AED" },
     ];
+
+    // State for live market data
+    const [marketNodes, setMarketNodes] = useState(INITIAL_MARKET_NODES.map(n => ({
+        ...n,
+        currentIncome: n.baseIncome, // In Billions (Miliar)
+        change: 0.5, // Percent
+        trend: 'up' as 'up' | 'down'
+    })));
+
+    // State for Ticker Data
+    const [currencyData, setCurrencyData] = useState({
+        usd: 15450,
+        eur: 16820,
+        exportVol: 128
+    });
+
+    // 2. Simulation Logic (Effect)
+    useEffect(() => {
+        const interval = setInterval(() => {
+            // A. Update Market Nodes (Fluctuate values)
+            setMarketNodes(prevNodes => prevNodes.map(node => {
+                // Fluctuate income by small random amount (-0.2 to +0.3 Miliar)
+                const fluctuation = (Math.random() * 0.5) - 0.2;
+                let newIncome = node.currentIncome + fluctuation;
+                
+                // Keep within realistic "Tens/Units" bounds (Min 1M, Max 99M)
+                if (newIncome < 1) newIncome = 1.2;
+                if (newIncome > 99) newIncome = 98.5;
+
+                // Calculate Change % based on base vs new
+                const diff = newIncome - node.baseIncome;
+                const changePct = (diff / node.baseIncome) * 100;
+
+                return {
+                    ...node,
+                    currentIncome: newIncome,
+                    change: Math.abs(changePct),
+                    trend: diff >= 0 ? 'up' : 'down'
+                };
+            }));
+
+            // B. Update Currency/Ticker
+            setCurrencyData(prev => ({
+                usd: prev.usd + Math.floor((Math.random() * 10) - 5),
+                eur: prev.eur + Math.floor((Math.random() * 10) - 5),
+                exportVol: prev.exportVol + (Math.random() > 0.7 ? 1 : 0) // Slowly increment volume
+            }));
+
+        }, 3000); // Update every 3 seconds
+
+        return () => clearInterval(interval);
+    }, []);
+
+    // 3. Calculate Total Realtime Export (Sum of displayed nodes)
+    const totalExportValue = useMemo(() => {
+        return marketNodes.reduce((acc, curr) => acc + curr.currentIncome, 0);
+    }, [marketNodes]);
+
+    // Format Helpers
+    const formatMiliar = (val: number) => `Rp ${val.toFixed(1).replace('.', ',')} Miliar`;
+    const formatCurrency = (val: number) => `Rp ${val.toLocaleString('id-ID')}`;
+
+    // Visible Nodes Logic (Rotation)
+    const [startIndex, setStartIndex] = useState(0);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setStartIndex((prev) => (prev + 1) % marketNodes.length);
+        }, 5000); // Rotate visible list every 5s
+        return () => clearInterval(interval);
+    }, [marketNodes.length]);
+
+    const visibleCountries = [];
+    for (let i = 0; i < 4; i++) {
+        visibleCountries.push(marketNodes[(startIndex + i) % marketNodes.length]);
+    }
+
+    const ImpactTickerContent = () => (
+        <>
+            <span className="mr-8 flex items-center">
+                <span className="text-gray-400 mr-2">USD/IDR:</span> 
+                <span className="text-[#BFA36F] font-mono">{formatCurrency(currencyData.usd)}</span>
+                <span className="ml-1 text-green-500 text-[10px] flex items-center"><TrendingUp className="w-3 h-3"/></span>
+            </span>
+            <span className="mr-8 flex items-center">
+                <span className="text-gray-400 mr-2">EUR/IDR:</span> 
+                <span className="text-[#BFA36F] font-mono">{formatCurrency(currencyData.eur)}</span>
+                <span className="ml-1 text-green-500 text-[10px] flex items-center"><TrendingUp className="w-3 h-3"/></span>
+            </span>
+            <span className="mr-8 flex items-center">
+                <span className="text-gray-400 mr-2">VOL EKSPOR (YTD):</span> 
+                <span className="text-white font-mono">{currencyData.exportVol}K YDS</span>
+            </span>
+        </>
+    );
 
     const ARTISAN_LOGS = [
         { id: "WS-SOLO-01", name: "Keraton Royal Atelier", task: "Batik Tulis Halus", progress: 85, status: "Finishing", color: "bg-green-500" },
@@ -242,25 +339,6 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
         },
     ];
 
-    const [startIndex, setStartIndex] = useState(0);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setStartIndex((prev) => (prev + 1) % ALL_COUNTRIES.length);
-        }, 3000); 
-        return () => clearInterval(interval);
-    }, []);
-
-    const visibleCountries = [];
-    for (let i = 0; i < 4; i++) {
-        visibleCountries.push(ALL_COUNTRIES[(startIndex + i) % ALL_COUNTRIES.length]);
-    }
-
-    const ImpactTickerContent = () => (
-        <>
-            <span className="mr-8">USD/IDR: 15.450 (+0.2%)  •  EUR/IDR: 16.820 (+0.1%)  •  BERJANGKA KATUN: $82.40  •  VOL EKSPOR: 128K YDS (YTD)  • </span>
-        </>
-    );
-
     return (
         <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn font-sans">
              <div className="fixed top-[88px] md:top-24 left-0 w-full bg-black text-[#BFA36F] z-30 overflow-hidden py-2 border-b border-[#8B1D1D] hidden md:flex">
@@ -290,21 +368,30 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#BFA36F]/5 to-transparent h-full w-full animate-[scan_3s_linear_infinite] pointer-events-none z-10"></div>
                         <div className="absolute top-0 right-0 p-4 opacity-20"><Globe className="w-24 h-24 text-[#BFA36F]" /></div>
                         
-                        <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest mb-6 flex items-center relative z-20">
-                            <Activity className="w-4 h-4 mr-2 animate-pulse" /> LIVE MARKET DATA
-                        </h3>
+                        <div className="flex justify-between items-center mb-6 relative z-20">
+                            <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest flex items-center">
+                                <Activity className="w-4 h-4 mr-2 animate-pulse" /> LIVE MARKET DATA
+                            </h3>
+                            <span className="text-[10px] font-mono text-gray-500 animate-pulse">● LIVE UPDATES</span>
+                        </div>
 
                         <div className="space-y-4 relative z-20">
                             {visibleCountries.map((c, i) => (
-                                <div key={i} className="flex justify-between items-center md:grid md:grid-cols-12 bg-[#151515] p-3 rounded border-l-2 border-[#BFA36F] hover:bg-[#222] transition-all hover:scale-[1.01]">
+                                <div key={i} className="flex justify-between items-center md:grid md:grid-cols-12 bg-[#151515] p-3 rounded border-l-2 border-[#BFA36F] hover:bg-[#222] transition-all hover:scale-[1.01] duration-500">
                                     <div className="flex items-center md:contents">
                                         <div className="font-mono text-xs text-gray-400 w-10 md:w-auto md:col-span-2">{c.code}</div>
                                         <div className="font-bold text-sm flex items-center md:col-span-4"><img src={c.flagUrl} className="w-4 h-3 mr-2 rounded-sm" alt="flag" /> <span className="truncate">{c.name.split('(')[0]}</span></div>
                                     </div>
                                     {/* Mobile Responsive Vertical Stack for Volume/Growth */}
                                     <div className="flex flex-col items-end md:contents">
-                                        <div className="md:col-span-3 text-right font-mono text-[#BFA36F] text-[10px] md:text-xs whitespace-nowrap">{c.income}</div>
-                                        <div className="md:col-span-3 text-right font-bold text-[10px] md:text-xs text-green-500 whitespace-nowrap">{c.change}</div>
+                                        <div className="md:col-span-3 text-right font-mono text-[#BFA36F] text-[10px] md:text-xs whitespace-nowrap transition-all duration-300">
+                                            {formatMiliar(c.currentIncome)}
+                                        </div>
+                                        <div className={`md:col-span-3 text-right font-bold text-[10px] md:text-xs whitespace-nowrap flex items-center justify-end ${c.trend === 'up' ? 'text-green-500' : 'text-red-500'}`}>
+                                            {c.trend === 'up' ? <TrendingUp className="w-3 h-3 mr-1"/> : <TrendingDown className="w-3 h-3 mr-1"/>}
+                                            {c.change.toFixed(1)}%
+                                            <span className="text-[9px] text-gray-600 ml-1 font-normal">vs Last Wk</span>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -312,8 +399,10 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
 
                         <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-800 relative z-20">
                              <div className="flex flex-col">
-                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">TOTAL EKSPOR</span>
-                                <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">Rp 768 Miliar</div>
+                                <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">TOTAL NILAI EKSPOR</span>
+                                <div className="text-sm md:text-2xl font-bold text-white whitespace-nowrap transition-all duration-500">
+                                    {formatMiliar(totalExportValue)}
+                                </div>
                             </div>
                             <div className="w-px h-8 bg-gray-800 mx-2"></div>
                             <div className="flex flex-col">

@@ -19,20 +19,18 @@ try {
 // ---------------------------------------------------------------------------
 const FALLBACK_RESPONSES: Record<string, string[]> = {
   greeting: [
-    "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda. \n\nSaya siap memandu Anda mengenai Program Kemitraan (Sistem P4P), Koleksi Batik Renaissance, atau Legalitas Resmi kami. Apa yang bisa saya bantu?",
-    "Selamat datang di layanan eksklusif PT. Graha Citra Prima. Sebagai asisten virtual Anda, saya dapat menjelaskan detail mengenai ekspor batik dan cara bergabung menjadi mitra. Ada yang ingin Anda tanyakan?",
-    "Halo, terima kasih telah menghubungi kami. Kami bangga dapat melayani Anda. Silakan tanyakan apa saja mengenai legalitas perusahaan atau mekanisme kerjasama ekspor kami."
+    "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda. \n\nSaya siap memandu Anda mengenai pembuatan Akun Bisnis dan Program Kemitraan. Apa yang bisa saya bantu?",
+    "Selamat datang di layanan eksklusif PT. Graha Citra Prima. Silakan tanyakan mengenai cara pendaftaran akun bisnis atau mekanisme P2P Lending kami.",
+    "Halo, terima kasih telah menghubungi kami. Kami bangga dapat melayani Anda. Ada yang ingin Anda tanyakan seputar legalitas atau proses agenda ekspor?"
   ],
   
-  // PENJELASAN LEGALITAS / ANTI-PENIPUAN (SANGAT DETAIL & VARIED)
+  // PENJELASAN LEGALITAS / ANTI-PENIPUAN / REKENING (DIUPDATE SESUAI REQUEST)
   legality: [
-    "Kami sangat memahami kekhawatiran Anda mengenai maraknya penipuan digital. \n\n**Klarifikasi Resmi:**\nPT. GRAHA CITRA PRIMA adalah entitas yang 100% legal dan terdaftar di Kemenkumham dengan nomor **AHU-0058932.AH.01.01.Tahun 2025**. Kami memiliki kantor fisik di Gedung Optik Tunggal, Menteng, yang terbuka untuk umum. Transparansi adalah fondasi bisnis kami.",
+    "Mengenai keraguan Anda, berikut klarifikasi resmi kami:\n\n1. **Legalitas:** Kami adalah PT. GRAHA CITRA PRIMA (AHU-0058932.AH.01.01.Tahun 2025).\n2. **Sistem Pembayaran:** Kami menggunakan konsep **P2P Lending (Peer-to-Peer)**. Oleh karena itu, transaksi resmi menggunakan **REKENING PERORANGAN** yang ditunjuk manajemen, bukan rekening perusahaan langsung, demi kecepatan likuiditas ke mitra.\n3. **Keamanan:** Rekening resmi hanya didapatkan dari Customer Service (CS) GUCCI. Jika ada yang memberi rekening selain dari CS kami, itu bukan tanggung jawab kami.",
     
-    "Terima kasih telah menanyakan hal krusial ini. Keamanan Anda adalah prioritas kami. \n\nMohon diperhatikan bahwa seluruh komunikasi resmi kami hanya melalui saluran terverifikasi. Legalitas kami dapat dicek langsung melalui website AHU Online Kemenkumham. Kami tidak pernah meminta transfer ke rekening pribadi yang tidak dikenal, semua melalui rekening perusahaan resmi.",
+    "Kami mengerti kehati-hatian Anda. \n\nPerlu dipahami bahwa dalam ekosistem P4P kami, metode pembayaran mengadopsi sistem **P2P Lending**. Artinya, transfer ditujukan ke **Rekening Perorangan** bendahara resmi yang diawasi ketat oleh Gucci. \n\nLegalitas kami mutlak. Untuk keamanan, pastikan Anda hanya bertransaksi melalui instruksi Customer Service di WhatsApp kami.",
     
-    "Isu penipuan memang sering terjadi, namun kami menjamin keaslian operasional kami. \n\n1. **Izin Resmi:** Kami memegang Izin Usaha Ekspor dari Kemendag.\n2. **Lokasi Fisik:** Anda diundang untuk memvalidasi keberadaan kantor kami di Menteng, Jakarta Pusat.\n3. **Sistem Terbuka:** Mekanisme P4P kami berbasis data riil ekspor, bukan skema investasi bodong.",
-
-    "Sebagai perusahaan berstandar ISO 9001:2015, integritas adalah nilai utama kami. Kami bukan entitas fiktif. Seluruh legalitas, mulai dari NIB hingga SK Menteri, dapat kami tunjukkan bukti fisiknya jika Anda berkunjung ke kantor pusat kami di Jakarta Pusat."
+    "Terkait isu penipuan: Kami beroperasi dengan izin resmi dan kantor fisik di Menteng. \n\nKhusus untuk transaksi keuangan, kami menerapkan mekanisme **P2P Lending** yang menggunakan **Rekening Perorangan** terverifikasi. Ini adalah prosedur standar kami untuk fleksibilitas bagi hasil mitra. Selalu verifikasi nomor rekening hanya melalui CS Resmi Gucci."
   ],
   
   // PENJELASAN PRODUK BATIK
@@ -44,22 +42,22 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
     "Kami mengekspor batik tulis dan tenun ikat kualitas premium. Salah satu *masterpiece* kami adalah 'The Cloud Garden Blazer' yang menggunakan pewarna indigo alami dari tanaman lokal, sebuah simbol kemewahan yang berkelanjutan."
   ],
   
-  // PENJELASAN KEMITRAAN & SISTEM P4P
+  // PENJELASAN KEMITRAAN & MODAL (DIUPDATE SESUAI REQUEST)
   mitra: [
-    "Sistem kemitraan kami menggunakan model **Advertising P4P (Pay for Performance)**. \n\nArtinya, keuntungan Anda transparan dan berbasis kinerja. Tidak ada biaya tersembunyi. Kami menyediakan akses pasar, Anda menyediakan dedikasi untuk menjaga kualitas produk sesuai standar Gucci.",
+    "Mengenai Modal: **Tidak ada biaya di awal pendaftaran.** \n\nModal atau dana partisipasi hanya dikeluarkan NANTI, yaitu saat Anda sudah memiliki Akun Bisnis dan siap menjalankan **Proses Agenda** (eksekusi proyek). Fokus pertama Anda hanyalah mendaftar akun terlebih dahulu.",
     
-    "Dalam ekosistem kami, mitra butik tidak ditinggalkan sendirian. Kami menerapkan sistem bagi hasil yang adil di mana setiap yard kain yang diekspor akan tercatat secara digital. Pendapatan Anda adalah cerminan langsung dari volume ekspor yang berhasil kita capai bersama.",
+    "Sistem kami sangat transparan. \n1. Anda daftar Akun Bisnis (Gratis/Mudah).\n2. Setelah punya akun, baru kita bicara soal modal untuk menjalankan agenda.\n3. Keuntungan dibagikan via sistem P2P Lending.",
     
-    "Mekanisme kerjasama kami dirancang untuk memberdayakan UMKM. Melalui sistem P4P, kami mengelola pemasaran global dan logistik, sementara Anda fokus pada produksi atau penyediaan stok. Keuntungan dibagikan secara berkala sesuai laporan audit ekspor."
+    "Jangan khawatir soal modal dulu. Syarat utama hanyalah memiliki **Akun Bisnis** di data kami. Modal hanya diperlukan saat Anda sudah resmi terdaftar dan ingin mengambil slot agenda ekspor yang tersedia."
   ],
   
-  // PENJELASAN PENDAFTARAN
+  // PENJELASAN PENDAFTARAN (DIUPDATE SESUAI REQUEST)
   daftar: [
-    "Proses pendaftaran mitra sangat eksklusif namun mudah. \n\nAnda hanya perlu menghubungi Customer Service kami via WhatsApp untuk verifikasi data diri dan usaha. Tidak ada formulir rumit, tim kami yang akan memandu Anda langkah demi langkah.",
+    "Syarat daftarnya sangat simpel: Cukup **membuat Akun Bisnis** melalui Customer Service GUCCI. \n\nSilakan klik tombol WhatsApp untuk dibantu pembuatan akunnya oleh tim kami. Data Anda akan kami input ke sistem global kami.",
     
-    "Ingin bergabung? Silakan klik tombol WhatsApp yang tersedia. Kami memerlukan validasi Nomor HP dan profil singkat usaha Anda untuk pembuatan **Akun Bisnis Gucci**. Slot kemitraan untuk kuartal ini terbatas, jadi kami sarankan untuk segera mendaftar.",
+    "Untuk bergabung, langkah pertamanya bukan setor uang, tapi **registrasi Akun Bisnis**. Hubungi CS kami di WhatsApp, berikan data diri, dan akun Anda akan diproses. Setelah akun jadi, baru Anda bisa melihat agenda yang tersedia.",
     
-    "Pendaftaran dibuka untuk individu maupun pemilik butik. Syarat utamanya adalah komitmen. Hubungi agen prioritas kami sekarang melalui WhatsApp untuk mendapatkan formulir digital dan jadwal wawancara singkat."
+    "Ingin mendaftar? Cukup hubungi CS kami untuk pembuatan **Akun Bisnis Gucci**. Prosesnya cepat dan dipandu langsung oleh admin. Tidak ada syarat rumit di awal."
   ],
   
   // PENJELASAN LOKASI
@@ -73,11 +71,11 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
   
   // DEFAULT RESPONSE
   default: [
-    "Pertanyaan yang sangat menarik. Untuk memberikan jawaban yang paling akurat dan teknis mengenai hal tersebut, saya sangat menyarankan Anda untuk berbicara langsung dengan tim ahli kami di WhatsApp.",
+    "Pertanyaan yang bagus. Untuk detail teknis pembuatan Akun Bisnis atau verifikasi rekening P2P, silakan hubungi Customer Service kami via WhatsApp.",
     
-    "Maaf, saya ingin memastikan Anda mendapatkan informasi yang 100% tepat. Bisakah Anda menekan tombol WhatsApp di bawah ini? Customer Service manusia kami akan menjelaskan detailnya kepada Anda.",
+    "Maaf, agar penjelasannya lebih akurat, silakan tanyakan langsung ke CS kami melalui tombol WhatsApp di bawah. Mereka bisa memandu Anda membuat Akun Bisnis.",
     
-    "Terima kasih atas pertanyaannya. Topik ini membutuhkan penjelasan mendalam yang lebih baik disampaikan oleh agen spesialis kami. Silakan hubungi kami via WhatsApp untuk diskusi lebih lanjut."
+    "Terima kasih atas pertanyaannya. Tim spesialis kami di WhatsApp siap menjelaskan detail agenda dan sistem pembayaran P2P kami kepada Anda."
   ]
 };
 
@@ -91,12 +89,12 @@ const getFallbackResponse = (message: string): string => {
   if (lowerMsg.match(/(daftar|register|gabung|join|cara|syarat|form|akun|hp)/)) {
     topicKey = 'daftar';
   }
-  // Deteksi Topik Sistem/P4P
-  else if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising|bagi hasil)/)) {
+  // Deteksi Topik Sistem/P4P/Modal
+  else if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising|bagi hasil|modal|biaya|bayar|dana)/)) {
     topicKey = 'mitra';
   }
-  // Deteksi Topik Legalitas/Penipuan (DIPERKUAT)
-  else if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|hoax|bodong|benar|betul)/)) {
+  // Deteksi Topik Legalitas/Penipuan/Rekening (DIPERKUAT)
+  else if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|hoax|bodong|benar|betul|rekening|transfer|bank)/)) {
     topicKey = 'legality';
   }
   // Deteksi Topik Salam
@@ -133,27 +131,31 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
         model: 'gemini-2.5-flash',
         contents: userMessage,
         config: {
-          systemInstruction: `Anda adalah "Customer Service Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
+          systemInstruction: `Anda adalah Customer Service dari Gucci Indonesia Export (PT. Graha Citra Prima).
 
-          KARAKTER:
-          - Anda harus menjawab dengan variasi kalimat, jangan robotik.
-          - Gunakan empati tinggi, namun tetap profesional dan elegan.
-          - Jika user bertanya hal yang sama, cobalah memfrasakan ulang jawaban Anda.
+          ATURAN PENTING & LOGIKA BISNIS (WAJIB DIIKUTI):
 
-          INSTRUKSI KHUSUS TOPIK PENIPUAN/KEAMANAN:
-          Jika ditanya soal "Penipuan", "Scam", atau keraguan legalitas:
-          1. Jawab dengan tegas namun menenangkan.
-          2. Selalu sebutkan: PT. GRAHA CITRA PRIMA dan No SK Kemenkumham (AHU-0058932.AH.01.01.Tahun 2025).
-          3. Berikan opsi kunjungan fisik ke kantor di Gedung Optik Tunggal, Menteng.
-          4. Jelaskan transparansi sistem bisnis.
+          1. **ISU PENIPUAN/LEGALITAS:**
+             - Jika user bertanya soal penipuan, tunjukkan legalitas resmi (PT. Graha Citra Prima, SK Kemenkumham).
+             - Jelaskan bahwa kantor fisik ada di Menteng, Jakarta Pusat.
 
-          KEY POINTS:
-          - Bisnis resmi, bukan investasi bodong.
-          - Pendaftaran hanya via WhatsApp resmi.
-          - Sistem P4P (Pay for Performance) berbasis data ekspor riil.
-          
-          CLOSING:
-          - Arahkan ke WhatsApp untuk verifikasi lanjut.`,
+          2. **SISTEM PEMBAYARAN (REKENING):**
+             - Jelaskan bahwa sistem pembayaran menggunakan konsep **P2P Lending**.
+             - Karena P2P Lending, transaksi menggunakan **REKENING PERORANGAN** (bukan atas nama PT langsung).
+             - Tegaskan: Rekening pembayaran valid HANYA ada pada CS Resmi Gucci di WhatsApp. Jika dari pihak lain, itu bukan kami.
+
+          3. **SYARAT DAFTAR:**
+             - Syarat daftar HANYA cukup dengan **membuat Akun Bisnis** melalui CS Gucci.
+             - Jangan minta uang di awal.
+
+          4. **MODAL/BIAYA:**
+             - Modal HANYA dikeluarkan saat peserta SUDAH memiliki Akun Bisnis dan ingin menjalankan **Proses Agenda**.
+             - Jadi urutannya: Daftar (Bikin Akun) -> Pilih Agenda -> Baru Modal.
+
+          GAYA BAHASA:
+          - Profesional, meyakinkan, namun tetap ramah.
+          - Gunakan Bahasa Indonesia yang baik.
+          - Arahkan user untuk menghubungi WhatsApp untuk pembuatan akun atau verifikasi rekening.`,
         }
       });
       
