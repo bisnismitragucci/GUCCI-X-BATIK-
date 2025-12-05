@@ -150,21 +150,22 @@ export const GiftPackagingPage: React.FC<PageProps> = ({ onBack }) => (
     <GenericInfoPage 
         onBack={onBack}
         title="Gift Packaging"
-        subtitle="Seni Memberi"
+        subtitle="Edisi Spesial Natal"
         icon={<Gift className="w-12 h-12" />}
         content={
             <div className="space-y-6">
-                <p>Setiap produk Gucci Indonesia dikemas dengan standar *Gifting* internasional. Kami percaya bahwa pengalaman membuka kemasan adalah bagian dari kemewahan itu sendiri.</p>
+                <p>Rayakan kehangatan musim liburan dengan kemasan *Gift Packaging* spesial bertema Natal. Setiap detail dirancang untuk memancarkan semangat sukacita dan kemewahan warna merah *Gucci Rosso*.</p>
                 
                 <div className="flex flex-col md:flex-row gap-8 mt-8 items-center">
-                    <img src="https://i.pinimg.com/736x/f6/4f/ca/f64fca1533081079d95f48866380630b.jpg" alt="Packaging" className="w-full md:w-1/2 rounded shadow-lg grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://i.pinimg.com/736x/13/c3/21/13c321f2d9c59837bf05d5543d798f48.jpg" alt="Christmas Packaging" className="w-full md:w-1/2 rounded shadow-lg grayscale hover:grayscale-0 transition-all duration-500" />
                     <div className="w-full md:w-1/2 space-y-4">
-                        <h4 className="font-bold text-lg text-[#8B1D1D]">The Heritage Box</h4>
-                        <p>Kotak *hardbox* eksklusif berwarna hijau Gucci dengan tekstur kulit jeruk, dihiasi pita satin merah-hijau ikonik. Di dalamnya, produk dibungkus dengan *tissue paper* bermotif peta Indonesia.</p>
+                        <h4 className="font-bold text-lg text-[#8B1D1D]">The Holiday Heritage Box</h4>
+                        <p>Kotak eksklusif dengan sentuhan magis Natal. Dihiasi pita satin merah menyala (*Crimson Red*) yang mewah dan ornamen emas. Sebuah persembahan sempurna untuk diletakkan di bawah pohon Natal Anda.</p>
                         <ul className="text-sm list-disc pl-5 space-y-2">
-                            <li>Kartu ucapan personal (Handwritten)</li>
+                            <li>Kartu ucapan Natal personal (Handwritten with Gold Ink)</li>
+                            <li>Pita Satin Merah Spesial Liburan</li>
+                            <li>Kertas tisu bermotif *Flora* edisi musim dingin</li>
                             <li>Sertifikat keaslian produk</li>
-                            <li>Panduan perawatan kain</li>
                         </ul>
                     </div>
                 </div>
@@ -347,7 +348,7 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
                         <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Koleksi
                     </button>
                     <span className="mx-2 md:mx-4">/</span>
-                    <span className="text-[#8B1D1D]">{product.title}</span>
+                    <span className="text-[#BFA36F]">{product.title}</span>
                 </nav>
 
                 <div className="flex flex-col lg:flex-row gap-8 md:gap-16 items-start">
