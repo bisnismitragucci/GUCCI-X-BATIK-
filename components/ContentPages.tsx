@@ -175,22 +175,23 @@ export const ProductDetailPage: React.FC<{ product: any; onBack: () => void }> =
 // ----------------------------------------------------------------------
 
 export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
-    // 1. Initial Data for Countries (Base values in Billions IDR - Scaled to Tens/Units)
-    // Range: 2 Miliar - 80 Miliar
-    const INITIAL_MARKET_NODES = [
-        { code: "IT", name: "ITALIA (Milan)", flagUrl: "https://flagcdn.com/w80/it.png", baseIncome: 45.2, currency: "EUR" },
-        { code: "FR", name: "PERANCIS (Paris)", flagUrl: "https://flagcdn.com/w80/fr.png", baseIncome: 28.5, currency: "EUR" },
-        { code: "US", name: "USA (New York)", flagUrl: "https://flagcdn.com/w80/us.png", baseIncome: 18.1, currency: "USD" },
-        { code: "JP", name: "JEPANG (Tokyo)", flagUrl: "https://flagcdn.com/w80/jp.png", baseIncome: 12.4, currency: "JPY" },
-        { code: "CN", name: "CHINA (Shanghai)", flagUrl: "https://flagcdn.com/w80/cn.png", baseIncome: 9.8, currency: "CNY" },
-        { code: "AE", name: "UAE (Dubai)", flagUrl: "https://flagcdn.com/w80/ae.png", baseIncome: 7.2, currency: "AED" },
+    // 1. Initial Data for Countries (Targets in Tens/Units of Billions IDR)
+    // We initiate everything at 0 or very low, and they will climb dynamically.
+    const MARKET_CONFIG = [
+        { code: "IT", name: "ITALIA (Milan)", flagUrl: "https://flagcdn.com/w80/it.png", currency: "EUR" },
+        { code: "FR", name: "PERANCIS (Paris)", flagUrl: "https://flagcdn.com/w80/fr.png", currency: "EUR" },
+        { code: "US", name: "USA (New York)", flagUrl: "https://flagcdn.com/w80/us.png", currency: "USD" },
+        { code: "JP", name: "JEPANG (Tokyo)", flagUrl: "https://flagcdn.com/w80/jp.png", currency: "JPY" },
+        { code: "CN", name: "CHINA (Shanghai)", flagUrl: "https://flagcdn.com/w80/cn.png", currency: "CNY" },
+        { code: "AE", name: "UAE (Dubai)", flagUrl: "https://flagcdn.com/w80/ae.png", currency: "AED" },
     ];
 
     // State for live market data
-    const [marketNodes, setMarketNodes] = useState(INITIAL_MARKET_NODES.map(n => ({
+    const [marketNodes, setMarketNodes] = useState(MARKET_CONFIG.map(n => ({
         ...n,
-        currentIncome: n.baseIncome, // In Billions (Miliar)
-        change: 0.5, // Percent
+        // Start very low: 0.1 Miliar = 100 Juta
+        currentIncome: 0.1 + (Math.random() * 0.5), 
+        change: 0.0,
         trend: 'up' as 'up' | 'down'
     })));
 
@@ -198,31 +199,29 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     const [currencyData, setCurrencyData] = useState({
         usd: 15450,
         eur: 16820,
-        exportVol: 128
+        exportVol: 80
     });
 
     // 2. Simulation Logic (Effect)
     useEffect(() => {
         const interval = setInterval(() => {
-            // A. Update Market Nodes (Fluctuate values)
             setMarketNodes(prevNodes => prevNodes.map(node => {
-                // Fluctuate income by small random amount (-0.2 to +0.3 Miliar)
-                const fluctuation = (Math.random() * 0.5) - 0.2;
-                let newIncome = node.currentIncome + fluctuation;
+                // Logic: Simulate "Incoming Transactions"
+                // Each tick adds a random amount between 50 Juta (0.05) to 800 Juta (0.8)
+                // This makes the numbers "climb" from hundreds of millions to billions
                 
-                // Keep within realistic "Tens/Units" bounds (Min 1M, Max 99M)
-                if (newIncome < 1) newIncome = 1.2;
-                if (newIncome > 99) newIncome = 98.5;
+                const incomingTransaction = Math.random() * 0.4; // 0 to 400 Juta
+                const newIncome = node.currentIncome + incomingTransaction;
 
-                // Calculate Change % based on base vs new
-                const diff = newIncome - node.baseIncome;
-                const changePct = (diff / node.baseIncome) * 100;
+                // Calculate "Change" based on the velocity of this specific transaction
+                // Making it look like a live stock ticker percentage
+                const newChange = (incomingTransaction / node.currentIncome) * 100;
 
                 return {
                     ...node,
                     currentIncome: newIncome,
-                    change: Math.abs(changePct),
-                    trend: diff >= 0 ? 'up' : 'down'
+                    change: newChange,
+                    trend: 'up' // Always up because sales are accumulating
                 };
             }));
 
@@ -230,10 +229,10 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             setCurrencyData(prev => ({
                 usd: prev.usd + Math.floor((Math.random() * 10) - 5),
                 eur: prev.eur + Math.floor((Math.random() * 10) - 5),
-                exportVol: prev.exportVol + (Math.random() > 0.7 ? 1 : 0) // Slowly increment volume
+                exportVol: prev.exportVol + (Math.random() * 0.2) // Slowly increment volume
             }));
 
-        }, 3000); // Update every 3 seconds
+        }, 1500); // Update every 1.5 seconds
 
         return () => clearInterval(interval);
     }, []);
@@ -244,6 +243,8 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     }, [marketNodes]);
 
     // Format Helpers
+    // Miliar format: Rp 12,5 Miliar. 
+    // If less than 1 Miliar (e.g. 0.5), it reads as Rp 0,5 Miliar (Hundreds of Millions)
     const formatMiliar = (val: number) => `Rp ${val.toFixed(1).replace('.', ',')} Miliar`;
     const formatCurrency = (val: number) => `Rp ${val.toLocaleString('id-ID')}`;
 
@@ -275,7 +276,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
             </span>
             <span className="mr-8 flex items-center">
                 <span className="text-gray-400 mr-2">VOL EKSPOR (YTD):</span> 
-                <span className="text-white font-mono">{currencyData.exportVol}K YDS</span>
+                <span className="text-white font-mono">{currencyData.exportVol.toFixed(1)}K YDS</span>
             </span>
         </>
     );
@@ -372,7 +373,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                             <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest flex items-center">
                                 <Activity className="w-4 h-4 mr-2 animate-pulse" /> LIVE MARKET DATA
                             </h3>
-                            <span className="text-[10px] font-mono text-gray-500 animate-pulse">● LIVE UPDATES</span>
+                            <span className="text-[10px] font-mono text-gray-500 animate-pulse">● LIVE TRANSACTIONS</span>
                         </div>
 
                         <div className="space-y-4 relative z-20">
@@ -390,7 +391,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                         <div className={`md:col-span-3 text-right font-bold text-[10px] md:text-xs whitespace-nowrap flex items-center justify-end ${c.trend === 'up' ? 'text-green-500' : 'text-red-500'}`}>
                                             {c.trend === 'up' ? <TrendingUp className="w-3 h-3 mr-1"/> : <TrendingDown className="w-3 h-3 mr-1"/>}
                                             {c.change.toFixed(1)}%
-                                            <span className="text-[9px] text-gray-600 ml-1 font-normal">vs Last Wk</span>
+                                            <span className="text-[9px] text-gray-600 ml-1 font-normal">Realtime</span>
                                         </div>
                                     </div>
                                 </div>

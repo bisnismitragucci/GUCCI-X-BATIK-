@@ -24,7 +24,7 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
     "Halo, terima kasih telah menghubungi kami. Kami bangga dapat melayani Anda. Ada yang ingin Anda tanyakan seputar legalitas atau proses agenda ekspor?"
   ],
   
-  // PENJELASAN LEGALITAS / ANTI-PENIPUAN / REKENING (DIUPDATE SESUAI REQUEST)
+  // PENJELASAN LEGALITAS / ANTI-PENIPUAN / REKENING
   legality: [
     "Mengenai keraguan Anda, berikut klarifikasi resmi kami:\n\n1. **Legalitas:** Kami adalah PT. GRAHA CITRA PRIMA (AHU-0058932.AH.01.01.Tahun 2025).\n2. **Sistem Pembayaran:** Kami menggunakan konsep **P2P Lending (Peer-to-Peer)**. Oleh karena itu, transaksi resmi menggunakan **REKENING PERORANGAN** yang ditunjuk manajemen, bukan rekening perusahaan langsung, demi kecepatan likuiditas ke mitra.\n3. **Keamanan:** Rekening resmi hanya didapatkan dari Customer Service (CS) GUCCI. Jika ada yang memberi rekening selain dari CS kami, itu bukan tanggung jawab kami.",
     
@@ -42,7 +42,7 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
     "Kami mengekspor batik tulis dan tenun ikat kualitas premium. Salah satu *masterpiece* kami adalah 'The Cloud Garden Blazer' yang menggunakan pewarna indigo alami dari tanaman lokal, sebuah simbol kemewahan yang berkelanjutan."
   ],
   
-  // PENJELASAN KEMITRAAN & MODAL (DIUPDATE SESUAI REQUEST)
+  // PENJELASAN KEMITRAAN & MODAL
   mitra: [
     "Mengenai Modal: **Tidak ada biaya di awal pendaftaran.** \n\nModal atau dana partisipasi hanya dikeluarkan NANTI, yaitu saat Anda sudah memiliki Akun Bisnis dan siap menjalankan **Proses Agenda** (eksekusi proyek). Fokus pertama Anda hanyalah mendaftar akun terlebih dahulu.",
     
@@ -51,7 +51,7 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
     "Jangan khawatir soal modal dulu. Syarat utama hanyalah memiliki **Akun Bisnis** di data kami. Modal hanya diperlukan saat Anda sudah resmi terdaftar dan ingin mengambil slot agenda ekspor yang tersedia."
   ],
   
-  // PENJELASAN PENDAFTARAN (DIUPDATE SESUAI REQUEST)
+  // PENJELASAN PENDAFTARAN
   daftar: [
     "Syarat daftarnya sangat simpel: Cukup **membuat Akun Bisnis** melalui Customer Service GUCCI. \n\nSilakan klik tombol WhatsApp untuk dibantu pembuatan akunnya oleh tim kami. Data Anda akan kami input ke sistem global kami.",
     
@@ -68,14 +68,22 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
     
     "Lokasi fisik kami sangat strategis dan mudah diakses di Jl. Cikini Raya No. 89, Jakarta Pusat. Keberadaan kantor fisik ini adalah bukti komitmen jangka panjang kami di Indonesia."
   ],
+
+  // RESPCN TERIMA KASIH / CLOSING (BARU)
+  closing: [
+    "Sama-sama. Senang bisa membantu Anda. Silakan hubungi kami kembali jika membutuhkan informasi lebih lanjut.",
+    "Terima kasih kembali. Kami tunggu kabar baik dari Anda untuk segera bergabung bersama mitra Gucci lainnya.",
+    "Dengan senang hati. Semoga harimu menyenangkan dan sukses selalu untuk usaha Anda.",
+    "Sama-sama. Kami berkomitmen memberikan pelayanan terbaik bagi calon mitra kami."
+  ],
   
-  // DEFAULT RESPONSE
+  // DEFAULT RESPONSE (DIPERHALUS AGAR TIDAK ROBOTIK)
   default: [
-    "Pertanyaan yang bagus. Untuk detail teknis pembuatan Akun Bisnis atau verifikasi rekening P2P, silakan hubungi Customer Service kami via WhatsApp.",
+    "Pertanyaan Anda sangat spesifik. Untuk detail lebih lanjut, Customer Service kami di WhatsApp siap memberikan panduan lengkap.",
     
-    "Maaf, agar penjelasannya lebih akurat, silakan tanyakan langsung ke CS kami melalui tombol WhatsApp di bawah. Mereka bisa memandu Anda membuat Akun Bisnis.",
+    "Untuk informasi teknis tersebut, tim spesialis kami dapat menjelaskannya dengan lebih baik melalui WhatsApp. Silakan hubungi kami.",
     
-    "Terima kasih atas pertanyaannya. Tim spesialis kami di WhatsApp siap menjelaskan detail agenda dan sistem pembayaran P2P kami kepada Anda."
+    "Terima kasih atas pertanyaannya. Agar Anda mendapatkan panduan yang tepat, silakan hubungi CS resmi kami melalui tombol WhatsApp yang tersedia."
   ]
 };
 
@@ -93,7 +101,7 @@ const getFallbackResponse = (message: string): string => {
   else if (lowerMsg.match(/(sistem|cara kerja|mekanisme|aturan|p4p|advertising|bagi hasil|modal|biaya|bayar|dana)/)) {
     topicKey = 'mitra';
   }
-  // Deteksi Topik Legalitas/Penipuan/Rekening (DIPERKUAT)
+  // Deteksi Topik Legalitas/Penipuan/Rekening
   else if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|hoax|bodong|benar|betul|rekening|transfer|bank)/)) {
     topicKey = 'legality';
   }
@@ -112,6 +120,10 @@ const getFallbackResponse = (message: string): string => {
   // Deteksi Topik Lokasi
   else if (lowerMsg.match(/(lokasi|alamat|dimana|kantor|posisi|kota|daerah|tempat)/)) {
     topicKey = 'lokasi';
+  }
+  // Deteksi Topik Terima Kasih / Closing (NEW)
+  else if (lowerMsg.match(/(makasih|terima kasih|thanks|thank|thx|ok|oke|siap|baik|good|mantap|mengerti|paham|jelas)/)) {
+    topicKey = 'closing';
   }
 
   // Ambil Array Jawaban berdasarkan topik
@@ -152,10 +164,15 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
              - Modal HANYA dikeluarkan saat peserta SUDAH memiliki Akun Bisnis dan ingin menjalankan **Proses Agenda**.
              - Jadi urutannya: Daftar (Bikin Akun) -> Pilih Agenda -> Baru Modal.
 
+          5. **RESPON TERIMA KASIH (PENTING):**
+             - Jika user berkata "terima kasih", "makasih", "oke", atau "baik", JANGAN berikan penjelasan panjang.
+             - Cukup jawab dengan: "Sama-sama. Senang bisa membantu Anda." atau "Terima kasih kembali. Sukses selalu untuk Anda."
+             - Jangan gunakan kalimat robotik seperti "Silakan hubungi tombol di bawah" jika user hanya mengucapkan terima kasih.
+
           GAYA BAHASA:
-          - Profesional, meyakinkan, namun tetap ramah.
-          - Gunakan Bahasa Indonesia yang baik.
-          - Arahkan user untuk menghubungi WhatsApp untuk pembuatan akun atau verifikasi rekening.`,
+          - Formal, Elegan, Profesional, namun tetap ramah (Humanis).
+          - Gunakan Bahasa Indonesia yang baik dan benar (EYD).
+          - Hindari pengulangan kata yang kaku.`,
         }
       });
       
