@@ -18,11 +18,18 @@ import {
     IzinEksporPage,
     ISOPage,
     ProductDetailPage,
-    PartnerDetailPage
+    PartnerDetailPage,
+    SustainabilityPage,
+    CareersPage,
+    InvestorsPage,
+    GiftPackagingPage,
+    ShippingPage,
+    PrivacyPage,
+    TermsPage
 } from './components/ContentPages';
 import { FileText, ArrowRight, Bell, Gift } from 'lucide-react';
 
-type ViewState = 'home' | 'legality' | 'collection' | 'product-detail' | 'partners' | 'partner-detail' | 'impact' | 'gala' | 'register' | 'doc-sk' | 'doc-iue' | 'doc-iso';
+type ViewState = 'home' | 'legality' | 'collection' | 'product-detail' | 'partners' | 'partner-detail' | 'impact' | 'gala' | 'register' | 'doc-sk' | 'doc-iue' | 'doc-iso' | 'sustainability' | 'careers' | 'investors' | 'gift-packaging' | 'shipping' | 'privacy' | 'terms';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<ViewState>('home');
@@ -120,6 +127,23 @@ const App: React.FC = () => {
               return <GalaPage onBack={navigateToHome} />;
           case 'register':
               return <RegisterPage onBack={navigateToHome} />;
+          
+          // Info Pages from Footer
+          case 'sustainability':
+              return <SustainabilityPage onBack={navigateToHome} />;
+          case 'careers':
+              return <CareersPage onBack={navigateToHome} />;
+          case 'investors':
+              return <InvestorsPage onBack={navigateToHome} />;
+          case 'gift-packaging':
+              return <GiftPackagingPage onBack={navigateToHome} />;
+          case 'shipping':
+              return <ShippingPage onBack={navigateToHome} />;
+          case 'privacy':
+              return <PrivacyPage onBack={navigateToHome} />;
+          case 'terms':
+              return <TermsPage onBack={navigateToHome} />;
+
           case 'home':
           default:
               return (
@@ -250,7 +274,7 @@ const App: React.FC = () => {
       <main className="flex-grow">
         {renderContent()}
       </main>
-      <Footer />
+      <Footer onNavigate={navigateTo} />
       <ChatWidget />
     </div>
   );

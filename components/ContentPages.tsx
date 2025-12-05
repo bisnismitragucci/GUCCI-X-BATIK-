@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck, Plane, Package, Anchor, Printer, Share2, Download, FileText, Calendar, Zap, ArrowRight as ArrowRightIcon, TrendingUp, TrendingDown } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck, Plane, Package, Anchor, Printer, Share2, Download, FileText, Calendar, Zap, ArrowRight as ArrowRightIcon, TrendingUp, TrendingDown, Leaf, Briefcase, BarChart3, Gift, Globe2, Lock, FileCheck } from 'lucide-react';
 
 interface PageProps {
     onBack: () => void;
@@ -24,6 +24,229 @@ const openWhatsAppRegistration = () => {
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 };
+
+// ----------------------------------------------------------------------
+// GENERIC INFO PAGE (For Footer Links)
+// ----------------------------------------------------------------------
+const GenericInfoPage: React.FC<PageProps & { title: string; subtitle: string; icon: React.ReactNode; content: React.ReactNode }> = ({ onBack, title, subtitle, icon, content }) => {
+    return (
+        <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-12 animate-fadeIn font-sans">
+            <div className="container mx-auto px-6 lg:px-12">
+                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline sticky top-24 md:static bg-[#FAF9F6] py-2 z-10 w-full">
+                    <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
+                </button>
+
+                <div className="max-w-4xl mx-auto bg-white shadow-2xl border-t-4 border-[#8B1D1D] overflow-hidden">
+                    <div className="bg-[#0F2420] text-white p-8 md:p-12 text-center relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                        <div className="relative z-10 flex flex-col items-center">
+                            <div className="mb-4 text-[#BFA36F]">{icon}</div>
+                            <span className="text-[#BFA36F] font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs mb-2 block">{subtitle}</span>
+                            <h1 className="text-3xl md:text-5xl font-serif font-bold">{title}</h1>
+                        </div>
+                    </div>
+                    
+                    <div className="p-8 md:p-12 text-gray-800 leading-relaxed font-serif text-lg">
+                        {content}
+                    </div>
+
+                    <div className="bg-gray-50 p-6 text-center border-t border-gray-200">
+                        <p className="text-xs text-gray-500 uppercase tracking-widest font-sans">PT. GRAHA CITRA PRIMA – GUCCI INDONESIA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const SustainabilityPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Keberlanjutan & Warisan"
+        subtitle="Visi Masa Depan"
+        icon={<Leaf className="w-12 h-12" />}
+        content={
+            <div className="space-y-6">
+                <p>Di Gucci Indonesia Export Hub, keberlanjutan bukan sekadar tren, melainkan inti dari setiap helai benang yang kami tenun. Kami berkomitmen untuk melestarikan warisan budaya Indonesia sekaligus melindungi ekosistem tempat para pengrajin kami berkarya.</p>
+                <h3 className="text-[#8B1D1D] font-bold text-xl mt-8">1. Pewarnaan Alami (Natural Dyes)</h3>
+                <p>Seluruh mitra Tier 1 kami wajib menggunakan pewarna alami yang berasal dari indigofera, kulit kayu mahoni, dan akar mengkudu. Ini meminimalisir limbah kimia berbahaya yang mencemari sungai-sungai di Pekalongan dan Solo.</p>
+                <h3 className="text-[#8B1D1D] font-bold text-xl mt-8">2. Pemberdayaan Ekonomi Sirkular</h3>
+                <p>Setiap sisa kain perca dari proses produksi 'The Cloud Garden Blazer' didaur ulang menjadi aksesoris kecil atau isian bantal, memastikan *zero waste* dalam rantai pasok kami.</p>
+                <h3 className="text-[#8B1D1D] font-bold text-xl mt-8">3. Jejak Karbon Logistik</h3>
+                <p>Kami bekerja sama dengan mitra logistik yang menggunakan armada ramah lingkungan untuk pengiriman domestik, serta mengoptimalkan rute kargo laut untuk mengurangi emisi karbon ekspor.</p>
+            </div>
+        }
+    />
+);
+
+export const CareersPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Karir & Peluang"
+        subtitle="Bergabung Bersama Kami"
+        icon={<Briefcase className="w-12 h-12" />}
+        content={
+            <div className="space-y-6">
+                <p>Bergabunglah dengan tim yang mendefinisikan ulang kemewahan Indonesia di mata dunia. Kami mencari individu yang bersemangat tentang fashion, budaya, dan inovasi global.</p>
+                
+                <div className="grid gap-6 mt-8 font-sans">
+                    <div className="border border-gray-200 p-6 rounded hover:border-[#8B1D1D] transition-colors group">
+                        <h4 className="font-bold text-lg group-hover:text-[#8B1D1D]">Artisan Liaison Officer (Solo & Yogyakarta)</h4>
+                        <p className="text-sm text-gray-500 mb-4">Full Time • On-site</p>
+                        <p className="text-sm mb-4">Bertanggung jawab menjembatani komunikasi antara manajemen pusat Gucci Indonesia dengan para pengrajin lokal untuk memastikan standar kualitas.</p>
+                        <button onClick={openWhatsAppRegistration} className="text-[#8B1D1D] text-xs font-bold uppercase tracking-widest border-b border-[#8B1D1D] pb-1">Lamar via WhatsApp</button>
+                    </div>
+
+                    <div className="border border-gray-200 p-6 rounded hover:border-[#8B1D1D] transition-colors group">
+                        <h4 className="font-bold text-lg group-hover:text-[#8B1D1D]">Quality Control Specialist (Textile)</h4>
+                        <p className="text-sm text-gray-500 mb-4">Full Time • Jakarta Pusat</p>
+                        <p className="text-sm mb-4">Melakukan inspeksi mendetail terhadap kain batik dan tenun yang masuk ke hub logistik sebelum diekspor ke Milan.</p>
+                        <button onClick={openWhatsAppRegistration} className="text-[#8B1D1D] text-xs font-bold uppercase tracking-widest border-b border-[#8B1D1D] pb-1">Lamar via WhatsApp</button>
+                    </div>
+
+                    <div className="border border-gray-200 p-6 rounded hover:border-[#8B1D1D] transition-colors group">
+                        <h4 className="font-bold text-lg group-hover:text-[#8B1D1D]">Export Documentation Staff</h4>
+                        <p className="text-sm text-gray-500 mb-4">Full Time • Jakarta Pusat</p>
+                        <p className="text-sm mb-4">Mengurus dokumen PEB, COO, dan perizinan ekspor lainnya. Diutamakan yang memiliki sertifikat ahli kepabeanan.</p>
+                        <button onClick={openWhatsAppRegistration} className="text-[#8B1D1D] text-xs font-bold uppercase tracking-widest border-b border-[#8B1D1D] pb-1">Lamar via WhatsApp</button>
+                    </div>
+                </div>
+            </div>
+        }
+    />
+);
+
+export const InvestorsPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Hubungan Investor"
+        subtitle="Laporan Kinerja"
+        icon={<BarChart3 className="w-12 h-12" />}
+        content={
+            <div className="space-y-6">
+                <p>PT. Graha Citra Prima terus mencatatkan pertumbuhan positif seiring dengan meningkatnya permintaan pasar global terhadap produk *sustainable luxury*.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div className="bg-[#FAF9F6] p-6 text-center border border-[#BFA36F]">
+                        <h4 className="text-4xl font-bold text-[#8B1D1D] mb-2">+240%</h4>
+                        <p className="text-xs font-bold uppercase tracking-widest text-gray-500">Pertumbuhan Ekspor Yoy</p>
+                    </div>
+                    <div className="bg-[#FAF9F6] p-6 text-center border border-[#BFA36F]">
+                        <h4 className="text-4xl font-bold text-[#8B1D1D] mb-2">Rp 768 M</h4>
+                        <p className="text-xs font-bold uppercase tracking-widest text-gray-500">Valuasi Transaksi 2024</p>
+                    </div>
+                </div>
+
+                <h3 className="text-[#8B1D1D] font-bold text-xl mt-8">Prospektus 2026</h3>
+                <p>Fokus strategis kami tahun depan adalah ekspansi ke pasar Amerika Utara dan pembukaan 5 Artisan Hub baru di Nusa Tenggara Timur. Kami mengundang investor strategis untuk berpartisipasi dalam putaran pendanaan Seri B.</p>
+                
+                <p className="italic text-gray-500 text-sm mt-4">Untuk laporan keuangan lengkap yang telah diaudit, silakan hubungi tim relasi investor kami.</p>
+            </div>
+        }
+    />
+);
+
+export const GiftPackagingPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Gift Packaging"
+        subtitle="Seni Memberi"
+        icon={<Gift className="w-12 h-12" />}
+        content={
+            <div className="space-y-6">
+                <p>Setiap produk Gucci Indonesia dikemas dengan standar *Gifting* internasional. Kami percaya bahwa pengalaman membuka kemasan adalah bagian dari kemewahan itu sendiri.</p>
+                
+                <div className="flex flex-col md:flex-row gap-8 mt-8 items-center">
+                    <img src="https://i.pinimg.com/736x/f6/4f/ca/f64fca1533081079d95f48866380630b.jpg" alt="Packaging" className="w-full md:w-1/2 rounded shadow-lg grayscale hover:grayscale-0 transition-all duration-500" />
+                    <div className="w-full md:w-1/2 space-y-4">
+                        <h4 className="font-bold text-lg text-[#8B1D1D]">The Heritage Box</h4>
+                        <p>Kotak *hardbox* eksklusif berwarna hijau Gucci dengan tekstur kulit jeruk, dihiasi pita satin merah-hijau ikonik. Di dalamnya, produk dibungkus dengan *tissue paper* bermotif peta Indonesia.</p>
+                        <ul className="text-sm list-disc pl-5 space-y-2">
+                            <li>Kartu ucapan personal (Handwritten)</li>
+                            <li>Sertifikat keaslian produk</li>
+                            <li>Panduan perawatan kain</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    />
+);
+
+export const ShippingPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Pengiriman Liburan"
+        subtitle="Logistik Global"
+        icon={<Globe2 className="w-12 h-12" />}
+        content={
+            <div className="space-y-6">
+                <p>Menjelang musim liburan Natal dan Tahun Baru, kami memastikan setiap pesanan tiba tepat waktu di seluruh dunia.</p>
+                
+                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 text-sm mb-6">
+                    <strong>Penting:</strong> Batas akhir pemesanan untuk pengiriman Natal adalah tanggal 15 Desember 2025.
+                </div>
+
+                <h3 className="text-[#8B1D1D] font-bold text-xl">Mitra Logistik</h3>
+                <p>Kami bekerja sama dengan DHL Express dan FedEx untuk pengiriman internasional, serta JNE Trucking untuk distribusi material domestik antar pengrajin.</p>
+
+                <h3 className="text-[#8B1D1D] font-bold text-xl mt-6">Asuransi Pengiriman</h3>
+                <p>Seluruh pengiriman dilindungi oleh asuransi *all-risk* hingga barang diterima di tangan pelanggan atau butik mitra. Kerusakan akibat pengiriman akan diganti 100%.</p>
+            </div>
+        }
+    />
+);
+
+export const PrivacyPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Kebijakan Privasi"
+        subtitle="Data & Keamanan"
+        icon={<Lock className="w-12 h-12" />}
+        content={
+            <div className="space-y-4 text-sm">
+                <p>PT. Graha Citra Prima menghormati privasi Anda. Kebijakan ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi data pribadi Anda.</p>
+                
+                <h4 className="font-bold mt-4">1. Pengumpulan Data</h4>
+                <p>Kami mengumpulkan data seperti Nama, NIK (untuk verifikasi mitra), Alamat Usaha, dan Nomor Rekening semata-mata untuk keperluan administrasi kemitraan dan pembayaran.</p>
+
+                <h4 className="font-bold mt-4">2. Penggunaan Data</h4>
+                <p>Data Anda digunakan untuk:</p>
+                <ul className="list-disc pl-5">
+                    <li>Verifikasi legalitas usaha (KYB - Know Your Business).</li>
+                    <li>Pemrosesan pembayaran bagi hasil.</li>
+                    <li>Pengiriman materi promosi (jika disetujui).</li>
+                </ul>
+
+                <h4 className="font-bold mt-4">3. Keamanan Data</h4>
+                <p>Kami menggunakan enkripsi SSL 256-bit untuk melindungi data sensitif Anda. Kami tidak akan pernah menjual data Anda kepada pihak ketiga.</p>
+            </div>
+        }
+    />
+);
+
+export const TermsPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Syarat Layanan"
+        subtitle="Ketentuan Mitra"
+        icon={<FileCheck className="w-12 h-12" />}
+        content={
+            <div className="space-y-4 text-sm">
+                <p>Dengan mendaftar sebagai mitra PT. Graha Citra Prima, Anda menyetujui syarat dan ketentuan berikut:</p>
+                
+                <h4 className="font-bold mt-4">1. Standar Kualitas</h4>
+                <p>Mitra wajib mematuhi standar *Gucci Quality Assurance*. Produk yang gagal lolos QC tiga kali berturut-turut dapat mengakibatkan penangguhan kemitraan.</p>
+
+                <h4 className="font-bold mt-4">2. Hak Kekayaan Intelektual</h4>
+                <p>Desain yang diberikan oleh Gucci untuk diproduksi adalah milik eksklusif Gucci. Mitra dilarang memproduksi desain tersebut untuk pihak lain.</p>
+
+                <h4 className="font-bold mt-4">3. Pembayaran</h4>
+                <p>Pembayaran dilakukan menggunakan mekanisme P2P Lending melalui rekening perorangan yang ditunjuk resmi oleh perusahaan untuk fleksibilitas arus kas, sesuai kesepakatan kontrak.</p>
+            </div>
+        }
+    />
+);
 
 // ----------------------------------------------------------------------
 // 1. COLLECTION PAGE

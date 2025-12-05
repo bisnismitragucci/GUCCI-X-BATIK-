@@ -2,7 +2,11 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin, MapPin } from 'lucide-react';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+    onNavigate: (page: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
     <footer className="bg-black text-white pt-24 pb-12 border-t-[6px] border-[#8B1D1D]">
       <div className="container mx-auto px-6 lg:px-12">
@@ -30,10 +34,10 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-[#BFA36F]">Korporat</h4>
             <ul className="space-y-5 text-base text-gray-300 font-medium">
-              <li><a href="#" className="hover:text-white transition-colors">Tinjauan Kemitraan</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Keberlanjutan</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Karir</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Hubungan Investor</a></li>
+              <li><button onClick={() => onNavigate('partners')} className="hover:text-white transition-colors text-left">Tinjauan Kemitraan</button></li>
+              <li><button onClick={() => onNavigate('sustainability')} className="hover:text-white transition-colors text-left">Keberlanjutan</button></li>
+              <li><button onClick={() => onNavigate('careers')} className="hover:text-white transition-colors text-left">Karir</button></li>
+              <li><button onClick={() => onNavigate('investors')} className="hover:text-white transition-colors text-left">Hubungan Investor</button></li>
             </ul>
           </div>
 
@@ -41,10 +45,10 @@ const Footer: React.FC = () => {
            <div>
             <h4 className="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-[#BFA36F]">Layanan</h4>
             <ul className="space-y-5 text-base text-gray-300 font-medium">
-              <li><a href="#" className="hover:text-white transition-colors">Registrasi Supplier</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Gift Packaging</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Sertifikasi Mutu</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Pengiriman Liburan</a></li>
+              <li><button onClick={() => onNavigate('register')} className="hover:text-white transition-colors text-left">Registrasi Supplier</button></li>
+              <li><button onClick={() => onNavigate('gift-packaging')} className="hover:text-white transition-colors text-left">Gift Packaging</button></li>
+              <li><button onClick={() => onNavigate('legality')} className="hover:text-white transition-colors text-left">Sertifikasi Mutu</button></li>
+              <li><button onClick={() => onNavigate('shipping')} className="hover:text-white transition-colors text-left">Pengiriman Liburan</button></li>
             </ul>
           </div>
 
@@ -65,8 +69,8 @@ const Footer: React.FC = () => {
             &copy; 2025 PT. GRAHA CITRA PRIMA – GUCCI. Seluruh Hak Cipta Dilindungi.
           </p>
           <div className="flex space-x-10 mt-6 md:mt-0 text-xs uppercase tracking-wider text-gray-500 font-bold">
-            <a href="#" className="hover:text-[#BFA36F]">Kebijakan Privasi</a>
-            <a href="#" className="hover:text-[#BFA36F]">Syarat Layanan</a>
+            <button onClick={() => onNavigate('privacy')} className="hover:text-[#BFA36F] text-left">Kebijakan Privasi</button>
+            <button onClick={() => onNavigate('terms')} className="hover:text-[#BFA36F] text-left">Syarat Layanan</button>
           </div>
         </div>
       </div>
