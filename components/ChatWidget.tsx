@@ -32,7 +32,7 @@ const ChatWidget: React.FC = () => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isLoading]); // Scroll when messages change or loading state changes
 
   const processMessage = async (text: string) => {
     if (!text.trim()) return;
@@ -47,9 +47,9 @@ const ChatWidget: React.FC = () => {
 
     setMessages(prev => [...prev, userMsg]);
     setInputValue('');
-    setIsLoading(true);
+    setIsLoading(true); // Start typing indicator
 
-    // 2. Get AI Response
+    // 2. Get AI Response (Fetch data first)
     const responseText = await getGeminiResponse(text);
 
     // 3. Create WhatsApp URL with the user's context
@@ -57,20 +57,22 @@ const ChatWidget: React.FC = () => {
     const waMessage = `Halo CS Gucci Export, saya butuh bantuan lebih lanjut mengenai: "${text}"`;
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
-    // 4. Add Bot Message with Action Button
-    const botMsg: ChatMessage = {
-      id: (Date.now() + 1).toString(),
-      text: responseText,
-      sender: ChatSender.BOT,
-      timestamp: Date.now(),
-      action: {
-        label: "Hubungi Customer Service (WhatsApp)",
-        url: waUrl
-      }
-    };
+    // 4. Simulate Typing Delay (3 Seconds) before showing the message
+    setTimeout(() => {
+      const botMsg: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        text: responseText,
+        sender: ChatSender.BOT,
+        timestamp: Date.now(),
+        action: {
+          label: "Hubungi Customer Service (WhatsApp)",
+          url: waUrl
+        }
+      };
 
-    setMessages(prev => [...prev, botMsg]);
-    setIsLoading(false);
+      setMessages(prev => [...prev, botMsg]);
+      setIsLoading(false); // Stop typing indicator
+    }, 3000);
   };
 
   const handleSendMessage = (e: React.FormEvent) => {
@@ -148,7 +150,7 @@ const ChatWidget: React.FC = () => {
             ))}
             
             {isLoading && (
-              <div className="flex justify-start mb-4 relative z-10">
+              <div className="flex justify-start mb-4 relative z-10 animate-fadeIn">
                 <div className="bg-white border border-gray-200 p-4 rounded-t-xl rounded-br-xl shadow-sm flex space-x-1 items-center">
                   <span className="text-xs text-gray-400 mr-2 font-bold tracking-wider">MENGETIK</span>
                   <div className="w-1.5 h-1.5 bg-[#BFA36F] rounded-full animate-bounce"></div>

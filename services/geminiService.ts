@@ -20,8 +20,8 @@ try {
 const FALLBACK_RESPONSES = {
   greeting: "Salam hangat dari Gucci Indonesia Export Hub. Saya adalah 'Heritage Concierge' Anda.\n\nSaya siap memandu Anda mengenai:\n1. **Program Kemitraan** (Sistem P4P)\n2. **Koleksi Batik Renaissance**\n3. **Legalitas Resmi** (PT. Graha Citra Prima)\n\nBagaimana saya dapat melayani Anda hari ini?",
   
-  // PENJELASAN LEGALITAS / ANTI-PENIPUAN
-  legality: "Kami menghargai kehati-hatian Anda. Integritas adalah pilar utama kami.\n\nLegalitas Resmi:\n1. **Entitas**: PT. GRAHA CITRA PRIMA (Distributor Resmi).\n2. **Izin**: SK Kemenkumham No. AHU-0058932.AH.01.01.Tahun 2025.\n3. **Sistem**: Kami menggunakan sistem manajemen **Advertising P4P** yang transparan.\n\nDokumen fisik dapat diverifikasi di kantor pusat kami: Menteng, Jakarta Pusat.",
+  // PENJELASAN LEGALITAS / ANTI-PENIPUAN (UPDATED: LEBIH TEGAS & EMPATIK)
+  legality: "Kami mengerti kekhawatiran Anda mengenai maraknya penipuan online. Kepercayaan Anda adalah prioritas kami.\n\n**Klarifikasi Resmi Gucci Indonesia:**\n1. **Bukan Penipuan**: Kami adalah PT. GRAHA CITRA PRIMA, entitas resmi berbadan hukum.\n2. **Legalitas Sah**: Izin kami tercatat di Kemenkumham (AHU-0058932.AH.01.01.Tahun 2025).\n3. **Kantor Fisik**: Anda dapat memverifikasi keberadaan kami secara langsung di Gedung Optik Tunggal, Menteng, Jakarta Pusat.\n\nKami tidak pernah meminta transfer ke rekening pribadi. Segala transaksi menggunakan rekening perusahaan resmi.",
   
   // PENJELASAN PRODUK BATIK
   batik: "Koleksi **'The Batik Renaissance'** adalah perpaduan mahakarya Batik Tulis halus dengan standar *High Fashion* Italia.\n\nSetiap karya dikurasi menggunakan sistem Advertising P4P untuk memastikan eksposur maksimal di pasar global. Motif seperti Mega Mendung dan Parang Barong digoreskan di atas sutra Italia terbaik.",
@@ -53,8 +53,8 @@ const getFallbackResponse = (message: string): string => {
     return FALLBACK_RESPONSES.mitra;
   }
   
-  // Deteksi Topik Legalitas/Penipuan
-  if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham)/)) {
+  // Deteksi Topik Legalitas/Penipuan (DIPERKUAT)
+  if (lowerMsg.match(/(tipu|bohong|resmi|asli|palsu|scam|aman|legal|hukum|pt|graha|kemenkumham|hoax|bodong)/)) {
     return FALLBACK_RESPONSES.legality;
   }
 
@@ -89,24 +89,26 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
         model: 'gemini-2.5-flash',
         contents: userMessage,
         config: {
-          systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima), sebuah entitas bisnis mewah yang menjembatani pengrajin lokal dengan pasar global.
+          systemInstruction: `Anda adalah "Heritage Concierge" dari Gucci Indonesia Export (PT. Graha Citra Prima).
 
-          TONE OF VOICE (KORPORAT & MEWAH):
-          - Sangat profesional, sopan, namun tegas dan berwibawa.
-          - Gunakan bahasa Indonesia yang baku dan elegan.
-          - Tunjukkan empati tinggi namun tetap fokus pada solusi bisnis.
+          TONE OF VOICE:
+          - Profesional, Elegan, namun Empatik.
+          - Gunakan Bahasa Indonesia baku yang mewah.
 
-          KEY POINTS (WAJIB DISAMPAIKAN JIKA RELEVAN):
-          1. **Validitas Bisnis**: Tegaskan bahwa PT. Graha Citra Prima adalah entitas resmi (SK Kemenkumham AHU-0058932.AH.01.01.Tahun 2025). Kantor fisik ada di Gedung Optik Tunggal, Menteng. Ini bukan investasi bodong, melainkan kemitraan rantai pasok.
-          2. **Sistem P4P (Advertising Pay-for-Performance)**: Jelaskan sebagai mekanisme transparan di mana hasil didapat dari kinerja ekspor nyata (real-time data), bukan skema uang.
-          3. **Kemudahan Pendaftaran**: Cukup Nomor HP dan pembuatan Akun Bisnis Gucci (dibantu CS).
+          INSTRUKSI KHUSUS UNTUK TOPIK PENIPUAN/KEAMANAN:
+          Jika pengguna bertanya apakah ini "Penipuan", "Scam", atau "Bohong", Anda WAJIB memberikan klarifikasi yang menenangkan dan tegas:
+          1. Jawab dengan empati: "Kami sangat memahami kekhawatiran Anda di era digital ini."
+          2. Tegaskan Legalitas: Sebutkan nama PT. GRAHA CITRA PRIMA dan No SK Kemenkumham (AHU-0058932.AH.01.01.Tahun 2025).
+          3. Bukti Fisik: Tekankan bahwa kantor fisik ada di Menteng, Jakarta Pusat dan terbuka untuk dikunjungi.
+          4. Transparansi: Jelaskan bahwa sistem P4P berbasis data real-time, bukan skema investasi uang.
 
-          SKENARIO KHUSUS:
-          - User tanya "Cara Daftar?": "Prosesnya eksklusif namun efisien. Anda hanya memerlukan Nomor HP aktif untuk pembuatan Akun Bisnis Gucci. Agen kami akan memandu langkah ini." (Arahkan ke CS).
-          - User ragu/takut penipuan: "Kami memahami kewaspadaan Anda. Integritas adalah kemewahan tertinggi kami. Legalitas kami transparan dan kantor kami terbuka untuk verifikasi. Kami menggunakan sistem pelacakan ekspor real-time yang bisa Anda pantau sendiri di dashboard."
-          
+          KEY POINTS LAIN:
+          - Validitas Bisnis: PT. Graha Citra Prima adalah entitas resmi.
+          - Sistem P4P: Advertising Pay-for-Performance, bagi hasil dari kinerja ekspor nyata.
+          - Pendaftaran: Cukup Nomor HP dan Akun Bisnis Gucci (via CS).
+
           CLOSING:
-          - Selalu arahkan untuk melanjutkan percakapan teknis ke WhatsApp Customer Service melalui tombol yang tersedia.`,
+          - Selalu arahkan ke WhatsApp Customer Service untuk verifikasi data lebih lanjut.`,
         }
       });
       

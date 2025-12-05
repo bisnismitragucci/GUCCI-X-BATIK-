@@ -9,10 +9,9 @@ interface LegalityPageProps {
 
 export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }) => {
   return (
-    <div className="bg-gray-100 min-h-screen animate-fadeIn font-['Roboto'] font-medium text-gray-800">
-      {/* Hero Header */}
+    <div className="bg-white min-h-screen animate-fadeIn font-['Roboto'] font-medium text-gray-800">
+      {/* Hero Header - Removed Pattern */}
       <div className="bg-[#0F2420] text-white pt-24 pb-12 relative overflow-hidden border-b-8 border-[#BFA36F]">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#BFA36F 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
         <div className="container mx-auto px-6 lg:px-12 relative z-10 text-center">
             <button onClick={onBack} className="absolute left-6 top-0 text-[#BFA36F] text-xs font-bold uppercase tracking-[0.2em] hover:text-white transition-colors flex items-center">
                 <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Beranda
@@ -25,7 +24,7 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
 
       <div className="container mx-auto px-6 lg:px-12 py-12 -mt-10 relative z-20">
         {/* Main Certificate Card */}
-        <div className="bg-white p-8 md:p-12 shadow-2xl border-t-4 border-[#8B1D1D] relative overflow-hidden">
+        <div className="bg-white p-8 md:p-12 shadow-2xl border-t-4 border-[#8B1D1D] relative overflow-hidden ring-1 ring-gray-100">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#BFA36F]/10 rounded-bl-full"></div>
             
             {/* Header Details with Aligned Colons */}
@@ -54,6 +53,10 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                              <div>JENIS USAHA</div>
                              <div className="text-center">:</div>
                              <div>PERDAGANGAN BESAR TEKSTIL DAN PAKAIAN JADI</div>
+
+                             <div>MASA BERLAKU</div>
+                             <div className="text-center">:</div>
+                             <div className="font-bold text-[#8B1D1D]">HINGGA TAHUN 2027</div>
                          </div>
                     </div>
                 </div>
@@ -108,9 +111,9 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                          <div onClick={() => onNavigate('doc-iso')} className="group flex items-center justify-between p-4 border border-gray-200 hover:border-[#BFA36F] hover:bg-gray-50 cursor-pointer transition-all">
                             <div className="flex items-center">
                                 <img 
-                                    src="https://i0.wp.com/rhodesprojects.com/wp-content/uploads/2020/02/ISO_9001-2015.jpg?fit=1763%2C1800&ssl=1"
+                                    src="https://i.pinimg.com/736x/3a/91/2c/3a912c00ec4a2e65d517635f6b65d5ff.jpg"
                                     alt="ISO 9001"
-                                    className="w-12 h-12 object-contain mr-4 mix-blend-multiply filter contrast-110"
+                                    className="w-12 h-12 object-contain mr-4 mix-blend-multiply filter contrast-125"
                                 />
                                 <div>
                                     <h4 className="font-bold text-black text-sm uppercase">ISO 9001:2015</h4>
@@ -134,32 +137,32 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                 </div>
             </div>
 
-            {/* Signature Section */}
-            <div className="mt-16 pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-end gap-6">
+            {/* Signature Section - Enlarged & Clean Background */}
+            <div className="mt-16 pt-8 flex flex-col md:flex-row justify-between items-end gap-6">
                 <div className="text-xs text-gray-500 font-medium max-w-md mb-2 md:mb-0">
                     <p className="italic leading-relaxed">Dokumen ini diterbitkan secara elektronik oleh Sistem Administrasi Badan Usaha (SABU). Tanda tangan elektronik memiliki kekuatan hukum yang sah sesuai UU ITE.</p>
                 </div>
                 
                 {/* Fixed Signature Layout */}
                 <div className="flex flex-col items-center relative flex-shrink-0">
-                    <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-4">Disahkan Oleh</span>
+                    <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-6">Disahkan Oleh</span>
                     
                     {/* Stamp Effect */}
-                    <div className="absolute top-10 right-0 w-24 h-24 border-4 border-[#8B1D1D]/20 rounded-full flex items-center justify-center rotate-[-15deg] pointer-events-none z-0">
-                        <div className="w-20 h-20 border border-[#8B1D1D]/30 rounded-full flex items-center justify-center">
-                             <span className="text-[8px] font-black text-[#8B1D1D]/30 uppercase text-center leading-none">Menteri<br/>Hukum<br/>& HAM</span>
+                    <div className="absolute top-12 right-0 w-32 h-32 border-4 border-[#8B1D1D]/20 rounded-full flex items-center justify-center rotate-[-15deg] pointer-events-none z-0">
+                        <div className="w-28 h-28 border border-[#8B1D1D]/30 rounded-full flex items-center justify-center">
+                             <span className="text-[10px] font-black text-[#8B1D1D]/30 uppercase text-center leading-none">Menteri<br/>Hukum<br/>& HAM</span>
                         </div>
                     </div>
 
                     <img 
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkUivnct3ZzTlwcEXkmRBACsnkL2UTPXZ8dCGoNjsFMWyf8OKVhyphenhyphenaoA44X8isr8gwWtdi5os_X04gj2mSiC0U5MQC7ANfWo7fBYf-QMCbtJ0Zf0n-zcwmA8l4q4UDRjsE0nKZkVxYpby4T/w1200-h630-p-k-no-nu/hasil+scan+1+-+cara+scan+tanda+tangan.jpg" 
+                        src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Tanda_Tangan_Mick_Schumacher.png" 
                         alt="Tanda Tangan Menteri" 
-                        className="h-24 object-contain mix-blend-multiply filter contrast-125 z-10 relative mb-2"
+                        className="h-48 md:h-56 object-contain mix-blend-multiply filter contrast-125 z-10 relative mb-4 transform -rotate-2"
                     />
                     
                     <div className="text-center z-10 relative">
-                        <h5 className="font-bold text-sm text-black border-b border-black pb-1 mb-1 inline-block uppercase">YASONNA H. LAOLY</h5>
-                        <p className="text-[10px] uppercase font-bold text-gray-500">Menteri Hukum dan HAM RI</p>
+                        <h5 className="font-bold text-lg text-black border-b border-black pb-1 mb-1 inline-block uppercase">YASONNA H. LAOLY</h5>
+                        <p className="text-xs uppercase font-bold text-gray-500">Menteri Hukum dan HAM RI</p>
                     </div>
                 </div>
             </div>
