@@ -19,7 +19,7 @@ interface PartnerDetailPageProps extends PageProps {
 }
 
 const openWhatsAppRegistration = () => {
-    const phoneNumber = "6282130903916";
+    const phoneNumber = "6281325808529";
     const message = "Hallo , saya ingin mendaftar menjadi mitra bisnis GUCCI";
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');

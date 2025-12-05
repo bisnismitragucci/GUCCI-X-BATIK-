@@ -53,8 +53,8 @@ const ChatWidget: React.FC = () => {
     const responseText = await getGeminiResponse(text);
 
     // 3. Create WhatsApp URL with the user's context
-    const waNumber = "6282130903916";
-    const waMessage = `Halo CS Gucci Export, saya butuh bantuan lebih lanjut mengenai: "${text}"`;
+    const waNumber = "6281325808529";
+    const waMessage = `Halo CS Gucci Export, saya butuh bantuan mendaftar akun bisnis: "${text}"`;
     const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
     // 4. Simulate Typing Delay (3 Seconds) before showing the message
@@ -101,11 +101,11 @@ const ChatWidget: React.FC = () => {
               </div>
               <div>
                 <h3 className="font-bold text-xs uppercase tracking-widest text-[#BFA36F] flex items-center">
-                    GUCCI CONCIERGE <Sparkles className="w-3 h-3 ml-1" />
+                    Customer Service
                 </h3>
                 <span className="text-[10px] opacity-90 flex items-center tracking-wider text-white">
                     <span className="w-1.5 h-1.5 bg-[#00FF00] rounded-full mr-1 animate-pulse"></span>
-                    Customer Service
+                    Online
                 </span>
               </div>
             </div>
