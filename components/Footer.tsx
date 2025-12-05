@@ -54,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
            {/* Col 4 */}
            <div>
-            <h4 className="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-[#BFA36F]">Kontak</h4>
+            <h4 className="font-bold text-sm uppercase tracking-[0.2em] mb-8 text-[#BFA36F]">ALAMAT</h4>
             <ul className="space-y-6 text-base text-gray-300 font-medium">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-4 text-[#BFA36F] flex-shrink-0 mt-0.5" />

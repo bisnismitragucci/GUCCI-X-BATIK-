@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck, Plane, Package, Anchor, Printer, Share2, Download, FileText, Calendar, Zap, ArrowRight as ArrowRightIcon, TrendingUp, TrendingDown, Leaf, Briefcase, BarChart3, Gift, Globe2, Lock, FileCheck } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, MapPin, Activity, User, Truck, Globe, List, Map as MapIcon, ChevronRight, CheckCircle, Info, Feather, Ruler, Clock, Award, ShieldCheck, Plane, Package, Anchor, Printer, Share2, Download, FileText, Calendar, Zap, ArrowRight as ArrowRightIcon, TrendingUp, TrendingDown, Leaf, Briefcase, BarChart3, Gift, Globe2, Lock, FileCheck, Star, Users, Factory, X } from 'lucide-react';
 
 interface PageProps {
     onBack: () => void;
@@ -244,6 +244,125 @@ export const TermsPage: React.FC<PageProps> = ({ onBack }) => (
 
                 <h4 className="font-bold mt-4">3. Pembayaran</h4>
                 <p>Pembayaran dilakukan menggunakan mekanisme P2P Lending melalui rekening perorangan yang ditunjuk resmi oleh perusahaan untuk fleksibilitas arus kas, sesuai kesepakatan kontrak.</p>
+            </div>
+        }
+    />
+);
+
+export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="SK Kemenkumham"
+        subtitle="AHU-0058932.AH.01.01.Tahun 2025"
+        icon={<FileText className="w-12 h-12" />}
+        content={
+            <div className="space-y-6">
+                <div className="bg-gray-50 p-6 border border-gray-200 rounded text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_the_Ministry_of_Law_and_Human_Rights_of_the_Republic_of_Indonesia.png/1200px-Flag_of_the_Ministry_of_Law_and_Human_Rights_of_the_Republic_of_Indonesia.png" alt="Logo Kemenkumham" className="h-24 mx-auto mb-4" />
+                    <h3 className="font-bold text-lg mb-2">KEPUTUSAN MENTERI HUKUM DAN HAK ASASI MANUSIA REPUBLIK INDONESIA</h3>
+                    <p className="font-mono text-sm text-gray-600 mb-6">NOMOR AHU-0058932.AH.01.01.TAHUN 2025</p>
+                    <p className="text-justify text-sm leading-relaxed mb-4">
+                        Mengesahkan pendirian badan hukum perseroan terbatas <strong>PT. GRAHA CITRA PRIMA</strong> yang berkedudukan di Jakarta Pusat, dengan seluruh anggaran dasar sebagaimana dimuat dalam Akta Notaris yang telah didaftarkan dalam Sistem Administrasi Badan Usaha (SABU).
+                    </p>
+                    <div className="flex justify-center mt-8">
+                        <div className="text-center">
+                             <p className="text-xs uppercase font-bold text-gray-400 mb-2">Ditetapkan di Jakarta</p>
+                             <div className="w-32 h-1 bg-gray-200 mx-auto mb-2"></div>
+                             <p className="font-bold text-[#8B1D1D]">DIREKTUR JENDERAL ADMINISTRASI HUKUM UMUM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    />
+);
+
+export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Izin Usaha Ekspor"
+        subtitle="Kementerian Perdagangan RI"
+        icon={<Globe className="w-12 h-12" />}
+        content={
+            <div className="space-y-6">
+                 <div className="bg-gray-50 p-6 border border-gray-200 rounded">
+                    <div className="flex items-center mb-6">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs_y2_ZAnPzgZY1YEOtij6ARLJWdo78h8vGA&s" alt="Logo Kemendag" className="h-16 mr-4 mix-blend-multiply" />
+                        <div>
+                            <h3 className="font-bold text-lg">SURAT PERSETUJUAN EKSPOR TEKSTIL DAN PRODUK TEKSTIL</h3>
+                            <p className="text-sm text-gray-500">Reg: 224/DAGLU/EKSPOR/XII/2024</p>
+                        </div>
+                    </div>
+                    
+                    <table className="w-full text-sm mb-6">
+                        <tbody>
+                            <tr className="border-b">
+                                <td className="py-2 font-bold text-gray-500">Eksportir</td>
+                                <td className="py-2 font-bold">PT. GRAHA CITRA PRIMA</td>
+                            </tr>
+                            <tr className="border-b">
+                                <td className="py-2 font-bold text-gray-500">Kategori Barang</td>
+                                <td className="py-2">Tekstil Tenun, Batik Tulis, Sutra Alam (HS Code 5007.20)</td>
+                            </tr>
+                            <tr className="border-b">
+                                <td className="py-2 font-bold text-gray-500">Negara Tujuan</td>
+                                <td className="py-2">Italia, Perancis, Amerika Serikat, Jepang</td>
+                            </tr>
+                             <tr>
+                                <td className="py-2 font-bold text-gray-500">Masa Berlaku</td>
+                                <td className="py-2 text-green-600 font-bold">Hingga 02 Januari 2027</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <p className="text-xs text-gray-400 italic">Dokumen ini diterbitkan secara elektronik melalui INATRADE.</p>
+                </div>
+            </div>
+        }
+    />
+);
+
+export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
+    <GenericInfoPage 
+        onBack={onBack}
+        title="Sertifikasi ISO 9001:2015"
+        subtitle="Quality Management System"
+        icon={<ShieldCheck className="w-12 h-12" />}
+        content={
+            <div className="space-y-6 font-['Roboto'] font-medium">
+                <div className="bg-white p-8 border-4 border-double border-[#BFA36F] text-center relative relative z-0">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none z-0">
+                         <img src="https://i.pinimg.com/736x/3a/91/2c/3a912c00ec4a2e65d517635f6b65d5ff.jpg" alt="Watermark" className="w-[400px]" />
+                    </div>
+                    <div className="relative z-10">
+                         <div className="absolute top-4 right-4 text-[#BFA36F]/20"><Award className="w-24 h-24" /></div>
+                        <h2 className="text-2xl font-serif font-bold text-[#0F2420] mb-2">CERTIFICATE OF REGISTRATION</h2>
+                        <p className="text-gray-500 mb-8">This is to certify that the Quality Management System of:</p>
+                        
+                        <h3 className="text-xl font-bold text-[#8B1D1D] mb-4">PT. GRAHA CITRA PRIMA</h3>
+                        <p className="text-sm text-gray-600 mb-8 max-w-lg mx-auto">
+                            Has been assessed and found to be in accordance with the requirements of the standard:
+                            <br/><br/>
+                            <span className="text-2xl font-bold text-black">ISO 9001:2015</span>
+                        </p>
+
+                        <div className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-2">Scope of Registration</div>
+                        <p className="text-sm font-medium mb-8">
+                            Export Trading of Textile Products, Quality Control of Artisan Fabrics, and Global Supply Chain Management for Luxury Fashion Brands.
+                        </p>
+
+                        <div className="flex justify-between items-end border-t border-gray-200 pt-4">
+                            <div className="text-left">
+                                <p className="text-xs text-gray-400">Certificate No: <strong>QMS/2025/GCP-001</strong></p>
+                                <p className="text-xs text-gray-400">Issue Date: <strong>01 Jan 2025</strong></p>
+                                <p className="text-xs text-gray-400">Expiry Date: <strong>01 Jan 2027</strong></p>
+                            </div>
+                            <div className="flex flex-col items-end">
+                                <img src="https://anena.my.id/wp-content/uploads/2023/06/desain-tanda-tangan-simple-anena-studio.png" alt="Signature" className="h-16 mb-2 mix-blend-multiply" />
+                                <img src="https://i.pinimg.com/736x/3a/91/2c/3a912c00ec4a2e65d517635f6b65d5ff.jpg" alt="ISO Stamp" className="h-16 mix-blend-multiply filter contrast-125" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         }
     />
@@ -873,16 +992,145 @@ export const PartnersPage: React.FC<PartnersPageProps> = ({ onBack, onPartnerSel
 
 export const PartnerDetailPage: React.FC<PartnerDetailPageProps> = ({ onBack, partner }) => {
     if (!partner) return null;
+
+    // State for lightbox
+    const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+    // Mock data untuk memperkaya tampilan detail
+    const stats = [
+        { label: "Tahun Berdiri", value: "1988", icon: <Calendar className="w-4 h-4 text-[#BFA36F]" /> },
+        { label: "Jumlah Artisan", value: "45+", icon: <Users className="w-4 h-4 text-[#BFA36F]" /> },
+        { label: "Kapasitas/Bln", value: "200 Yard", icon: <Factory className="w-4 h-4 text-[#BFA36F]" /> },
+        { label: "Rating Kualitas", value: "4.9/5.0", icon: <Star className="w-4 h-4 text-[#BFA36F]" /> },
+    ];
+
+    const galleries = [
+        "https://i.pinimg.com/736x/87/10/b9/8710b974ba8778bfa36a85f737993d2e.jpg",
+        "https://i.pinimg.com/736x/78/41/18/7841188562b57ef75bde432e44675d29.jpg",
+        "https://i.pinimg.com/736x/26/a3/9a/26a39a4a63579719a1507fcd2f244611.jpg"
+    ];
+
     return (
-        <div className="bg-white min-h-screen pt-32 pb-20 animate-fadeIn font-sans">
+        <div className="bg-[#FAF9F6] min-h-screen pt-28 md:pt-32 pb-20 animate-fadeIn font-sans">
              <div className="container mx-auto px-6 lg:px-12">
-                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline">
+                <button onClick={onBack} className="text-[#8B1D1D] font-bold uppercase tracking-widest text-xs mb-8 flex items-center hover:underline sticky top-24 md:static bg-[#FAF9F6] py-2 z-10 w-full">
                     <ArrowLeft className="w-4 h-4 mr-2" /> Kembali ke Daftar Mitra
                 </button>
-                <div className="text-center py-20">
-                     <h1 className="text-4xl font-serif font-bold mb-4">{partner.name}</h1>
-                     <p className="text-gray-600">Detail halaman mitra sedang dalam pengembangan.</p>
+
+                {/* Hero Section */}
+                <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-2xl mb-12 group">
+                     <img src={partner.image} alt={partner.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]" />
+                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
+                     <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full">
+                         <div className="flex flex-col md:flex-row justify-between items-end">
+                             <div>
+                                <span className="text-[#BFA36F] bg-black/50 px-3 py-1 rounded backdrop-blur-sm text-[10px] font-bold uppercase tracking-[0.2em] mb-4 inline-block border border-[#BFA36F]/30">
+                                    {partner.location} • {partner.id}
+                                </span>
+                                <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-2 leading-tight drop-shadow-lg">{partner.name}</h1>
+                                <p className="text-gray-300 text-sm md:text-lg max-w-2xl font-medium">{partner.specialty}</p>
+                             </div>
+                             <div className="mt-6 md:mt-0">
+                                 <div className="flex items-center bg-[#BFA36F] text-[#0F2420] px-4 py-2 rounded font-bold text-xs uppercase tracking-wider shadow-lg">
+                                     <ShieldCheck className="w-4 h-4 mr-2" /> {partner.tier}
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
                 </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    {/* Left Column: Description */}
+                    <div className="lg:col-span-2">
+                         <h3 className="text-[#8B1D1D] font-bold text-sm uppercase tracking-[0.2em] mb-6 flex items-center">
+                            <Info className="w-5 h-5 mr-2" /> Tentang Atelier
+                        </h3>
+                        <p className="text-gray-800 text-lg leading-relaxed font-serif mb-8 first-letter:text-5xl first-letter:font-bold first-letter:text-[#8B1D1D] first-letter:mr-1 first-letter:float-left">
+                            {partner.description} Warisan budaya yang dijaga dengan ketat, memadukan teknik tradisional leluhur dengan standar kualitas internasional yang ditetapkan oleh House of Gucci. Setiap helai kain yang dihasilkan merupakan manifestasi dari kesabaran dan dedikasi tinggi.
+                        </p>
+                        
+                        <div className="bg-white p-8 border-l-4 border-[#BFA36F] shadow-sm rounded-r-lg mb-12">
+                            <h4 className="font-bold text-lg mb-4 text-[#8B1D1D] font-serif">Filosofi & Keahlian</h4>
+                            <p className="text-gray-600 italic leading-relaxed">
+                                "Kami percaya bahwa kain bukan sekadar penutup tubuh, melainkan kanvas kehidupan. Di atelier ini, kami tidak hanya menenun benang, tapi juga menenun doa dan harapan untuk pemakainya."
+                            </p>
+                        </div>
+
+                        {/* Gallery */}
+                        <h3 className="text-[#8B1D1D] font-bold text-sm uppercase tracking-[0.2em] mb-6 flex items-center">
+                            <ShoppingBag className="w-5 h-5 mr-2" /> Kurasi Karya
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {galleries.map((img, idx) => (
+                                <div 
+                                    key={idx} 
+                                    className="aspect-square overflow-hidden rounded-lg relative group cursor-pointer"
+                                    onClick={() => setLightboxImage(img)}
+                                >
+                                    <img src={img} alt="Karya" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        <span className="text-white text-xs font-bold uppercase tracking-widest border border-white px-3 py-1 bg-black/20 backdrop-blur-sm">Lihat</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Right Column: Stats & Contact */}
+                    <div>
+                        <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-lg sticky top-32">
+                            <h4 className="font-bold text-black text-sm uppercase tracking-widest mb-6 border-b border-gray-100 pb-4">Statistik Atelier</h4>
+                            <div className="grid grid-cols-2 gap-4 mb-8">
+                                {stats.map((stat, idx) => (
+                                    <div key={idx} className="bg-gray-50 p-4 rounded text-center">
+                                        <div className="flex justify-center mb-2">{stat.icon}</div>
+                                        <div className="font-bold text-lg text-[#8B1D1D]">{stat.value}</div>
+                                        <div className="text-[9px] text-gray-500 uppercase tracking-wider">{stat.label}</div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="space-y-4">
+                                <div className="flex items-center justify-between text-sm border-b border-gray-100 pb-2">
+                                    <span className="text-gray-500">Status Kemitraan</span>
+                                    <span className="font-bold text-green-600 flex items-center"><CheckCircle className="w-3 h-3 mr-1"/> Aktif</span>
+                                </div>
+                                <div className="flex items-center justify-between text-sm border-b border-gray-100 pb-2">
+                                    <span className="text-gray-500">Audit Terakhir</span>
+                                    <span className="font-bold text-black">Desember 2024</span>
+                                </div>
+                                 <div className="flex items-center justify-between text-sm pb-2">
+                                    <span className="text-gray-500">Produk Ekspor</span>
+                                    <span className="font-bold text-black">Kain, Scarf, Home Decor</span>
+                                </div>
+                            </div>
+
+                            <button 
+                                onClick={openWhatsAppRegistration}
+                                className="w-full mt-8 bg-[#8B1D1D] text-white py-4 font-bold uppercase tracking-widest text-xs hover:bg-[#5e1414] transition-colors shadow-lg"
+                            >
+                                Ajukan Kolaborasi
+                            </button>
+                            <p className="text-[9px] text-center text-gray-400 mt-4">Hubungi CS untuk ketersediaan slot produksi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Lightbox Modal */}
+                {lightboxImage && (
+                    <div className="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4 animate-fadeIn" onClick={() => setLightboxImage(null)}>
+                        <button className="absolute top-6 right-6 text-white hover:text-[#BFA36F] transition-colors z-50">
+                            <X className="w-10 h-10" />
+                        </button>
+                        <div className="relative max-w-5xl max-h-[90vh] w-full h-full flex items-center justify-center" onClick={(e) => e.stopPropagation()}>
+                            <img 
+                                src={lightboxImage} 
+                                alt="Full Preview" 
+                                className="max-w-full max-h-full object-contain shadow-2xl border-4 border-[#0F2420] rounded-sm"
+                            />
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -1028,12 +1276,12 @@ export const RegisterPage: React.FC<PageProps> = ({ onBack }) => {
                         </div>
 
                         <div className="text-center py-6">
-                            <p className="mb-6 text-gray-600">Pendaftaran dilakukan secara eksklusif melalui tim verifikasi kami di WhatsApp untuk validasi data usaha.</p>
+                            <p className="mb-6 text-gray-600">Pendaftaran dilakukan secara eksklusif melalui Customer Service kami di WhatsApp untuk validasi data usaha.</p>
                             <button 
                                 onClick={openWhatsAppRegistration}
                                 className="w-full bg-[#25D366] text-white py-4 font-bold uppercase tracking-widest hover:bg-[#128C7E] transition-colors flex items-center justify-center shadow-lg"
                             >
-                                Hubungi Tim Verifikasi
+                                HUBUNGI CUSTOMER SERVICE
                             </button>
                         </div>
                     </div>
@@ -1042,265 +1290,3 @@ export const RegisterPage: React.FC<PageProps> = ({ onBack }) => {
         </div>
     );
 };
-
-// ----------------------------------------------------------------------
-// 7. LEGALITY DOCUMENT PAGES (REALISTIC VIEW & MOBILE OPTIMIZED)
-// ----------------------------------------------------------------------
-
-const DocumentLayout: React.FC<{ 
-    title: string; 
-    subtitle: string; 
-    docNumber: string;
-    onBack: () => void; 
-    children: React.ReactNode;
-    address?: string; // Add optional address for letterhead
-}> = ({ title, subtitle, docNumber, onBack, children, address }) => {
-    return (
-        <div className="bg-[#525659] min-h-screen py-4 md:py-10 px-0 md:px-0 animate-fadeIn font-['Roboto'] overflow-x-hidden">
-            {/* Mobile Header Bar */}
-            <div className="bg-white p-4 shadow-md mb-4 md:hidden flex items-center sticky top-0 z-50">
-                <button onClick={onBack} className="flex items-center text-gray-800 font-sans text-xs uppercase font-bold">
-                    <ArrowLeft className="w-5 h-5 mr-2" /> Kembali
-                </button>
-            </div>
-
-            {/* A4 Container (Responsive) */}
-            <div className="w-full md:w-[210mm] min-h-screen md:min-h-[297mm] mx-auto bg-white shadow-2xl p-6 md:p-[20mm] relative">
-                
-                {/* Desktop Back Button */}
-                <button onClick={onBack} className="absolute top-4 left-[-150px] bg-white p-3 rounded-full shadow-lg text-gray-600 hover:text-[#8B1D1D] hidden xl:block">
-                    <ArrowLeft className="w-6 h-6" />
-                </button>
-
-                {/* Kop Surat Garuda */}
-                <div className="text-center border-b-4 border-double border-black pb-4 mb-6 md:mb-8">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/National_emblem_of_Indonesia_Garuda_Pancasila.svg/1200px-National_emblem_of_Indonesia_Garuda_Pancasila.svg.png" alt="Garuda" className="h-16 md:h-24 mx-auto mb-3" />
-                    <h1 className="text-base md:text-2xl font-bold uppercase tracking-widest mb-1 leading-tight">{title}</h1>
-                    <h2 className="text-xs md:text-base font-bold uppercase text-gray-600 mb-1 leading-tight">{subtitle}</h2>
-                    {address && <p className="text-[9px] md:text-[10px] text-gray-500 font-sans mb-1">{address}</p>}
-                    <p className="text-[10px] md:text-xs font-mono font-bold mt-2">NOMOR: {docNumber}</p>
-                </div>
-
-                {/* Watermark */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] overflow-hidden">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/National_emblem_of_Indonesia_Garuda_Pancasila.svg/1200px-National_emblem_of_Indonesia_Garuda_Pancasila.svg.png" alt="Watermark" className="w-[300px] md:w-[500px]" />
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 font-['Roboto'] font-medium text-justify leading-relaxed text-gray-900 text-sm md:text-base border-b-0 pb-0">
-                    {children}
-                </div>
-
-                {/* Footer / QR */}
-                <div className="mt-12 md:absolute md:bottom-[20mm] md:left-[20mm] md:right-[20mm] pt-4 md:border-t-0">
-                    <div className="text-[9px] text-gray-400 font-sans w-full md:w-2/3">
-                        <p className="mb-1">Dokumen ini telah ditandatangani secara elektronik menggunakan sertifikat elektronik yang diterbitkan oleh Balai Sertifikasi Elektronik (BSrE), BSSN.</p>
-                        <p>Dokumen ini sah dan tidak memerlukan tanda tangan basah.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export const SKKemenkumhamPage: React.FC<PageProps> = ({ onBack }) => (
-    <DocumentLayout 
-        title="KEPUTUSAN MENTERI HUKUM DAN HAK ASASI MANUSIA R.I."
-        subtitle="DIREKTORAT JENDERAL ADMINISTRASI HUKUM UMUM"
-        docNumber="AHU-0058932.AH.01.01.TAHUN 2025"
-        onBack={onBack}
-    >
-        <p className="mb-6"><strong>TENTANG:</strong><br/>PENGESAHAN PENDIRIAN BADAN HUKUM PERSEROAN TERBATAS <strong>PT. GRAHA CITRA PRIMA</strong></p>
-        
-        <p className="mb-4">Menteri Hukum dan Hak Asasi Manusia Republik Indonesia,</p>
-        
-        <div className="mb-4">
-            <strong>MENIMBANG:</strong>
-            <ul className="list-none pl-4 mt-1 space-y-2">
-                <li className="flex items-start"><span className="mr-2">a.</span> <span>Bahwa berdasarkan permohonan Notaris yang terdaftar sesuai salinan Akta Nomor 89 Tanggal 01 Januari 2025;</span></li>
-                <li className="flex items-start"><span className="mr-2">b.</span> <span>Bahwa permohonan tersebut telah memenuhi syarat dan ketentuan peraturan perundang-undangan.</span></li>
-            </ul>
-        </div>
-        
-        <p className="mb-6 font-bold">MEMUTUSKAN:</p>
-        <p className="mb-2 font-bold">MENETAPKAN:</p>
-        <ol className="list-decimal pl-6 space-y-3 mb-8">
-            <li>Mengesahkan pendirian badan hukum <strong>PT. GRAHA CITRA PRIMA</strong> yang berkedudukan di <strong>JAKARTA PUSAT</strong>.</li>
-            <li>Modal Dasar Perseroan berjumlah Rp 50.000.000.000,- (Lima Puluh Miliar Rupiah).</li>
-            <li>Susunan Pemegang Saham, Dewan Komisaris, dan Direksi adalah sebagaimana tercantum dalam lampiran keputusan ini.</li>
-            <li>Keputusan ini mulai berlaku sejak tanggal ditetapkan.</li>
-        </ol>
-
-        <div className="flex flex-col items-end mt-8 relative">
-            <div className="text-center w-full md:w-64">
-                <p className="mb-2 text-sm">Ditetapkan di Jakarta,<br/>Pada Tanggal 02 Januari 2025</p>
-                
-                {/* Signature Image - Enlarged & Responsive */}
-                <div className="h-32 md:h-52 flex items-center justify-center relative z-10 my-2">
-                    <img 
-                        src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Tanda_Tangan_Mick_Schumacher.png" 
-                        alt="Tanda Tangan Menteri" 
-                        className="h-full object-contain mix-blend-multiply opacity-90 transform -rotate-2" 
-                    />
-                </div>
-
-                <p className="font-bold underline mt-2">YASONNA H. LAOLY</p>
-                <p className="text-sm">MENTERI HUKUM DAN HAM R.I.</p>
-            </div>
-        </div>
-    </DocumentLayout>
-);
-
-export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
-    <DocumentLayout 
-        title="KEMENTERIAN PERDAGANGAN REPUBLIK INDONESIA"
-        subtitle="DIREKTORAT JENDERAL PERDAGANGAN LUAR NEGERI"
-        docNumber="02.SPE/DAGLU/01/2025"
-        address="Jalan M.I. Ridwan Rais No. 5, Jakarta Pusat 10110"
-        onBack={onBack}
-    >
-        <div className="text-center font-bold text-base md:text-lg underline mb-6">SURAT PERSETUJUAN EKSPOR (SPE)<br/>TEKSTIL DAN PRODUK TEKSTIL</div>
-
-        <div className="mb-6 p-4 bg-gray-50 border border-gray-200 text-xs font-sans rounded">
-            <strong>DASAR HUKUM:</strong>
-            <ul className="list-disc pl-4 mt-1">
-                <li>Permendag Nomor 19 Tahun 2021 tentang Kebijakan Ekspor.</li>
-                <li>Permendag Nomor 08 Tahun 2024 tentang Perubahan atas Permendag No. 36/2023.</li>
-            </ul>
-        </div>
-
-        <p className="mb-2"><strong>KEPADA YTH:</strong></p>
-        <div className="ml-0 md:ml-4 mb-6 border-l-4 border-black pl-4">
-            <div className="font-bold uppercase">PT. GRAHA CITRA PRIMA</div>
-            <div>Gedung Optik Tunggal, Jl. Cikini Raya No. 89</div>
-            <div>Jakarta Pusat, DKI Jakarta</div>
-        </div>
-
-        <p className="mb-4">Berdasarkan hasil verifikasi terhadap data dan kelengkapan dokumen permohonan, dengan ini diterbitkan Persetujuan Ekspor kepada:</p>
-        
-        {/* Responsive Table Wrapper */}
-        <div className="w-full overflow-x-auto mb-6">
-            <table className="w-full text-xs md:text-sm border-collapse border border-gray-300 min-w-[300px]">
-                 <tbody>
-                    <tr className="border border-gray-300"><td className="p-2 border border-gray-300 w-1/3 bg-gray-50 font-bold">1. NIB</td><td className="p-2 border border-gray-300">9120114281905</td></tr>
-                    <tr className="border border-gray-300"><td className="p-2 border border-gray-300 bg-gray-50 font-bold">2. NPWP</td><td className="p-2 border border-gray-300">01.234.567.8-011.000</td></tr>
-                    <tr className="border border-gray-300"><td className="p-2 border border-gray-300 bg-gray-50 font-bold">3. Uraian Barang</td><td className="p-2 border border-gray-300">
-                        <strong>HS Code 5007.20:</strong> Kain tenun sutra.<br/>
-                        <strong>HS Code 5208.10:</strong> Kain kapas polos.
-                    </td></tr>
-                    <tr className="border border-gray-300"><td className="p-2 border border-gray-300 bg-gray-50 font-bold">4. Kuota</td><td className="p-2 border border-gray-300">500.000 Yard / Tahun</td></tr>
-                    <tr className="border border-gray-300"><td className="p-2 border border-gray-300 bg-gray-50 font-bold">5. Negara Tujuan</td><td className="p-2 border border-gray-300">Semua Negara (All Countries)</td></tr>
-                    <tr className="border border-gray-300"><td className="p-2 border border-gray-300 bg-gray-50 font-bold">6. Masa Berlaku</td><td className="p-2 border border-gray-300 text-[#8B1D1D] font-bold">Hingga 02 Januari 2027</td></tr>
-                 </tbody>
-            </table>
-        </div>
-
-        <p className="mb-2 font-bold text-xs md:text-sm">KETENTUAN LAIN:</p>
-        <ol className="list-decimal pl-6 space-y-1 mb-8 text-xs text-justify">
-            <li>Eksportir wajib menyampaikan Laporan Realisasi Ekspor baik terealisasi maupun tidak, melalui sistem INATRADE.</li>
-            <li>Persetujuan Ekspor ini dapat dicabut apabila perusahaan terbukti melakukan pelanggaran.</li>
-        </ol>
-
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mt-8 gap-8">
-            <div className="text-[10px] w-full md:w-64">
-                <p className="font-bold underline mb-1">Tembusan:</p>
-                <ol className="list-decimal pl-4">
-                    <li>Dirjen Bea dan Cukai</li>
-                    <li>Dirjen PEN</li>
-                    <li>Arsip</li>
-                </ol>
-            </div>
-
-            <div className="w-full md:w-64 text-center relative">
-                 <p className="mb-2 text-xs">Jakarta, 02 Januari 2025<br/>a.n. MENTERI PERDAGANGAN<br/>Dirjen Perdagangan Luar Negeri</p>
-                 
-                 {/* WET SIGNATURE - Enlarged & Responsive */}
-                 <div className="h-32 md:h-52 flex items-center justify-center relative z-10 my-2">
-                      <img 
-                        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkUivnct3ZzTlwcEXkmRBACsnkL2UTPXZ8dCGoNjsFMWyf8OKVhyphenhyphenaoA44X8isr8gwWtdi5os_X04gj2mSiC0U5MQC7ANfWo7fBYf-QMCbtJ0Zf0n-zcwmA8l4q4UDRjsE0nKZkVxYpby4T/w1200-h630-p-k-no-nu/hasil+scan+1+-+cara+scan+tanda+tangan.jpg" 
-                        alt="Tanda Tangan Dirjen" 
-                        className="h-full object-contain mix-blend-multiply filter contrast-150 brightness-110" 
-                      />
-                 </div>
-                 
-                 <p className="font-bold underline">BUDI SANTOSO</p>
-                 <p className="text-xs">NIP. 19680205 199403 1 001</p>
-            </div>
-        </div>
-    </DocumentLayout>
-);
-
-export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
-    <div className="bg-[#525659] min-h-screen py-4 md:py-10 animate-fadeIn font-['Roboto'] font-medium">
-        {/* Mobile Header */}
-        <div className="bg-white p-4 shadow-md mb-4 md:hidden flex items-center sticky top-0 z-50">
-            <button onClick={onBack} className="flex items-center text-gray-800 font-sans text-xs uppercase font-bold">
-                <ArrowLeft className="w-5 h-5 mr-2" /> Kembali
-            </button>
-        </div>
-
-        {/* Responsive Certificate Container */}
-        <div className="w-full md:w-[297mm] min-h-screen md:min-h-[210mm] mx-auto bg-white shadow-2xl p-6 md:p-[15mm] relative border-[10px] md:border-[20px] border-double border-[#0F2420]">
-            
-            {/* Watermark added here */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
-                 <img src="https://i.pinimg.com/736x/3a/91/2c/3a912c00ec4a2e65d517635f6b65d5ff.jpg" alt="Watermark" className="w-[80%] md:w-[60%] opacity-[0.03] grayscale mix-blend-multiply filter contrast-125" />
-            </div>
-
-            <button onClick={onBack} className="absolute top-4 left-4 bg-white p-2 rounded shadow text-gray-600 hover:text-[#8B1D1D] hidden xl:block z-20">
-                <ArrowLeft className="w-6 h-6" />
-            </button>
-
-            <div className="flex flex-col md:flex-row justify-between items-center md:items-start mb-8 md:mb-12 text-center md:text-left relative z-10">
-                <img src="https://i.pinimg.com/736x/3a/91/2c/3a912c00ec4a2e65d517635f6b65d5ff.jpg" alt="ISO" className="h-16 md:h-24 w-auto mb-4 md:mb-0 mix-blend-multiply filter contrast-125" />
-                <div className="md:text-right">
-                    <h1 className="text-3xl md:text-4xl font-bold text-[#0F2420] tracking-widest">CERTIFICATE</h1>
-                    <p className="text-sm md:text-lg text-gray-500 uppercase tracking-widest">OF REGISTRATION</p>
-                </div>
-            </div>
-
-            <div className="text-center mb-8 md:mb-12 relative z-10">
-                <p className="text-gray-500 mb-2 md:mb-4 text-sm md:text-base">This is to certify that the Quality Management System of:</p>
-                <h2 className="text-2xl md:text-4xl font-serif font-bold text-[#8B1D1D] mb-2 md:mb-4">PT. GRAHA CITRA PRIMA</h2>
-                <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
-                    Jl. Cikini Raya No. 89, Gedung Optik Tunggal, Menteng, Jakarta Pusat, Indonesia
-                </p>
-            </div>
-
-            <div className="text-center mb-8 md:mb-12 relative z-10">
-                <p className="text-gray-500 mb-2 md:mb-4 text-xs md:text-sm">Has been assessed and found to constitute a Quality Management System which complies with the requirements of:</p>
-                <h3 className="text-2xl md:text-3xl font-bold text-[#0F2420] mb-2">ISO 9001:2015</h3>
-                <p className="text-gray-600 font-medium text-xs md:text-sm">For the following scope of activities:</p>
-                <p className="font-bold mt-2 text-sm md:text-lg">Export and Distribution of High-Quality Indonesian Traditional Textiles (Batik & Tenun) for International Luxury Markets.</p>
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-between items-center md:items-end border-t-2 border-gray-200 pt-8 mt-auto gap-6 md:gap-0 relative z-10">
-                <div className="text-center md:text-left">
-                    <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest mb-1">Certificate No:</p>
-                    <p className="font-mono font-bold text-sm md:text-lg">GCP-ISO-9001-2025</p>
-                </div>
-                
-                <div className="flex flex-col items-center">
-                     <div className="text-center">
-                        {/* Enlarged Signature ISO - Responsive */}
-                        <img src="https://anena.my.id/wp-content/uploads/2023/06/desain-tanda-tangan-simple-anena-studio.png" alt="Sign" className="h-16 md:h-24 mx-auto mb-2 mix-blend-multiply filter contrast-125" />
-                        <div className="w-32 border-t border-black pt-1 text-[10px] md:text-xs uppercase font-bold">Director General</div>
-                    </div>
-                </div>
-
-                <div className="text-center md:text-right">
-                    <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest mb-1">Original Issue Date:</p>
-                    <p className="font-mono font-bold text-sm mb-2">01 January 2025</p>
-                    
-                    <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest mb-1">Expiry Date:</p>
-                    <p className="font-mono font-bold text-sm text-[#8B1D1D]">01 January 2027</p>
-                </div>
-            </div>
-             
-             {/* Gold Seal - Responsive */}
-             <div className="absolute bottom-6 md:bottom-12 right-1/2 md:right-1/2 transform translate-x-1/2 w-24 h-24 md:w-32 md:h-32 z-20">
-                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0e9U-X0rCj8d8q_M0u8z-w_l_s_q_t_u_v&s" alt="Seal" className="w-full h-full opacity-80 mix-blend-multiply text-yellow-600" style={{ filter: 'sepia(1) hue-rotate(20deg) saturate(3)'}} />
-             </div>
-        </div>
-    </div>
-);
