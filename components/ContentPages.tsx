@@ -189,11 +189,15 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     // State for live market data
     const [marketNodes, setMarketNodes] = useState(MARKET_CONFIG.map(n => ({
         ...n,
-        // Start very low: 0.1 Miliar = 100 Juta
-        currentIncome: 0.1 + (Math.random() * 0.5), 
+        // Start range: 0.3 Miliar (300 Juta) to 0.9 Miliar (900 Juta)
+        currentIncome: 0.3 + (Math.random() * 0.6), 
         change: 0.0,
         trend: 'up' as 'up' | 'down'
     })));
+
+    // State for Active Routes (Randomized)
+    const [activeRoutesCount, setActiveRoutesCount] = useState(14);
+    const [artisanPaid, setArtisanPaid] = useState(100.0);
 
     // State for Ticker Data
     const [currencyData, setCurrencyData] = useState({
@@ -205,23 +209,35 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     // 2. Simulation Logic (Effect)
     useEffect(() => {
         const interval = setInterval(() => {
+            // A. Update Market Nodes (Up & Down Logic)
             setMarketNodes(prevNodes => prevNodes.map(node => {
-                // Logic: Simulate "Incoming Transactions"
-                // Each tick adds a random amount between 50 Juta (0.05) to 800 Juta (0.8)
-                // This makes the numbers "climb" from hundreds of millions to billions
+                // Determine if this cycle is an INCREASE (Sales) or DECREASE (Adjustment/Correction)
+                // 60% chance of Up, 40% chance of Down
+                const isGrowth = Math.random() > 0.4;
                 
-                const incomingTransaction = Math.random() * 0.4; // 0 to 400 Juta
-                const newIncome = node.currentIncome + incomingTransaction;
+                // "Puluhan Juta" Range: 0.01 Miliar (10 Juta) to 0.05 Miliar (50 Juta)
+                const fluctuationAmount = (Math.random() * 0.05) + 0.01; 
 
-                // Calculate "Change" based on the velocity of this specific transaction
-                // Making it look like a live stock ticker percentage
-                const newChange = (incomingTransaction / node.currentIncome) * 100;
+                let newIncome = node.currentIncome;
+                let trend: 'up' | 'down' = 'up';
+
+                if (isGrowth) {
+                    newIncome += fluctuationAmount;
+                    trend = 'up';
+                } else {
+                    // Decrease, but ensure it doesn't go below 100 Juta (0.1)
+                    newIncome = Math.max(0.1, newIncome - fluctuationAmount);
+                    trend = 'down';
+                }
+
+                // Calculate "Change" percentage based on this small fluctuation
+                const newChange = (fluctuationAmount / (node.currentIncome || 1)) * 100;
 
                 return {
                     ...node,
                     currentIncome: newIncome,
                     change: newChange,
-                    trend: 'up' // Always up because sales are accumulating
+                    trend: trend
                 };
             }));
 
@@ -232,7 +248,15 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                 exportVol: prev.exportVol + (Math.random() * 0.2) // Slowly increment volume
             }));
 
-        }, 1500); // Update every 1.5 seconds
+            // C. Randomize Active Routes (Between 11 and 16 to show fluctuation)
+            const randomRoutes = Math.floor(Math.random() * (16 - 11 + 1) + 11);
+            setActiveRoutesCount(randomRoutes);
+
+             // D. Fluctuate Artisan Paid (98.0% - 100.0%)
+            const randomPaid = 98 + (Math.random() * 2);
+            setArtisanPaid(parseFloat(randomPaid.toFixed(1)));
+
+        }, 3000); // 3 DETIK (3 Seconds) Interval as requested
 
         return () => clearInterval(interval);
     }, []);
@@ -243,9 +267,15 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
     }, [marketNodes]);
 
     // Format Helpers
-    // Miliar format: Rp 12,5 Miliar. 
-    // If less than 1 Miliar (e.g. 0.5), it reads as Rp 0,5 Miliar (Hundreds of Millions)
-    const formatMiliar = (val: number) => `Rp ${val.toFixed(1).replace('.', ',')} Miliar`;
+    // If val >= 1 -> Miliar, else -> Juta
+    const formatValue = (val: number) => {
+        if (val >= 1) {
+            return `Rp ${val.toFixed(1).replace('.', ',')} Miliar`;
+        } else {
+            return `Rp ${(val * 1000).toFixed(0)} Juta`;
+        }
+    };
+    
     const formatCurrency = (val: number) => `Rp ${val.toLocaleString('id-ID')}`;
 
     // Visible Nodes Logic (Rotation)
@@ -373,7 +403,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                             <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest flex items-center">
                                 <Activity className="w-4 h-4 mr-2 animate-pulse" /> LIVE MARKET DATA
                             </h3>
-                            <span className="text-[10px] font-mono text-gray-500 animate-pulse">● LIVE TRANSACTIONS</span>
+                            <span className="text-[10px] font-mono text-gray-500 animate-pulse">● LIVE TRANSACTIONS (3s)</span>
                         </div>
 
                         <div className="space-y-4 relative z-20">
@@ -386,7 +416,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                                     {/* Mobile Responsive Vertical Stack for Volume/Growth */}
                                     <div className="flex flex-col items-end md:contents">
                                         <div className="md:col-span-3 text-right font-mono text-[#BFA36F] text-[10px] md:text-xs whitespace-nowrap transition-all duration-300">
-                                            {formatMiliar(c.currentIncome)}
+                                            {formatValue(c.currentIncome)}
                                         </div>
                                         <div className={`md:col-span-3 text-right font-bold text-[10px] md:text-xs whitespace-nowrap flex items-center justify-end ${c.trend === 'up' ? 'text-green-500' : 'text-red-500'}`}>
                                             {c.trend === 'up' ? <TrendingUp className="w-3 h-3 mr-1"/> : <TrendingDown className="w-3 h-3 mr-1"/>}
@@ -402,18 +432,18 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                              <div className="flex flex-col">
                                 <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">TOTAL NILAI EKSPOR</span>
                                 <div className="text-sm md:text-2xl font-bold text-white whitespace-nowrap transition-all duration-500">
-                                    {formatMiliar(totalExportValue)}
+                                    {formatValue(totalExportValue)}
                                 </div>
                             </div>
                             <div className="w-px h-8 bg-gray-800 mx-2"></div>
                             <div className="flex flex-col">
                                 <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">ACTIVE ROUTES</span>
-                                <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">14 Negara</div>
+                                <div className="text-sm md:text-xl font-bold text-white whitespace-nowrap">{activeRoutesCount} Negara</div>
                             </div>
                             <div className="w-px h-8 bg-gray-800 mx-2"></div>
                              <div className="flex flex-col">
                                 <span className="text-[9px] md:text-[10px] text-gray-500 uppercase tracking-wider mb-1">ARTISAN PAID</span>
-                                <div className="text-sm md:text-xl font-bold text-[#BFA36F] whitespace-nowrap">100%</div>
+                                <div className="text-sm md:text-xl font-bold text-[#BFA36F] whitespace-nowrap">{artisanPaid.toFixed(1)}%</div>
                             </div>
                         </div>
                     </div>
