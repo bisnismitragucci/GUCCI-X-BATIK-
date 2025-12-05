@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Facebook, Twitter, Instagram, Linkedin, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 interface FooterProps {
     onNavigate: (page: string) => void;
@@ -22,12 +22,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <p className="text-gray-300 text-base leading-relaxed mb-8 font-medium">
               Musim ini, kami merayakan kehangatan kerajinan Indonesia. Menghadirkan sukacita, kemewahan, dan warisan berkelanjutan ke setiap sudut dunia.
             </p>
-            <div className="flex space-x-6">
-              <a href="#" className="text-gray-400 hover:text-[#8B1D1D] transition-colors"><Facebook className="w-6 h-6" /></a>
-              <a href="#" className="text-gray-400 hover:text-[#8B1D1D] transition-colors"><Twitter className="w-6 h-6" /></a>
-              <a href="#" className="text-gray-400 hover:text-[#8B1D1D] transition-colors"><Instagram className="w-6 h-6" /></a>
-              <a href="#" className="text-gray-400 hover:text-[#8B1D1D] transition-colors"><Linkedin className="w-6 h-6" /></a>
-            </div>
           </div>
 
           {/* Col 2 */}

@@ -356,9 +356,9 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
                                 <p className="text-xs text-gray-400">Issue Date: <strong>01 Jan 2025</strong></p>
                                 <p className="text-xs text-gray-400">Expiry Date: <strong>01 Jan 2027</strong></p>
                             </div>
-                            <div className="flex flex-col items-end">
-                                <img src="https://anena.my.id/wp-content/uploads/2023/06/desain-tanda-tangan-simple-anena-studio.png" alt="Signature" className="h-16 mb-2 mix-blend-multiply" />
-                                <img src="https://i.pinimg.com/736x/3a/91/2c/3a912c00ec4a2e65d517635f6b65d5ff.jpg" alt="ISO Stamp" className="h-16 mix-blend-multiply filter contrast-125" />
+                            <div className="relative w-48 h-32 flex items-center justify-center">
+                                {/* Signature Overlay */}
+                                <img src="https://anena.my.id/wp-content/uploads/2023/06/desain-tanda-tangan-simple-anena-studio.png" alt="Signature" className="w-56 absolute -top-8 right-[-1rem] z-10 mix-blend-multiply" />
                             </div>
                         </div>
                     </div>
@@ -746,7 +746,7 @@ export const ImpactPage: React.FC<PageProps> = ({ onBack }) => {
                             <h3 className="text-[#BFA36F] font-mono text-xs font-bold uppercase tracking-widest flex items-center">
                                 <Activity className="w-4 h-4 mr-2 animate-pulse" /> LIVE MARKET DATA
                             </h3>
-                            <span className="text-[10px] font-mono text-gray-500 animate-pulse">● LIVE TRANSACTIONS (3s)</span>
+                            <span className="text-[10px] font-mono text-red-500 font-bold animate-pulse">● LIVE TRANSACTIONS (3s)</span>
                         </div>
 
                         <div className="space-y-4 relative z-20">
