@@ -362,8 +362,8 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
                                 {/* Signature Overlay */}
                                 <img src="https://anena.my.id/wp-content/uploads/2023/06/desain-tanda-tangan-simple-anena-studio.png" alt="Signature" className="w-56 absolute -top-10 z-10 mix-blend-multiply" />
                                 <div className="text-center z-20 mt-10">
-                                     <p className="font-bold text-black border-b border-gray-400 pb-1 mb-1 uppercase text-sm">SERGIO MUJICA</p>
-                                     <p className="text-[9px] text-gray-500 uppercase tracking-widest">Secretary-General</p>
+                                     <p className="font-bold text-black border-b border-gray-400 pb-1 mb-1 uppercase text-sm">ARTHUR DAVIDSON</p>
+                                     <p className="text-[9px] text-gray-500 uppercase tracking-widest">Global Director</p>
                                 </div>
                             </div>
                         </div>
