@@ -334,7 +334,9 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
                          <img src="https://i.pinimg.com/736x/3a/91/2c/3a912c00ec4a2e65d517635f6b65d5ff.jpg" alt="Watermark" className="w-[400px]" />
                     </div>
                     <div className="relative z-10">
-                         <div className="absolute top-4 right-4 text-[#BFA36F]/20"><Award className="w-24 h-24" /></div>
+                         <div className="absolute top-0 right-0 md:top-4 md:right-4">
+                             <img src="https://png.pngtree.com/png-vector/20230711/ourmid/pngtree-gold-medal-set-badge-vector-the-best-award-png-image_7333583.png" alt="Gold Award Badge" className="w-20 h-20 md:w-24 md:h-24 object-contain opacity-90 drop-shadow-sm" />
+                         </div>
                         <h2 className="text-2xl font-serif font-bold text-[#0F2420] mb-2">CERTIFICATE OF REGISTRATION</h2>
                         <p className="text-gray-500 mb-8">This is to certify that the Quality Management System of:</p>
                         
@@ -356,9 +358,13 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
                                 <p className="text-xs text-gray-400">Issue Date: <strong>01 Jan 2025</strong></p>
                                 <p className="text-xs text-gray-400">Expiry Date: <strong>01 Jan 2027</strong></p>
                             </div>
-                            <div className="relative w-48 h-32 flex items-center justify-center">
+                            <div className="relative w-48 h-32 flex flex-col items-center justify-end">
                                 {/* Signature Overlay */}
-                                <img src="https://anena.my.id/wp-content/uploads/2023/06/desain-tanda-tangan-simple-anena-studio.png" alt="Signature" className="w-56 absolute -top-8 right-[-1rem] z-10 mix-blend-multiply" />
+                                <img src="https://anena.my.id/wp-content/uploads/2023/06/desain-tanda-tangan-simple-anena-studio.png" alt="Signature" className="w-56 absolute -top-10 z-10 mix-blend-multiply" />
+                                <div className="text-center z-20 mt-10">
+                                     <p className="font-bold text-black border-b border-gray-400 pb-1 mb-1 uppercase text-sm">SERGIO MUJICA</p>
+                                     <p className="text-[9px] text-gray-500 uppercase tracking-widest">Secretary-General</p>
+                                </div>
                             </div>
                         </div>
                     </div>

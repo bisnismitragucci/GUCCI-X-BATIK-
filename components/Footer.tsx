@@ -52,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-6 text-base text-gray-300 font-medium">
               <li className="flex items-start">
                 <MapPin className="w-5 h-5 mr-4 text-[#BFA36F] flex-shrink-0 mt-0.5" />
-                <span className="leading-relaxed">JL. Cikini Raya No. 89, Gedung Optik Tunggal, Kecamatan Menteng, Kota Jakarta Pusat, DKI Jakarta, 10330, Indonesia</span>
+                <span className="leading-relaxed">Plaza Indonesia, Level 1, Unit 46 - 47, Jl. M.H. Thamrin No.30 Kav 28, Jakarta, 10350, Indonesia</span>
               </li>
             </ul>
           </div>

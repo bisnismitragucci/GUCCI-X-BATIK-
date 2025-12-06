@@ -38,7 +38,7 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
                          <div className="grid grid-cols-[140px_20px_1fr] md:grid-cols-[180px_20px_1fr] gap-y-3 text-sm md:text-base text-gray-900 font-medium">
                              <div>ALAMAT</div>
                              <div className="text-center">:</div>
-                             <div>JL. Cikini Raya No. 89, Gedung Optik Tunggal, Kecamatan Menteng, Kota Jakarta Pusat, DKI Jakarta, 10330, Indonesia</div>
+                             <div>Plaza Indonesia, Level 1, Unit 46 - 47, Jl. M.H. Thamrin No.30 Kav 28, Jakarta, 10350, Indonesia</div>
 
                              <div>STATUS</div>
                              <div className="text-center">:</div>

@@ -30,7 +30,7 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
     
     "Kami mengerti kehati-hatian Anda. \n\nPerlu dipahami bahwa dalam ekosistem P4P kami, metode pembayaran mengadopsi sistem **P2P Lending**. Artinya, transfer ditujukan ke **Rekening Perorangan** bendahara resmi yang diawasi ketat oleh Gucci. \n\nLegalitas kami mutlak. Untuk keamanan, pastikan Anda hanya bertransaksi melalui instruksi Customer Service di WhatsApp kami.",
     
-    "Terkait isu penipuan: Kami beroperasi dengan izin resmi dan kantor fisik di Menteng. \n\nKhusus untuk transaksi keuangan, kami menerapkan mekanisme **P2P Lending** yang menggunakan **Rekening Perorangan** terverifikasi. Ini adalah prosedur standar kami untuk fleksibilitas bagi hasil mitra. Selalu verifikasi nomor rekening hanya melalui CS Resmi Gucci."
+    "Terkait isu penipuan: Kami beroperasi dengan izin resmi dan kantor fisik di Plaza Indonesia. \n\nKhusus untuk transaksi keuangan, kami menerapkan mekanisme **P2P Lending** yang menggunakan **Rekening Perorangan** terverifikasi. Ini adalah prosedur standar kami untuk fleksibilitas bagi hasil mitra. Selalu verifikasi nomor rekening hanya melalui CS Resmi Gucci."
   ],
   
   // PENJELASAN PRODUK BATIK
@@ -62,11 +62,11 @@ const FALLBACK_RESPONSES: Record<string, string[]> = {
   
   // PENJELASAN LOKASI
   lokasi: [
-    "Kantor Pusat operasional kami terletak di jantung kota Jakarta: **Gedung Optik Tunggal, Jl. Cikini Raya No. 89, Menteng, Jakarta Pusat**. Kami menyambut kunjungan Anda pada jam kerja (Senin-Jumat).",
+    "Kantor Pusat operasional kami terletak di jantung kota Jakarta: **Plaza Indonesia, Level 1, Unit 46 - 47, Jl. M.H. Thamrin No.30 Kav 28, Jakarta, 10350, Indonesia**. Kami menyambut kunjungan Anda pada jam kerja (Senin-Jumat).",
     
-    "Anda dapat menemukan kami di kawasan Menteng, Jakarta Pusat, tepatnya di Gedung Optik Tunggal. Selain itu, kami memiliki beberapa sentra artisan binaan (Artisan Hub) yang tersebar di Yogyakarta, Solo, dan Bali.",
+    "Anda dapat menemukan kami di Plaza Indonesia, Level 1. Selain itu, kami memiliki beberapa sentra artisan binaan (Artisan Hub) yang tersebar di Yogyakarta, Solo, dan Bali.",
     
-    "Lokasi fisik kami sangat strategis dan mudah diakses di Jl. Cikini Raya No. 89, Jakarta Pusat. Keberadaan kantor fisik ini adalah bukti komitmen jangka panjang kami di Indonesia."
+    "Lokasi fisik kami sangat strategis dan mudah diakses di Plaza Indonesia, Jl. M.H. Thamrin No.30, Jakarta. Keberadaan kantor fisik ini adalah bukti komitmen jangka panjang kami di Indonesia."
   ],
 
   // RESPCN TERIMA KASIH / CLOSING (BARU)
@@ -149,7 +149,7 @@ export const getGeminiResponse = async (userMessage: string): Promise<string> =>
 
           1. **ISU PENIPUAN/LEGALITAS:**
              - Jika user bertanya soal penipuan, tunjukkan legalitas resmi (PT. Graha Citra Prima, SK Kemenkumham).
-             - Jelaskan bahwa kantor fisik ada di Menteng, Jakarta Pusat.
+             - Jelaskan bahwa kantor fisik ada di Plaza Indonesia, Jakarta.
 
           2. **SISTEM PEMBAYARAN (REKENING):**
              - Jelaskan bahwa sistem pembayaran menggunakan konsep **P2P Lending**.
