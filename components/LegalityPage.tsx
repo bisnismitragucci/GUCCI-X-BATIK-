@@ -48,7 +48,7 @@ export const LegalityPage: React.FC<LegalityPageProps> = ({ onBack, onNavigate }
 
                              <div>NIB</div>
                              <div className="text-center">:</div>
-                             <div className="font-mono font-bold tracking-wider text-black">9120114281905</div>
+                             <div className="font-mono font-bold tracking-wider text-black">912011********</div>
 
                              <div>JENIS USAHA</div>
                              <div className="text-center">:</div>

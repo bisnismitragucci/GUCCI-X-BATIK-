@@ -306,7 +306,7 @@ export const IzinEksporPage: React.FC<PageProps> = ({ onBack }) => (
                             </tr>
                             <tr className="border-b">
                                 <td className="py-2 font-bold text-gray-500">Negara Tujuan</td>
-                                <td className="py-2">Italia, Perancis, Amerika Serikat, Jepang</td>
+                                <td className="py-2">Seluruh Dunia</td>
                             </tr>
                              <tr>
                                 <td className="py-2 font-bold text-gray-500">Masa Berlaku</td>
@@ -355,7 +355,7 @@ export const ISOPage: React.FC<PageProps> = ({ onBack }) => (
                         <div className="flex justify-between items-end border-t border-gray-200 pt-4">
                             <div className="text-left">
                                 <p className="text-xs text-gray-400">Certificate No: <strong>QMS/2025/GCP-001</strong></p>
-                                <p className="text-xs text-gray-400">Issue Date: <strong>01 Jan 2025</strong></p>
+                                <p className="text-xs text-gray-400">Issue Date: <strong>01 Jan 2022</strong></p>
                                 <p className="text-xs text-gray-400">Expiry Date: <strong>01 Jan 2027</strong></p>
                             </div>
                             <div className="relative w-48 h-32 flex flex-col items-center justify-end">
